@@ -1,0 +1,31 @@
+{
+  "preview": "https://www.bilibili.com/toy/preview/author_ja3hAfoq/index.html",
+  "status": "draft_preview",
+  "checks": {
+    "cold_boot_mobile_home": true,
+    "cold_boot_desktop_users": true,
+    "startup_video_requests": [
+      "cotton/loop.mp4"
+    ],
+    "first_game_click_preview": {
+      "id": "toy-ds",
+      "muted": false,
+      "paused": false,
+      "decoded_audio_bytes": 203318
+    },
+    "native_player": {
+      "muted": false,
+      "duration": 8,
+      "reached_end": true
+    },
+    "home_returns_and_stops_playback": true,
+    "mobile_320_no_horizontal_overflow": true,
+    "media_decode_files": 21
+  },
+  "screenshots": [
+    "phone-home.png",
+    "phone-game.png",
+    "phone-player.png",
+    "desktop-home.png"
+  ]
+}

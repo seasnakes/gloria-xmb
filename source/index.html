@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GLORIA · 棉花糖多元宇宙</title>
+<meta name="description" content="光彩跃然 · 仿 PS3 XMB 的 toy 汇总入口">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/xmb.css">
+<link rel="stylesheet" href="css/mobile.css"><link rel="stylesheet" href="css/cotton.css"></head>
+<body>
+<!-- 图标共用的渐变：颜色由 --icon-hi / --icon-lo 控制，随主题和时间轻微染色 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="xg" gradientUnits="userSpaceOnUse" x1="0" y1="4" x2="0" y2="60">
+      <stop offset="0" style="stop-color:var(--icon-hi)"/>
+      <stop offset="0.55" style="stop-color:var(--icon-hi)"/>
+      <stop offset="1" style="stop-color:var(--icon-lo)"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<canvas id="bg"></canvas><video id="cotton-bg" muted loop playsinline preload="none" aria-hidden="true"></video>
+<div id="pic1"></div>
+<canvas id="viz"></canvas>
+<div id="lyrics"></div>
+
+<header id="mobile-header"><span>GLORIA XMB</span><strong id="mobile-title"></strong></header><nav id="mobile-nav"><button id="mobile-back" type="button" aria-label="返回"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 32H12M28 15L11 32L28 49" fill="none" stroke="url(#xg)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button id="mobile-home" type="button" aria-label="主页"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M7 29L28 10Q32 6 36 10L57 29V53Q57 57 53 57H39V39H25V57H11Q7 57 7 53Z" fill="url(#xg)"/></svg></button><button id="mobile-opt" type="button" aria-label="选项"><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="url(#xg)"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><circle cx="52" cy="32" r="6"/></g></svg></button></nav><div id="ui">
+  <div id="xmb"></div>
+  <div id="arrow"></div>
+  <div id="clock">
+    <div class="who"><span class="me"></span><span class="fr"></span><span class="n">0</span></div>
+    <div class="np"></div>
+    <div class="time"></div>
+    <div class="clk"></div>
+  </div>
+  <div id="panel"><div class="pbg"></div><div class="pfocus"></div><div class="plist"></div></div>
+  <div id="dialog"><div class="band"><div class="msg"></div><div class="btns"></div></div></div>
+  <div id="toast"></div>
+</div>
+
+<div id="viewer"></div>
+<div id="flash"></div>
+
+<div id="black"><div class="hint"></div></div>
+<div id="fade"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/bgtex.js"></script>
+<script src="js/bg.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/api.js"></script>
+<script src="js/viewers.js"></script>
+<script src="js/preview.js"></script>
+<script src="js/cotton.js"></script><script src="js/xmb.js"></script>
+<script src="plugins/plugins.js"></script>
+<script src="js/boot.js"></script>
+</body>
+</html>

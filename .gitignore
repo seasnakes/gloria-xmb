@@ -1,0 +1,21 @@
+# Rebuilt release output and archives
+/package/
+/*.zip
+
+# Browser verification screenshots and local reference downloads
+/*.png
+/references/
+
+# One-off pre-import backup
+/before-playlist-data.js
+
+# Local caches, environments and credentials
+.DS_Store
+__pycache__/
+*.py[cod]
+node_modules/
+.venv/
+.env
+.env.*
+!.env.example
+*.log

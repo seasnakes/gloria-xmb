@@ -1,0 +1,11 @@
+{
+  "id": "mint",
+  "name": { "zh": "薄荷", "en": "Mint" },
+  "author": "示例",
+  "gradient": {
+    "day": ["#a9ead8", "#8fd6cc", "#4fa6a0", "#2f7f86"],
+    "night": ["#031a1a", "#05282a", "#0c4a48", "#1a6660"]
+  },
+  "icon": "#effffb",
+  "wave": { "tint": "#f4fffc", "brightness": 1.05 }
+}

@@ -1,0 +1,48 @@
+/* The same GLORIA palette and icon silhouettes on desktop and phone. */
+#cotton-bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0;display:none;background:#f4e8f7}
+body.cotton #cotton-bg{display:block}
+body.cotton #bg{visibility:hidden}
+body.cotton:not(.has-preview):not(.viewing){color:#483653;--icon-hi:#655174;--icon-lo:#3f3455}
+body.cotton:not(.has-preview):not(.viewing) #xmb :is(.t,.lb,.d,.v),body.cotton:not(.has-preview):not(.viewing) #clock,body.cotton:not(.has-preview):not(.viewing) #mobile-header{color:#483653;text-shadow:0 1px 2px #fff9}
+body.cotton:not(.has-preview):not(.viewing) #mobile-header span{color:#6d597c}
+body.cotton:not(.has-preview):not(.viewing) #mobile-nav{background:#fff5;border-color:#66517530}
+body.cotton:not(.has-preview):not(.viewing) #clock{background:#fff2;border-color:#66517525}
+body.cotton:not(.has-preview):not(.viewing) .cat.sel .ic{filter:drop-shadow(0 2px 3px #836d9c30)}
+body.cotton:not(.has-preview):not(.viewing) .cat.sel .lb{text-shadow:0 1px 3px #fff}
+body.cotton #panel,body.cotton #dialog,body.cotton #toast{color:white}
+body.has-preview,body.viewing{--icon-hi:#fff3fa;--icon-lo:#c9bdcb}
+body.viewing #mobile-header{display:none}
+.clip-sound{position:absolute;z-index:4;right:0;bottom:0;width:38px;height:38px;display:grid;place-items:center;border:0;border-radius:50%;padding:8px;background:#221a2db8;cursor:pointer;--icon-hi:#fff3fa;--icon-lo:#c9bdcb}
+.clip-sound svg{width:24px;height:24px;pointer-events:none}.clip-sound:focus-visible{outline:2px solid white}
+.sim-video,.sim-caption{display:none}
+#viewer.clip{background:#100d16}
+#viewer.clip .vf{display:block}
+#viewer.clip iframe,#viewer.clip .vload,#viewer.clip .vhint{display:none}
+#viewer.clip .sim-video{display:block;position:absolute;top:34px;left:0;width:100%;height:calc(100% - 34px);object-fit:contain;touch-action:manipulation;background:#100d16}
+@media(max-width:699px) and (orientation:portrait){
+ #cotton-bg{object-position:50% 50%}
+ #pic1 .pl:not(.blur){background-size:100% auto;background-position:center 80px;background-color:#17121d}
+ #pic1 .shade{background:linear-gradient(180deg,#17121d55,transparent 100px,transparent 220px,#17121dcc 360px,#17121df2 500px)}
+ #mobile-header{top:max(22px,env(safe-area-inset-top));right:100px}
+ #mobile-title{font-size:18px;line-height:1.3}
+ #mobile-nav{padding-bottom:env(safe-area-inset-bottom);height:44px}
+ #viewer .vbar{padding-top:env(safe-area-inset-top);height:42px}
+ #viewer.clip .sim-video{top:50%;transform:translateY(-50%);height:auto;aspect-ratio:16/9;max-height:calc(100% - 150px - env(safe-area-inset-bottom));}
+ #viewer.clip .sim-caption{display:block;position:absolute;left:20px;right:20px;top:calc(50% + 28.125vw + 20px);bottom:auto;font-size:13px;line-height:1.6;text-align:center;color:#d2bfdc}
+ #ui .item .t{font-size:18px;line-height:24px;max-height:48px;overflow:hidden}
+ #ui .item .d{font-size:12px;line-height:18px;top:54px}
+ #viewer iframe{height:calc(100% - 86px - env(safe-area-inset-bottom));}
+ .clip-sound{width:40px;height:40px}
+}
+@media(prefers-reduced-motion:reduce){#cotton-bg{transition:none}}
+
+/* Reuse the fluid loop; twilight grading follows the existing time setting. */
+body.cotton #cotton-bg{filter:brightness(calc(1 - var(--cotton-night,0)*.68)) saturate(calc(1 + var(--cotton-night,0)*.22));transition:filter 1.2s ease}
+body.cotton.cotton-night:not(.has-preview):not(.viewing){color:#f6edff;--icon-hi:#fff3fa;--icon-lo:#c9bdcb}
+body.cotton.cotton-night:not(.has-preview):not(.viewing) #xmb :is(.t,.lb,.d,.v),body.cotton.cotton-night:not(.has-preview):not(.viewing) #clock,body.cotton.cotton-night:not(.has-preview):not(.viewing) #mobile-header{color:#f6edff;text-shadow:0 2px 5px #160d28aa}
+body.cotton.cotton-night:not(.has-preview):not(.viewing) #mobile-header span{color:#dbcaed}
+body.cotton.cotton-night:not(.has-preview):not(.viewing) #mobile-nav{background:#20152e99;border-color:#c5b1dd33}
+body.cotton.cotton-night:not(.has-preview):not(.viewing) #clock{background:#20152e55;border-color:#c5b1dd33}
+body.cotton.cotton-night:not(.has-preview):not(.viewing) .cat.sel .lb{text-shadow:0 2px 5px #160d28aa}
+.item .ic .cover-name{position:absolute;inset:auto 0 0;padding:14px 5px 5px;background:linear-gradient(transparent,#110c20e6);font:700 12px/1.2 sans-serif;color:white;text-align:center;text-shadow:0 1px 3px #000;pointer-events:none}
+@media(prefers-reduced-motion:reduce){body.cotton #cotton-bg{transition:none}}
