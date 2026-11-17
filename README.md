@@ -2,6 +2,8 @@
 
 当前发布版本：**v2.1.0（2026-11-17）**。基于棉花糖 v2，加入实时视效主题、主题封面预览与一键确认返回主页，整理 GLORIA 照片及投稿，并新增「声音碎片收藏馆」。完整说明见 [CHANGELOG.md](CHANGELOG.md)。
 
+源码仓库：[seasnakes/gloria-xmb](https://github.com/seasnakes/gloria-xmb) · [v2.1.0 源码版本](https://github.com/seasnakes/gloria-xmb/tree/v2.1.0)。保留原有 Git 历史，运行所需的压缩媒体随源码保存；构建输出和本地截图不纳入 Git。
+
 运行入口：[哔哩哔哩 Toy](https://www.bilibili.com/toy/gloria-xmb/index.html)。v2.1.0 已于 2026-11-17 提交审核，提交时平台返回 `auditing`；[本次平台预览](https://www.bilibili.com/toy/preview/author_9fWqYMjn/index.html)和[发布校验记录](release-2.1.0.json)可供核对。审核通过前正式入口仍可能保留上一版；下方按日期保留早期开发与验证记录。
 
 ## 棉花糖 v2 基线
@@ -60,7 +62,7 @@ python3 /Users/seasnake/gloria/publish/xmb/cotton-v2/build_release.py
 - `package/` 和 ZIP 是构建产物，截图、参考下载、缓存和本地环境文件也被忽略。原始大视频和生成图片母版留在原素材目录，通过 `media-manifest.json` 记录来源。
 - 初始提交保存当前棉花糖昼夜主题、移动端适配、游戏封面、网易云歌单和 42 条视频投稿这一版；更早的修改没有补造提交历史。
 - 构建发布包：`python3 build_release.py`。重新制作媒体需要本机原始素材及 `tools/prepare_media.py` 中所列依赖；构建发布包只使用已跟踪的运行素材。
-- 这是本地 Git 仓库，尚未配置远端。后续修改用提交记录保存；发布操作及审核状态与 Git 提交分开管理。
+- 初始基线只保存在本地；2026-11-17 起同步到公开仓库 `seasnakes/gloria-xmb`。后续修改用提交记录保存；发布操作及审核状态与 Git 提交分开管理。
 
 ## 2026-11-15 星核绽放动态主题试用
 
