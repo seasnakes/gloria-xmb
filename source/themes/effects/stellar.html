@@ -1,0 +1,2047 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>星核绽放</title>
+<style>
+/* Layout: full-bleed WebGL stage; one quiet control strip docked at the bottom, auto-hiding. */
+:root{
+  color-scheme: dark;
+  --void:#000;
+  --ink:#d7e2ff;
+  --ink-dim:rgba(196,210,255,.56);
+  --ink-faint:rgba(170,190,255,.22);
+  --ice:#8fc4ff;
+  --panel:rgba(6,10,24,.62);
+  --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC', system-ui, sans-serif;
+}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0;background:var(--void);color:var(--ink);overflow:hidden}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;background:var(--void)}
+#gl.drag{cursor:grabbing}
+.mark{position:fixed;left:0;top:0;padding:calc(env(safe-area-inset-top,0px) + 18px) 22px 0;display:flex;flex-direction:column;gap:4px;pointer-events:none;transition:opacity .6s}
+.mark b{font-weight:500;font-size:14px;letter-spacing:.32em;color:var(--ink)}
+.mark span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--ink-dim);text-transform:uppercase}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:14px 16px calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  background:linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,0));transition:opacity .6s, transform .6s}
+.hide .bar{opacity:0;transform:translateY(8px);pointer-events:none}
+.hide .mark{opacity:0}
+.btn{appearance:none;border:1px solid var(--ink-faint);background:var(--panel);color:var(--ink);font:500 12px/1 var(--sans);letter-spacing:.06em;
+  height:32px;padding:0 12px;border-radius:16px;display:inline-flex;align-items:center;gap:7px;cursor:pointer;white-space:nowrap;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn:hover{border-color:rgba(170,200,255,.5)}
+.btn:focus-visible,.seg button:focus-visible,#scrub:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+.btn svg{width:14px;height:14px;fill:currentColor}
+.btn.icon{width:32px;padding:0;justify-content:center}
+.timeline{flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:7px}
+.track{position:relative;height:18px}
+.phases{position:absolute;left:0;right:0;top:7px;height:4px;display:flex;gap:2px;border-radius:2px;overflow:hidden}
+.phases i{display:block;height:100%;background:var(--ink-faint)}
+.phases i.on{background:rgba(143,196,255,.55)}
+#scrub{position:absolute;inset:0;width:100%;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer}
+#scrub::-webkit-slider-runnable-track{height:18px;background:transparent}
+#scrub::-moz-range-track{height:18px;background:transparent}
+#scrub::-webkit-slider-thumb{-webkit-appearance:none;width:3px;height:18px;border-radius:2px;background:var(--ink);box-shadow:0 0 10px rgba(143,196,255,.9)}
+#scrub::-moz-range-thumb{width:3px;height:18px;border:0;border-radius:2px;background:var(--ink);box-shadow:0 0 10px rgba(143,196,255,.9)}
+.labels{display:flex;gap:2px;font:400 10.5px/1 var(--sans);color:var(--ink-dim);letter-spacing:.08em}
+.labels span{overflow:hidden;white-space:nowrap;text-overflow:clip}
+.labels span.on{color:var(--ink)}
+.time{font:400 12px/1 var(--mono);color:var(--ink-dim);font-variant-numeric:tabular-nums;min-width:96px;text-align:right}
+.time b{color:var(--ink);font-weight:500}
+.seg{display:inline-flex;border:1px solid var(--ink-faint);border-radius:16px;overflow:hidden;background:var(--panel);height:32px}
+.seg button{appearance:none;border:0;background:transparent;color:var(--ink-dim);font:400 11.5px/1 var(--mono);padding:0 10px;cursor:pointer}
+.seg button[aria-pressed="true"]{color:#05070f;background:var(--ink)}
+.group{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toast{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);font:400 12px/1.6 var(--mono);letter-spacing:.12em;color:var(--ink-dim);text-align:center;pointer-events:none;transition:opacity .5s;max-width:min(520px,calc(100% - 32px))}
+.toast.gone{opacity:0}
+.hint{position:fixed;right:0;top:0;padding:calc(env(safe-area-inset-top,0px) + 20px) 22px 0;font:400 10.5px/1.7 var(--sans);color:var(--ink-dim);text-align:right;letter-spacing:.08em;pointer-events:none;transition:opacity .6s}
+.hide .hint{opacity:0}
+@media (max-width:640px){
+  .bar{gap:10px}
+  .timeline{flex-basis:100%;order:-1}
+  .labels{font-size:9.5px}
+  .hint{display:none}
+  .time{min-width:0}
+}
+@media (prefers-reduced-motion:reduce){ .bar,.mark,.hint,.toast{transition:none} }
+</style>
+</head>
+<body>
+
+<canvas id="gl" aria-label="星核绽放 WebGL 动画"></canvas>
+
+<div class="mark" aria-hidden="true"><b>星核绽放</b><span>Blue bloom · WebGL2 · 8.9s loop</span></div>
+<div class="hint" aria-hidden="true">空格 暂停 · ← → 逐帧<br>H 隐藏界面</div>
+<div class="toast" id="toast">正在生成星核形态…</div>
+
+<div class="bar" id="bar">
+  <button class="btn icon" id="play" aria-label="暂停">
+    <svg viewBox="0 0 16 16" id="icoPause"><rect x="3" y="2" width="3.4" height="12" rx="1"/><rect x="9.6" y="2" width="3.4" height="12" rx="1"/></svg>
+    <svg viewBox="0 0 16 16" id="icoPlay" hidden><path d="M4 2.2v11.6c0 .6.7 1 1.2.7l9-5.8c.5-.3.5-1.1 0-1.4l-9-5.8C4.7 1.2 4 1.6 4 2.2z"/></svg>
+  </button>
+  <div class="timeline">
+    <div class="track">
+      <div class="phases" id="phases"></div>
+      <input type="range" id="scrub" min="0" max="8900" step="1" value="0" aria-label="循环时间轴">
+    </div>
+    <div class="labels" id="labels"></div>
+  </div>
+  <div class="time" id="time"><b>0.00</b> / 8.90 s</div>
+  <div class="group">
+    <div class="seg" id="speed" role="group" aria-label="播放速度">
+      <button type="button" data-v="0.25" aria-pressed="false">¼×</button>
+      <button type="button" data-v="0.5" aria-pressed="false">½×</button>
+      <button type="button" data-v="1" aria-pressed="true">1×</button>
+    </div>
+    <div class="seg" id="quality" role="group" aria-label="画质">
+      <button type="button" data-v="auto" aria-pressed="true">自动</button>
+      <button type="button" data-v="high" aria-pressed="false">高</button>
+      <button type="button" data-v="low" aria-pressed="false">省电</button>
+    </div>
+    <button class="btn" id="reseed" type="button">换一朵</button>
+    <button class="btn icon" id="fs" type="button" aria-label="全屏">
+      <svg viewBox="0 0 16 16"><path d="M2 6V2h4v1.6H3.6V6zm8-4h4v4h-1.6V3.6H10zM3.6 10v2.4H6V14H2v-4zm8.8 0H14v4h-4v-1.6h2.4z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// Launcher adapter; the original liuma artwork remains unchanged at its source.
+const THEME_EMBED = new URLSearchParams(location.search).has('theme');
+if (THEME_EMBED) {
+  document.documentElement.classList.add('theme-embed');
+  addEventListener('error', () => parent.postMessage({type:'xmb-visual-error'}, location.origin));
+}
+</script>
+<style>
+.theme-embed :is(.bar,.mark,.hint,.toast){display:none!important}
+.theme-embed #gl{pointer-events:none;inset:0;width:100%;height:100%}
+.theme-embed body::after{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,#03071199,transparent 80%)}
+@media(max-width:699px) and (orientation:portrait){
+ .theme-embed #gl{inset:0;width:100%;height:100%;opacity:.8}
+}
+</style>
+<script>
+(() => {
+'use strict';
+
+/* ------------------------------------------------------------------ *
+ *  Timeline (seconds within one loop) — measured from the reference  *
+ * ------------------------------------------------------------------ */
+const LOOP = 8.9;
+// The launcher keeps the fully open form; only the surface animation clock advances.
+// Never wrap this clock through the original burst/collapse timeline.
+const AMBIENT_PHASE = 7.35;
+const AMBIENT_SPEED = 0.7;
+function playbackState(elapsed) {
+  return THEME_EMBED
+    ? {phase: AMBIENT_PHASE, time: elapsed * AMBIENT_SPEED}
+    : {phase: ((elapsed % LOOP) + LOOP) % LOOP, time: elapsed};
+}
+const PHASES = [
+  { name: '光环', t0: 0.00, t1: 2.66 },
+  { name: '绽放', t0: 2.66, t1: 3.20 },
+  { name: '星尘', t0: 3.20, t1: 4.70 },
+  { name: '点亮', t0: 4.70, t1: 8.45 },
+  { name: '坍缩', t0: 8.45, t1: LOOP },
+];
+
+const Q = new URLSearchParams(location.search);
+const CAPTURE = Q.has('capture');
+const DBG_NOP = Q.has('nop');
+
+const $ = (s) => document.querySelector(s);
+const canvas = $('#gl');
+const toast = $('#toast');
+
+const gl = canvas.getContext('webgl2', {
+  antialias: false, alpha: false, depth: false, stencil: false,
+  premultipliedAlpha: false, preserveDrawingBuffer: CAPTURE, powerPreference: 'high-performance',
+});
+if (!gl) {
+  if (THEME_EMBED) parent.postMessage({type:'xmb-visual-error'}, location.origin);
+  toast.textContent = '这个浏览器没有开启 WebGL 2，无法渲染。请用最新版 Chrome、Edge 或 Safari 打开。';
+  return;
+}
+const HAS_CBF = !Q.has('ldr') && !!gl.getExtension('EXT_color_buffer_float');
+gl.getExtension('OES_texture_float_linear');
+const HDR_IF = HAS_CBF ? gl.RGBA16F : gl.RGBA8;
+const HDR_T = HAS_CBF ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE;
+
+/* ------------------------------------------------------------------ *
+ *  GLSL                                                              *
+ * ------------------------------------------------------------------ */
+const VS_FULL = `#version 300 es
+out vec2 vUV;
+void main(){
+  vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));
+  vUV = p;
+  gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+}`;
+
+// Shared motion maths: identical in the raymarcher and the particle system so
+// sparks stay glued to the surface through the burst and the collapse.
+const SHARED = `
+const float PI = 3.14159265359;
+const float BURST_T0 = 2.665;
+const float COLL_T0 = 8.43;
+float sat(float x){ return clamp(x, 0.0, 1.0); }
+vec2 rot2(vec2 v, float a){ float c = cos(a), s = sin(a); return vec2(c*v.x - s*v.y, s*v.x + c*v.y); }
+float lagAt(vec3 d){
+  float v = sin(dot(d, vec3(7.6, 2.9, -5.9)) + 1.0)
+          + sin(dot(d, vec3(-3.6, 8.2, 4.0)) + 2.3)
+          + sin(dot(d, vec3(4.7, -5.1, 8.0)) + 4.1)
+          + 0.8*sin(dot(d, vec3(-10.3, 4.0, -7.6)) + 0.7)
+          + 0.8*sin(dot(d, vec3(7.7, 8.7, 3.6)) + 5.2)
+          + 0.6*sin(dot(d, vec3(2.1, -11.7, -9.7)) + 3.3)
+          + 0.7*sin(dot(d, vec3(-14.2, -6.3, 8.8)) + 1.9)
+          + 0.6*sin(dot(d, vec3(9.1, -13.5, 7.4)) + 4.6);
+  return sat(v*0.18 + 0.5);
+}
+float growS(float bt, float lag){
+  float x = bt - 0.03 - lag*0.05;
+  float e = 1.0 - exp(-max(x, 0.0)/0.2);
+  return bt < 0.0 ? 0.0 : mix(0.36, 1.0, e);
+}
+// Pull-back fingers: which way round the rim lags behind. Depends on the angle around the view
+// axis only (the fingers point straight at the centre), and fades out over the top of the body so
+// the face toward the camera shrinks evenly instead of breaking into terraces.
+float lagColl(vec3 d){
+  float r = length(d.xy);
+  float ang = atan(d.y, d.x + 1e-6);
+  ang += 0.09*sin(d.z*9.0 + ang*3.0);                     // fingers wander a little, they are not straight wedges
+  float v = sin(ang*9.0 + 1.3) + 0.75*sin(ang*13.0 + 4.1) + 0.45*sin(ang*5.0 + 0.6);
+  return mix(0.5, sat(v*0.24 + 0.5), smoothstep(0.25, 0.75, r));
+}
+float collS(float ct, float lag){
+  float x = max(ct, 0.0);
+  float arms = smoothstep(0.25, 0.8, lag);
+  float d = (0.2*x + 1.75*x*x)*(1.0 + 0.4*(1.0 - arms)*sat((ct - 0.15)/0.15)) - 0.03*arms*sat((ct - 0.1)/0.2);
+  return max(1.0 - d, 0.15);
+}
+`;
+
+const FS_NOISE = `#version 300 es
+precision highp float;
+uniform float uLayer, uN;
+out vec4 o;
+vec3 h33(vec3 c, float seed){
+  uvec3 v = uvec3(ivec3(c) + ivec3(1024) + ivec3(int(seed)*57, int(seed)*113, int(seed)*251));
+  v = v*1664525u + 1013904223u;
+  v.x += v.y*v.z; v.y += v.z*v.x; v.z += v.x*v.y;
+  v ^= v >> 16u;
+  v.x += v.y*v.z; v.y += v.z*v.x; v.z += v.x*v.y;
+  return vec3(v) * (1.0/4294967295.0);
+}
+float gn(vec3 x, float per, float seed){
+  vec3 i = floor(x), f = fract(x);
+  vec3 u = f*f*f*(f*(f*6.0 - 15.0) + 10.0);
+  float n[8];
+  for(int k = 0; k < 8; k++){
+    vec3 o = vec3(float(k & 1), float((k >> 1) & 1), float((k >> 2) & 1));
+    vec3 g = h33(mod(i + o, per), seed)*2.0 - 1.0;
+    n[k] = dot(g, f - o);
+  }
+  return mix(mix(mix(n[0], n[1], u.x), mix(n[2], n[3], u.x), u.y),
+             mix(mix(n[4], n[5], u.x), mix(n[6], n[7], u.x), u.y), u.z);
+}
+float wor(vec3 x, float per, float seed){
+  vec3 i = floor(x), f = fract(x);
+  float md = 9.0;
+  for(int z = -1; z <= 1; z++) for(int y = -1; y <= 1; y++) for(int xx = -1; xx <= 1; xx++){
+    vec3 o = vec3(float(xx), float(y), float(z));
+    vec3 d = o + h33(mod(i + o, per), seed) - f;
+    md = min(md, dot(d, d));
+  }
+  return sqrt(md);
+}
+void main(){
+  vec3 p = vec3(gl_FragCoord.xy, uLayer + 0.5) / uN;
+  float r = gn(p*4.0, 4.0, 1.0)*0.55 + gn(p*8.0, 8.0, 2.0)*0.30 + gn(p*16.0, 16.0, 3.0)*0.15;
+  float g = gn(p*4.0, 4.0, 7.0);
+  float b1 = 1.0 - abs(gn(p*8.0, 8.0, 11.0))*1.7;
+  float b2 = 1.0 - abs(gn(p*16.0, 16.0, 13.0))*1.7;
+  float b = pow(clamp(b1, 0.0, 1.0), 3.0)*0.75 + pow(clamp(b2, 0.0, 1.0), 3.0)*0.25;
+  float a = wor(p*8.0, 8.0, 17.0);
+  o = vec4(0.5 + r*0.8, 0.5 + g*0.95, b, clamp(a, 0.0, 1.0));
+}`;
+
+const FS_BAKE = `#version 300 es
+precision highp float;
+uniform highp sampler2D uSph;
+uniform int uCount, uMode;
+uniform float uLayer, uN, uB, uK, uEnc;
+out vec4 o;
+void main(){
+  vec3 p = (vec3(gl_FragCoord.xy, uLayer + 0.5) / uN * 2.0 - 1.0) * uB;
+  float d = 1e3, d1 = 1e3, d2 = 1e3;
+  vec4 s1 = vec4(0.0, 0.0, 0.0, 1.0);
+  vec4 at = vec4(0.0);
+  for(int i = 0; i < 1024; i++){
+    if(i >= uCount) break;
+    vec4 s = texelFetch(uSph, ivec2(i, 0), 0);
+    float di = length(p - s.xyz) - s.w;
+    if(di < d1){ d2 = d1; d1 = di; s1 = s; } else if(di < d2){ d2 = di; }
+    float k = uK*(0.6 + s.w*3.0);
+    if(di > d + k) continue;
+    vec4 a = texelFetch(uSph, ivec2(i, 1), 0);
+    float h = clamp(0.5 + 0.5*(d - di)/k, 0.0, 1.0);
+    d = mix(d, di, h) - k*h*(1.0 - h);
+    at = mix(at, a, h);
+  }
+  // g: how far up its own bubble a point sits as seen from above (0.5 = the bubble's rim, 1 = its crown)
+  // a: distance to the seam where this bubble meets its neighbour (the folds between lobes)
+  float crown = clamp((p.z - s1.z)/s1.w, -1.0, 1.0)*0.5 + 0.5;
+  float seam = d2 - d1;
+  if(uMode == 0) o = uEnc > 0.5 ? vec4(clamp(d*2.0 + 0.25, 0.0, 1.0), crown, at.y, clamp(seam*8.0, 0.0, 1.0)) : vec4(d, crown, at.y, seam);
+  else o = at;
+}`;
+
+const FS_SCENE = `#version 300 es
+// Two layers: a dark, sparkling crust thrown out by the eruption, and a glossy bright layer
+// underneath that keeps rising and pushes up through the crust.
+precision highp float;
+precision highp sampler3D;
+uniform sampler3D uSDF, uAttr, uNoise;
+uniform vec2 uRes;
+uniform float uMinRes, uF, uCamZ, uFrame;
+uniform mat3 uRot, uRotT, uRotB;
+uniform float uScale, uB, uBreath, uSdfEnc;
+uniform float uLT, uTime;
+uniform float uBurstT, uCollT, uWarp, uStepK;
+uniform int uSteps;
+uniform float uCloudOn, uFade;
+uniform float uFlash, uGlass, uRingR;
+uniform float uBurstGlow, uSparkle, uKey, uDepthK;
+uniform vec4 uRise[4];
+uniform float uRiseAll, uSinkB, uTopB, uRetract, uFilm, uLate;
+// Top-down view. Both eruptions shoot toward the camera (+z) and stop at a ceiling plane z = uZc.
+uniform float uZc;          // the "glass": nothing rises past this height
+uniform float uLiftD;       // eruption 1: how far below its resting height the dark layer still is
+uniform vec4 uErupt[4];     // eruption 2: xyz centre, w radius (<= 0: not started)
+uniform float uInfl[4];     // swelling of the bright bubbles (0.6 → 1)
+uniform float uPush[4];     // how far the dark dust has been shoved aside at the glass
+uniform float uAllB;        // late: the bright body fills everything
+uniform float uCB;          // collapse: the remaining dust glows blue
+uniform float uEng;         // late: the bright layer swallows the dust layer
+uniform sampler2D uClus;    // r: bubble rings and fibres, g: speckled fill
+uniform float uRetD, uRetP; // late: the dust layer shrinks back (shape) and its pattern slides inward
+uniform float uCellA;       // how much of the dark bubble clusters is left on the glass
+uniform float uCurl;        // the clusters curl up on themselves as the light wraps them
+uniform vec4 uLightO[4];    // object-space light inside the bright layer, w intensity
+uniform float uLightR[4];
+layout(location = 0) out vec4 oCol;
+layout(location = 1) out vec4 oDep;
+layout(location = 2) out vec4 oBri;
+${SHARED}
+
+float sdfBase(vec3 q){
+  float bb = uB*0.985;
+  vec3 c = clamp(q, -bb, bb);
+  float v = texture(uSDF, c*(0.5/uB) + 0.5).r;
+  if(uSdfEnc > 0.5) v = (v - 0.25)*0.5;
+  return v + length(q - c);
+}
+vec4 attrAt(vec3 q){ return texture(uAttr, clamp(q*(0.5/uB) + 0.5, 0.0, 1.0)); }
+// x: height up its own bubble seen from above (0.5 rim → 1 crown); y: distance to the fold with the next bubble
+vec2 lobeAt(vec3 q){
+  vec4 v = texture(uSDF, clamp(q*(0.5/uB) + 0.5, 0.0, 1.0));
+  return vec2(v.g, uSdfEnc > 0.5 ? v.a/8.0 : v.a);
+}
+float detail(vec3 q){
+  float a = texture(uNoise, q*0.85 + vec3(0.0, uBreath, 0.3)).r - 0.5;
+  float b = texture(uNoise, q*2.4 + vec3(uBreath*1.3, 0.1, -uBreath)).r - 0.5;
+  return a*0.022 + b*0.010;
+}
+float smax(float a, float b, float k){ float h = sat(0.5 - 0.5*(b - a)/k); return mix(b, a, h) + k*h*(1.0 - h); }
+float sGrow(vec3 q){
+  if(uWarp < 0.5) return 1.0;
+  float lag = lagAt(q/max(length(q), 1e-5));
+  float s = growS(uBurstT, lag);
+  if(uCollT > 0.0) s *= collS(uCollT, lagColl(q/max(length(q), 1e-5)));
+  return max(s, 1e-3);
+}
+vec3 baseQ(vec3 pw){
+  return pw/uScale;   // no twist: the eruptions and the pull-back are purely radial
+}
+// dark layer coordinates: pushed sideways (quicksand) where the bright eruptions hit the glass
+vec3 qDark(vec3 pw, out float sD){
+  vec3 q = baseQ(pw)*(1.0 + uRetD);
+  for(int k = 0; k < 4; k++){
+    if(uErupt[k].w <= 0.0 || uPush[k] <= 0.0) continue;
+    vec2 d = q.xy - uErupt[k].xy;
+    float r = length(d);
+    float R = uErupt[k].w + 0.06;
+    q.xy -= d/max(r, 1e-3)*uPush[k]*exp(-r*r/(R*R))*smoothstep(0.0, 0.06, r);
+  }
+  sD = sGrow(q);
+  q.z += uLiftD;
+  return q;
+}
+float layerD(vec3 pw){
+  float sD;
+  vec3 q = qDark(pw, sD);
+  vec3 qd = q/sD;
+  float d = sdfBase(qd);
+  if(d < 0.1){
+    d += detail(qd);
+    if(uEng > 0.0){
+      float w = texture(uNoise, qd*2.6 + 0.37).a;
+      d -= 0.010*uEng*sat(1.0 - (w/0.5)*(w/0.5));
+    }
+  }
+  d *= sD*uScale;
+  return smax(d, (pw.z/uScale - uZc)*uScale, 0.02*uScale);
+}
+// Some of the outermost dust lobes (whole bubbles) are never filled or swallowed by the bright
+// layer: they stay dark at the rim and pull back.
+float rimDark(vec3 q){
+  return smoothstep(0.25, 0.32, length(q.xy))*smoothstep(0.3, 0.6, attrAt(q).y);
+}
+// bright layer coordinates: a different cluster that swells out of each eruption point
+vec3 qBright(vec3 pw, out float sB, out float mask){
+  vec3 q = baseQ(pw);
+  sB = sGrow(q)*uRetract;
+  vec3 off = vec3(0.0);
+  float ws = 0.0;
+  float nz = texture(uNoise, q*2.3 + 0.17).r - 0.5;
+  mask = length(q) - uAllB*(0.62 + 0.25*nz);
+  for(int k = 0; k < 4; k++){
+    if(uErupt[k].w <= 0.0) continue;
+    vec3 dq = q - uErupt[k].xyz;
+    float d = length(dq);
+    mask = min(mask, d - uErupt[k].w*(0.85 + 0.5*nz));
+    float w = exp(-d*d/0.1);
+    off += w*dq*(1.0 - 1.0/uInfl[k]);
+    ws += w;
+  }
+  mask = max(mask, -0.05 + 0.13*rimDark(q));
+  return q - off/max(ws, 1.0);
+}
+float engulfAt(vec3 q){
+  if(uEng <= 0.0) return 0.0;
+  // The light wraps each dark lobe: it climbs over the lobe's rim first and closes over its crown
+  // last, so every dark lobe seems to curl up into a shrinking core before it is gone. Broad regions
+  // (and the areas around the eruption points) go first.
+  float reg = sat((texture(uNoise, q*0.9 + vec3(0.13, 0.71, 0.29)).g - 0.5)*3.5 + 0.5);
+  float crown = sat((lobeAt(q*(1.0 + uRetD)).x - 0.42)/0.5);
+  float dmin = 9.0;
+  for(int k = 0; k < 4; k++){
+    if(uErupt[k].w <= 0.0) continue;
+    dmin = min(dmin, length(q.xy - uErupt[k].xy) - uErupt[k].w*0.25);
+  }
+  dmin = max(dmin, 0.0);
+  float rimK = rimDark(q);   // the dark rim lobes are not swallowed: they pull back instead
+  float delay = 0.05 + 0.5*reg + 0.3*crown + 0.3*dmin + 3.0*rimK;
+  return smoothstep(0.0, 0.1, uEng - delay);
+}
+// Bubble clusters left on the glass by the first eruption. Each cluster wanders on a slow,
+// low-frequency current, its outline wobbles, and the whole pattern slides inward as the dust retracts.
+vec2 clusPos(vec3 qd){
+  vec3 qp = qd*(1.0 + uRetP);
+  vec2 drift = (texture(uNoise, vec3(qp.xy*0.5 + 0.21, 0.37 + uTime*0.03)).rg - 0.5)*0.12;
+  vec2 wob = (texture(uNoise, qp*2.2 + vec3(0.0, uTime*0.07, 0.3)).rg - 0.5)*0.035
+           + (texture(uNoise, qp*5.0 + vec3(uTime*0.09, 0.0, 0.6)).rg - 0.5)*0.012;
+  vec2 p = qp.xy + drift + wob;
+  if(uCurl > 0.0){
+    // each cluster curls up toward its own middle, its outer cells pulled in hardest
+    vec2 o = (texture(uClus, p/(2.0*0.62) + 0.5).ba - 0.5)*0.4;
+    vec2 c = p + o;
+    float h = fract(sin(dot(floor(c*40.0), vec2(12.9898, 78.233)))*43758.5453);
+    p = c - o*(1.0 + uCurl*(0.6 + 0.6*h) + 9.0*uCurl*length(o));
+  }
+  return p;
+}
+vec2 clusUV(vec3 qd){ return clusPos(qd)/(2.0*0.62) + 0.5; }
+float layerB(vec3 pw){
+  float sB, mask;
+  vec3 q = qBright(pw, sB, mask);
+  vec3 qb = uRotB*(q/(sB*uTopB));
+  float d = sdfBase(qb);
+  if(d < 0.1) d += detail(qb + 3.1)*0.7;
+  d *= sB*uTopB*uScale;
+  d = smax(d, mask*uScale, 0.06*uScale);
+  float dD = layerD(pw);
+  d = smax(d, dD + 0.012*uScale, 0.025*uScale);   // under the dark layer, never wider than it
+  d = smax(d, (pw.z/uScale - uZc - 0.008)*uScale, 0.02*uScale);
+  float e = engulfAt(q);
+  return mix(d, dD - 0.003*uScale, e);             // late: it swallows the dust layer and takes its shape
+}
+float mapD(vec3 pw){ return layerD(pw); }
+float mapB(vec3 pw){ return layerB(pw); }
+vec3 nrmD(vec3 p, float e){
+  const vec2 k = vec2(1.0, -1.0);
+  vec3 g = k.xyy*mapD(p + k.xyy*e) + k.yyx*mapD(p + k.yyx*e) + k.yxy*mapD(p + k.yxy*e) + k.xxx*mapD(p + k.xxx*e);
+  return g/max(length(g), 1e-7);
+}
+vec3 nrmB(vec3 p, float e){
+  const vec2 k = vec2(1.0, -1.0);
+  vec3 g = k.xyy*mapB(p + k.xyy*e) + k.yyx*mapB(p + k.yyx*e) + k.yxy*mapB(p + k.yxy*e) + k.xxx*mapB(p + k.xxx*e);
+  return g/max(length(g), 1e-7);
+}
+float aoB(vec3 p, vec3 n){
+  float occ = 0.0, sca = 1.0;
+  for(int i = 0; i < 5; i++){
+    float h = 0.012 + 0.038*float(i);
+    occ += (h - mapB(p + n*h))*sca;
+    sca *= 0.72;
+  }
+  return sat(1.0 - 2.4*occ);
+}
+float thinB(vec3 p, vec3 n){
+  float acc = 0.0;
+  for(int i = 1; i <= 3; i++){
+    float h = 0.028*float(i);
+    acc += sat(-mapB(p - n*h)/h);
+  }
+  return 1.0 - acc/3.0;
+}
+vec2 iSphere(vec3 ro, vec3 rd, float r){
+  float b = dot(ro, rd), c = dot(ro, ro) - r*r, h = b*b - c;
+  if(h < 0.0) return vec2(-1.0);
+  h = sqrt(h);
+  return vec2(-b - h, -b + h);
+}
+vec3 envMap(vec3 r){
+  float a = pow(sat(dot(r, normalize(vec3(0.85, 0.32, 0.42)))), 7.0);
+  float b = pow(sat(dot(r, normalize(vec3(-0.55, 0.55, 0.35)))), 16.0);
+  float c = pow(sat(dot(r, normalize(vec3(0.2, -0.7, 0.5)))), 6.0);
+  return vec3(0.72, 0.9, 1.0)*a*2.4 + vec3(0.45, 0.62, 1.0)*b*0.8 + vec3(0.15, 0.3, 0.9)*c*0.35;
+}
+uvec3 pcg(uvec3 v){
+  v = v*1664525u + 1013904223u;
+  v.x += v.y*v.z; v.y += v.z*v.x; v.z += v.x*v.y;
+  v ^= v >> 16u;
+  v.x += v.y*v.z; v.y += v.z*v.x; v.z += v.x*v.y;
+  return v;
+}
+vec3 h3(vec3 c){ return vec3(pcg(uvec3(ivec3(c) + ivec3(4096))))*(1.0/4294967295.0); }
+vec3 sparkLayer(vec3 q, float sc, float dens, float pxo, float sizeK, float gain){
+  vec3 g = q*sc, id = floor(g), f = g - id;
+  vec3 k = h3(id + vec3(1777.0, 311.0, 97.0));
+  if(k.x > dens) return vec3(0.0);
+  vec3 c = 0.2 + 0.6*h3(id);
+  float d = length(f - c)/sc;
+  float r0 = sizeK/sc*(0.45 + 0.9*k.y);
+  float r = max(r0, pxo*0.75);
+  float e = (r0*r0)/(r*r);
+  float tw = 0.5 + 0.5*sin(uTime*(0.9 + 3.2*k.z) + k.y*61.0);
+  tw = tw*tw*tw;
+  float I = exp(-d*d/(r*r))*e*(0.25 + 2.6*tw)*(0.35 + 3.0*k.z*k.z)*gain;
+  vec3 col = k.z > 0.93 ? vec3(0.78, 0.62, 1.0) : (k.y > 0.62 ? vec3(0.45, 0.86, 1.0) : vec3(0.82, 0.9, 1.0));
+  return col*I;
+}
+// one jittered dot per grid cell, faded in and out as the grid slides along z (churning sand)
+float dotsL(vec3 g3, float dens, float rad, float pxS){
+  vec3 id = floor(g3), f = g3 - id;
+  vec3 k = h3(id + vec3(53.0, 191.0, 7.0));
+  if(k.x > dens) return 0.0;
+  vec3 c = 0.15 + 0.7*h3(id + vec3(11.0, 3.0, 977.0));
+  vec2 d2 = f.xy - c.xy;
+  float r = rad*(0.6 + 0.8*k.y);
+  float rr = max(r, pxS);
+  float life = sat(1.0 - abs(f.z - c.z)*2.2);
+  return exp(-dot(d2, d2)/(rr*rr))*min(1.0, (r*r)/(rr*rr))*life*(0.6 + 0.4*k.z);
+}
+// A dark bubble cluster on the glass: translucent navy cells with a thin outline, a denser
+// crescent along one side, a slow swirl inside and dark sand churning through it.
+// Returns premultiplied colour + coverage, to be laid over whatever is underneath (L).
+vec4 darkCells(vec3 L, vec3 qd, float amt, float pxo){
+  if(amt <= 0.002) return vec4(0.0);
+  vec2 cp = clusPos(qd);
+  vec2 uv = cp/(2.0*0.62) + 0.5;
+  vec4 c = texture(uClus, uv);
+  if(c.r + c.g < 0.004) return vec4(0.0);
+  float fOff = texture(uClus, uv + vec2(-0.006, 0.0115)).g;
+  float cres = sat((c.g - fOff)*2.2);
+  float zq = qd.z*(1.0 + uRetP);
+  float inner = texture(uNoise, vec3(cp*4.5, zq*2.0 + uTime*0.06) + 0.47).r;
+  vec2 sw = (texture(uNoise, vec3(cp*7.0, uTime*0.05) + 0.11).rg - 0.5)*0.025;   // sand drifts inside the cell
+  vec2 sp = cp + sw;
+  float sand = dotsL(vec3(sp*135.0, zq*135.0 + uTime*0.55), 0.8, 0.24, pxo*135.0)
+             + 0.75*dotsL(vec3(sp*240.0 + 7.3, zq*240.0 - uTime*0.7), 0.7, 0.26, pxo*240.0);
+  float glint = dotsL(vec3(sp*95.0 + 3.1, uTime*0.35), 0.16, 0.2, pxo*95.0);
+  float ringW = 0.6 + 0.55*texture(uNoise, vec3(cp*6.0, uTime*0.07) + 0.2).r;   // outline thickness breathes
+  // translucent navy body with dark sand, then a darker outline and crescent on top of it
+  float aB = sat(c.g*(0.42 + 0.3*smoothstep(0.3, 0.75, inner)) + sand*c.g*0.55)*amt;
+  float aE = sat(c.r*1.1*sat(ringW) + cres*0.65)*amt;
+  vec3 T1 = vec3(0.11, 0.2, 0.36), T2 = vec3(0.03, 0.058, 0.11);
+  float a = 1.0 - (1.0 - aB)*(1.0 - aE);
+  vec3 rgb = L*(T1*aB*(1.0 - aE) + T2*aE) + vec3(0.001, 0.003, 0.009)*a
+           + vec3(0.45, 0.65, 1.0)*glint*c.g*(1.0 - cres)*amt*0.3;
+  return vec4(rgb, a);
+}
+float emisAt(vec3 q){
+  float e = 0.0;
+  for(int k = 0; k < 4; k++){
+    if(uLightO[k].w <= 0.0) continue;
+    vec3 d = q - uLightO[k].xyz;
+    e += uLightO[k].w*exp(-dot(d, d)/(uLightR[k]*uLightR[k]));
+  }
+  return e;
+}
+
+const vec3 KEY = vec3(0.8771, 0.3337, 0.3456);
+const vec3 FILL = vec3(-0.5826, -0.5297, 0.6567);
+
+// Glossy, frosted ice-blue layer.
+// Light flowing inside the bright layer: domain-warped noise advected with time, so the glow
+// swirls and drifts (no single direction), with darker ribbons where the flow folds.
+float flowField(vec3 q, float tt, out float vein){
+  vec3 w1 = texture(uNoise, q*1.6 + vec3(0.0, tt*0.045, tt*0.03)).rgb - 0.5;
+  vec3 w2 = texture(uNoise, q*3.7 + w1*0.7 + vec3(tt*0.06, 0.0, -tt*0.04)).rgb - 0.5;
+  vec3 qw = q + w1*0.17 + w2*0.08;
+  float c = texture(uNoise, qw*4.2 + vec3(0.0, -tt*0.05, 0.0)).r*0.55
+          + texture(uNoise, qw*9.3 + vec3(tt*0.045, 0.0, 0.0)).r*0.3
+          + texture(uNoise, qw*19.0 + vec3(0.0, 0.0, tt*0.04)).r*0.15;
+  float rv = texture(uNoise, qw*2.6 + w2*0.4 + vec3(tt*0.025, tt*0.02, 0.0)).b;
+  vein = smoothstep(0.5, 0.88, rv);
+  return c;
+}
+// Self-lit bright layer: no outside light. Brightness comes from the flowing glow inside,
+// seen through a few depths of the translucent body.
+vec3 shadeB(vec3 p, vec3 rd, float t, float pxw){
+  float sB, mask;
+  vec3 q = qBright(p, sB, mask);
+  vec3 qb = uRotB*(q/(sB*uTopB));
+  float rise = smoothstep(0.0, 0.12, -mask);
+  vec3 n = nrmB(p, 0.007*uScale);
+  float ndv = sat(dot(n, -rd));
+  float thick = 1.0 - thinB(p, n);
+  float inner = min(emisAt(q), 2.5);
+  float tt = uTime*2.2;
+  float acc = 0.0, vacc = 0.0, ws = 0.0;
+  for(int i = 0; i < 5; i++){
+    float fi = float(i);
+    float vv;
+    float c = flowField(qb + rd*(fi*0.02) + vec3(0.0, 0.0, fi*0.11), tt + fi*1.3, vv);
+    float w = exp(-fi*0.6);
+    acc += c*w; vacc += vv*w; ws += w;
+  }
+  acc /= ws; vacc /= ws;
+  // large drifting regions: some lobes glow hard, others stay deep blue
+  float big = texture(uNoise, q*1.25 + vec3(tt*0.02, -tt*0.015, 0.31)).r*0.65 + texture(uNoise, q*2.7 + vec3(0.0, tt*0.03, 0.77)).r*0.35;
+  float bub = attrAt(qb).x;                              // each bubble glows at its own level
+  float lvl = sat(0.45 + 0.18*(1.0 - uEng) + (bub - 0.5)*1.0 + (acc - 0.5)*3.0 + (big - 0.5)*2.2 + (sat(inner) - 0.6)*0.35 + (thick - 0.5)*0.2);
+  float cK = smoothstep(0.0, 0.22, uCollT);              // pulled back: the glow evens out into one glossy blue
+  lvl = mix(lvl, 0.44 + (lvl - 0.5)*0.55, cK);
+  vec3 col = mix(vec3(0.012, 0.036, 0.1), vec3(0.07, 0.27, 0.64), smoothstep(0.05, 0.5, lvl));
+  col = mix(col, vec3(0.3, 0.55, 0.95), smoothstep(0.45, 0.85, lvl));
+  col = mix(col, vec3(0.78, 0.86, 0.98), smoothstep(0.9, 1.0, lvl)*0.5);       // pale silvery cotton
+  // creamy hot regions: pale ivory, crossed by thin meandering blue veins that drift with the flow
+  float wrm = smoothstep(0.56, 0.74, texture(uNoise, q*2.6 + vec3(0.5, tt*0.02, 0.1)).g);
+  // folds: long thin meandering lines (one smooth noise's zero contour, warped by the flow), kept a
+  // constant hairline width by dividing by the field's own slope
+  float eS = engulfAt(q);
+  vec3 qv = q*1.25 + (texture(uNoise, q*1.7 + vec3(tt*0.02, 0.0, 0.2)).rgb - 0.5)*0.16 + vec3(0.37, tt*0.012, 0.11);
+  const float ev = 0.004;
+  float gv = texture(uNoise, qv).g - 0.5;
+  vec2 gg = vec2(texture(uNoise, qv + vec3(ev*1.25, 0.0, 0.0)).g - 0.5 - gv, texture(uNoise, qv + vec3(0.0, ev*1.25, 0.0)).g - 0.5 - gv)/ev;
+  float gvd = min(abs(gv), min(abs(gv - 0.11), abs(gv + 0.11)));   // a few nested folds, not one lone line
+  float veinC = 1.0 - smoothstep(0.55, 1.15, gvd/max(length(gg), 1e-3)/0.0048);
+  col *= 1.0 - 0.42*vacc*(1.0 - 0.5*smoothstep(0.7, 1.0, lvl));               // flowing darker ribbons
+  col = mix(col, col*vec3(0.5, 0.75, 1.15), vacc*0.6);
+  // translucent body: thick parts glow more, lobe outlines read as deeper blue
+  col *= mix(0.55, 1.0, thick);
+  col *= mix(0.38, 1.0, smoothstep(0.06, 0.55, ndv));
+  col = mix(col, col*vec3(0.45, 0.7, 1.2), (1.0 - smoothstep(0.05, 0.5, ndv))*0.5);
+  // fine grain and glitter suspended in the glow
+  float grainA = 1.0 - smoothstep(0.04, 0.24, texture(uNoise, qb*60.0 + 0.61 + vec3(0.0, tt*0.01, 0.0)).a);
+  col *= 0.86 + 0.22*grainA;
+  // sugary sand: packed grains a few pixels across, lit in their middles, dark in the gaps
+  float gw = texture(uNoise, qb*21.0 + 0.23 + vec3(0.0, tt*0.006, 0.0)).a;
+  float gw2 = texture(uNoise, qb*37.0 + 0.71).a;
+  float sug = (1.0 - smoothstep(0.12, 0.5, gw))*0.65 + (1.0 - smoothstep(0.1, 0.42, gw2))*0.35;
+  col *= 0.7 + 0.5*sug;
+  float pxo = t*pxw/max(uScale, 1e-3);
+  col += (sparkLayer(qb + 0.37, 150.0, 0.45, pxo, 0.09, 0.6) + sparkLayer(qb - 0.21, 260.0, 0.4, pxo, 0.1, 0.45))*(0.15 + 0.35*lvl);
+  float I = (0.62 + 0.85*sat(inner*0.8))*(1.0 + 0.7*(1.0 - uEng))*mix(0.85, 1.0, uKey)*mix(0.75, 1.15, smoothstep(0.2, 0.8, big));
+  vec3 L = col*I*0.95;
+  // the hottest glow turns silvery white and mottled, crossed by the blue fold lines
+  float mL = max(max(L.r, L.g), L.b);
+  float crm = smoothstep(0.45, 0.8, mL)*mix(0.5, 1.0, wrm)*(1.0 - cK);
+  L = mix(L, vec3(0.9, 0.95, 1.0)*mL*0.88, crm*0.45);      // pale silver-white, no warm cast
+  L *= mix(1.0, 0.62 + 0.55*sug, crm);                     // mottled, sugary, not a flat sheet
+  L = mix(vec3(dot(L, vec3(0.2126, 0.7152, 0.0722))), L, mix(0.74, 0.9, lvl));
+  float mB = max(max(L.r, L.g), max(L.b, 1e-4)), Tc = 0.4;   // soft clip on the brightest channel keeps ivory from bleaching to white
+  if(mB > Tc) L *= (Tc + (mB - Tc)/(1.0 + (mB - Tc)*3.2))/mB;
+  L = mix(L, L*vec3(0.2, 0.4, 0.9), veinC*0.88*smoothstep(0.2, 0.55, crm));   // fold lines, only across the hottest lobes
+  // still deep under the dust: only a navy smoke shows
+  vec3 smoke = vec3(0.002, 0.004, 0.012)*(0.4 + 1.2*acc) + vec3(0.03, 0.07, 0.22)*inner*0.25;
+  float lift = max(smoothstep(0.05, 0.75, rise), eS);
+  L = mix(smoke, L, lift);
+  L += vec3(0.4, 0.66, 1.0)*0.45*4.0*eS*(1.0 - eS)*(1.0 - cK);   // a glowing lip where the light is closing over a lobe
+  float deep = sat(-layerD(p)/uScale - 0.012);
+  L *= mix(1.0, 0.45, smoothstep(0.05, 0.45, deep));
+  L = mix(L, L*vec3(0.5, 0.85, 1.15), smoothstep(0.1, 0.5, deep));
+  L *= 1.0 - 0.5*smoothstep(0.0, 0.32, uCollT);
+  return L;
+}
+
+void main(){
+  vec2 fc = gl_FragCoord.xy;
+  vec2 uv = (fc - 0.5*uRes)/(uMinRes*uFrame);
+  vec3 ro = vec3(0.0, 0.0, uCamZ);
+  vec3 rd = normalize(vec3(uv, -uF));
+  vec3 col = vec3(0.0);
+  float depth = 1e4;
+  float pxw = 1.0/(uMinRes*uFrame*uF);
+
+  if(uGlass > 0.001){
+    vec2 ts = iSphere(ro, rd, uRingR*0.8);
+    if(ts.x > 0.0){
+      vec3 p = ro + rd*ts.x, n = normalize(p);
+      float f = pow(sat(1.0 - dot(n, -rd)), 3.0);
+      col += vec3(0.06, 0.06, 0.2)*f*uGlass*0.12;
+      col += envMap(reflect(rd, n))*0.004*uGlass;
+    }
+  }
+  if(uFlash > 0.001){
+    float ringUV = uRingR*uF/uCamZ;
+    float dd = (length(uv) - ringUV)*uMinRes*uFrame;
+    col += vec3(0.86, 0.9, 1.0)*uFlash*(exp(-dd*dd*0.7)*1.0 + exp(-dd*dd*0.05)*0.03);
+  }
+
+  float depthB = 1e4;
+  vec3 bri = vec3(0.0);
+  vec4 front = vec4(0.0);
+  float gapB = 9.0;
+  if(uCloudOn > 0.5){
+    vec2 tb = iSphere(ro, rd, 0.8*uScale);
+    if(tb.y > 0.0){
+      float t = max(tb.x, 0.0);
+      int hitL = 0;
+      for(int i = 0; i < 220; i++){
+        if(i >= uSteps) break;
+        vec3 p = ro + rd*t;
+        float dD = mapD(p), dB = mapB(p);
+        float dm = min(dD, dB);
+        if(dm < 0.0005*t){ hitL = dB <= dD ? 2 : 1; break; }
+        t += dm*uStepK;
+        if(t > tb.y) break;
+      }
+      if(hitL == 2){
+        // bright sand has reached the front here
+        bri = shadeB(ro + rd*t, rd, t, pxw);
+        depth = depthB = t*(-rd.z);
+        gapB = 0.0;
+        {
+          // the swallowed dust clusters still ride on the bright surface, drifting and slowly fading
+          vec3 pp = ro + rd*t;
+          float sDq;
+          vec3 qq = qDark(pp, sDq)/sDq;
+          float e2 = engulfAt(baseQ(pp));
+          vec4 dc = darkCells(bri, qq, uCellA*smoothstep(0.5, 0.9, e2), t*pxw/max(uScale, 1e-3));
+          bri = bri*(1.0 - dc.a) + dc.rgb;
+        }
+      } else if(hitL == 1){
+        vec3 p = ro + rd*t;
+        depth = t*(-rd.z);
+        float sD;
+        vec3 qd = qDark(p, sD)/sD;
+        vec3 n = nrmD(p, 0.007*uScale);
+        float ndv = sat(dot(n, -rd));
+        float rim = pow(sat(1.0 - ndv), 1.6);
+        // translucent dark bubble: thin dark film in the middle, dense dark outline at the rim
+        float grain = texture(uNoise, qd*(1.0 + uRetP)*4.2 + 0.3).r;
+        float clump = texture(uNoise, qd*(1.0 + uRetP)*5.5 + 0.6).r;
+        float aD = sat(0.45 + 0.25*rim + (clump - 0.5)*0.35);
+        aD = mix(aD, aD*0.6, 1.0 - uFilm);
+        vec3 under = vec3(0.0015, 0.003, 0.009);
+        vec3 film = vec3(0.0);
+        float t2 = t + 0.003;
+        bool hitB = false;
+        for(int j = 0; j < 90; j++){
+          float db = mapB(ro + rd*t2);
+          if(db < 0.0005*t2){ hitB = true; break; }
+          t2 += max(db*uStepK, 0.002);
+          if(t2 > tb.y) break;
+        }
+        if(hitB){
+          under = shadeB(ro + rd*t2, rd, t2, pxw); depthB = t2*(-rd.z);
+          gapB = (t2 - t)/uScale;
+          aD *= mix(0.1, 1.0, smoothstep(0.004, 0.07, (t2 - t)/uScale));   // bright sand right under the glass pushes the dark film thin
+        }
+        aD *= 1.0 - engulfAt(baseQ(p));
+        float dif = sat((dot(n, KEY) + 0.3)/1.3);
+        // dark undercurrents: slow navy billows drifting through the dust, brighter pockets, darker folds
+        float cvein;
+        float cur = flowField(qd*(1.0 + uRetP)*0.75 + 0.13, uTime*0.9, cvein);
+        float bill = smoothstep(0.3, 0.72, cur);
+        float lobeK = 0.55 + 0.9*attrAt(qd).x;
+        float aoD = 0.0;
+        for(int k = 1; k <= 3; k++){ float h = 0.025*float(k)*uScale; aoD += sat((h - mapD(p + n*h))/h); }
+        aoD = 1.0 - aoD/3.0;                                                       // dark in the gaps between lobes
+        film = vec3(0.003, 0.0085, 0.018)*(0.6 + 0.8*grain)*(0.02 + 2.0*bill*bill)*lobeK*(0.15 + 0.85*aoD);
+        film += vec3(0.016, 0.055, 0.14)*bill*bill*bill*(1.0 - 0.6*rim)*lobeK*aoD;   // faint glowing pockets
+        film += vec3(0.008, 0.018, 0.06)*smoothstep(0.3, 0.95, dot(n, normalize(vec3(-0.3, 0.6, 0.75))))*aoD*(0.2 + 1.3*bill);  // soft sheen on lobe tops
+        film *= 1.0 - 0.55*cvein;                                                  // darker folds between currents
+        film += vec3(0.004, 0.007, 0.022)*dif*dif + vec3(0.007, 0.013, 0.04)*rim*(0.5 + bill);
+        // light from far below seeps through the dust: a soft cold glow on the film's underside
+        film += under*0.12*(1.0 - rim)*smoothstep(0.05, 0.4, uKey + uEng);
+        float pxo = t*pxw/max(uScale, 1e-3);
+        float clusN = smoothstep(0.42, 0.72, texture(uNoise, qd*2.4 + vec3(0.21, uTime*0.01, 0.0)).g);   // sparkles gather in clumps
+        vec3 sp = sparkLayer(qd, 62.0, 0.03 + 0.5*clusN, pxo, 0.06, 0.5) + sparkLayer(qd + 0.37, 150.0, 0.02 + 0.35*clusN, pxo, 0.07, 0.25);
+        film += sp*uSparkle*0.28;
+        film += vec3(0.07, 0.13, 0.5)*pow(1.0 - ndv, 4.0)*uBurstGlow;
+        film += vec3(0.04, 0.12, 0.42)*(0.15 + 0.9*rim)*(0.4 + 0.8*grain)*uCB;
+        float bk = 1.0 - 0.8*uBurstGlow*ndv*ndv;
+        bri = under*bk;
+        front = vec4((film*aD + sp*uSparkle*0.2*(1.0 - aD))*bk, aD);
+        // the bubble clusters lie on the glass, over both the film and the light below it
+        vec4 dc = darkCells(under*(1.0 - aD) + film*aD, qd, uCellA, pxo);
+        front = vec4(front.rgb*(1.0 - dc.a) + dc.rgb*bk, 1.0 - (1.0 - front.a)*(1.0 - dc.a));
+      }
+      bri *= uFade; front *= uFade;
+    }
+  }
+  oCol = vec4(col*(1.0 - front.a) + front.rgb, front.a);   // prelude + front dust film (premultiplied)
+  oDep = vec4(depthB*uDepthK, depth*uDepthK, gapB*uDepthK, 1.0);
+  oBri = vec4(bri, 1.0);
+}`;
+
+
+// Sand grains on the dust layer. Dark until the light underneath reaches them, then they
+// either catch the light (glitter) or fall away.
+// Sand at the glass. Dark until the bright eruption arrives right behind a grain; then most
+// grains catch the light and stay as bright sand, the rest stay dark.
+const VS_GRAIN = `#version 300 es
+precision highp float;
+precision highp sampler3D;
+layout(location = 0) in vec4 aP;   // rest position in the dark layer's frame, seed
+layout(location = 1) in vec4 aN;   // normal, bubble group
+uniform sampler2D uDepth;
+uniform float uScale, uF, uCamZ, uFrame, uMinRes, uPx, uDepthK;
+uniform vec2 uRes;
+uniform float uLT, uTime, uFade, uSparkle, uBurstGlow, uZc, uLiftD, uCB, uEng, uRetD, uRetP, uCellA, uCurl;
+uniform sampler3D uNoise, uAttr, uSDF;
+uniform sampler2D uClus;
+uniform vec4 uErupt[4];
+uniform float uPush[4];
+uniform vec4 uLightO[4];
+uniform float uLightR[4];
+out vec4 vCol;
+${SHARED}
+float emisAt(vec3 q){
+  float e = 0.0;
+  for(int k = 0; k < 4; k++){
+    if(uLightO[k].w <= 0.0) continue;
+    vec3 d = q - uLightO[k].xyz;
+    e += uLightO[k].w*exp(-dot(d, d)/(uLightR[k]*uLightR[k]));
+  }
+  return e;
+}
+float hash1(float x){ return fract(sin(x*127.1 + 311.7)*43758.5453); }
+void cull(){ gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; vCol = vec4(0.0); }
+void main(){
+  float seed = aP.w;
+  float bt = uLT - BURST_T0, ct = uLT - COLL_T0;
+  if(bt < 0.0 || uFade <= 0.001){ cull(); return; }
+  vec3 P = aP.xyz;
+  float lag = lagAt(P/max(length(P), 1e-4));
+  float s = growS(bt, lag);
+  if(ct > 0.0) s *= collS(ct, lagColl(P/max(length(P), 1e-4)));
+  if(s < 0.02){ cull(); return; }
+  vec3 q = P*s/(1.0 + uRetD);
+  q.z -= uLiftD;
+  for(int k = 0; k < 4; k++){
+    if(uErupt[k].w <= 0.0 || uPush[k] <= 0.0) continue;
+    vec2 d = q.xy - uErupt[k].xy;
+    float r = length(d);
+    float R = uErupt[k].w + 0.06;
+    q.xy += d/max(r, 1e-3)*uPush[k]*exp(-r*r/(R*R))*smoothstep(0.0, 0.06, r);
+  }
+  q.z = min(q.z, uZc);
+  vec3 w = q*uScale;
+  vec3 v = w - vec3(0.0, 0.0, uCamZ);
+  float z = -v.z;
+  vec2 ndc = v.xy/z*uF*uMinRes*uFrame/(0.5*uRes);
+  vec2 dd = texture(uDepth, ndc*0.5 + 0.5).rg/uDepthK;
+  float zB = dd.x, zF = dd.y;
+  if(z > zF + 0.015*uScale || aN.z < -0.35){ cull(); return; }
+  float h1 = hash1(seed), h2 = hash1(seed + 3.7), h3 = hash1(seed + 9.1);
+  float behind = zB < 50.0 ? (zB - z)/uScale : 9.0;
+  float lit = smoothstep(0.3, 0.06, behind + (h1 - 0.5)*0.06);
+  float emis = min(emisAt(q), 2.0);
+  float tw = 0.5 + 0.5*sin(uTime*(1.1 + 3.5*h3) + seed*61.0);
+  float clusG = smoothstep(0.42, 0.72, texture(uNoise, P*2.4 + vec3(0.21, uTime*0.01, 0.0)).g);
+  bool star = h2 < 0.0005 + 0.006*clusG;
+  vec4 dark = vec4(vec3(0.002, 0.003, 0.009)*(0.5 + 1.0*h3), 0.6 + 0.35*h3);
+  if(star) dark = vec4(vec3(0.75, 0.88, 1.0)*(0.2 + 1.8*tw*tw*tw)*uSparkle, 0.9);
+  dark.rgb += vec3(0.07, 0.13, 0.5)*sat(1.0 - aN.z)*uBurstGlow;
+  dark.rgb += vec3(0.06, 0.15, 0.5)*(0.2 + 0.8*h3*h3)*uCB;
+  vec3 glit = mix(vec3(0.14, 0.36, 1.0), vec3(0.6, 0.8, 1.0), h3*h3*h3*h3)*(0.22 + 0.55*emis)*(0.5 + 1.0*hash1(seed + 5.3));
+  // the grains themselves stay put on the surface; the drifting bubble clusters decide which stay dark,
+  // so the dark speckle travels with each cluster
+  vec3 qp = P*(1.0 + uRetP);
+  vec2 drift = (texture(uNoise, vec3(qp.xy*0.5 + 0.21, 0.37 + uTime*0.03)).rg - 0.5)*0.12;
+  vec2 wob = (texture(uNoise, qp*2.2 + vec3(0.0, uTime*0.07, 0.3)).rg - 0.5)*0.035
+           + (texture(uNoise, qp*5.0 + vec3(uTime*0.09, 0.0, 0.6)).rg - 0.5)*0.012;
+  vec2 pc = qp.xy + drift + wob;
+  if(uCurl > 0.0){
+    vec2 o = (texture(uClus, pc/(2.0*0.62) + 0.5).ba - 0.5)*0.4;
+    vec2 c = pc + o;
+    float hc = fract(sin(dot(floor(c*40.0), vec2(12.9898, 78.233)))*43758.5453);
+    pc = c - o*(1.0 + uCurl*(0.6 + 0.6*hc) + 9.0*uCurl*length(o));
+  }
+  vec4 cg = texture(uClus, pc/(2.0*0.62) + 0.5);
+  float keep = max(cg.g*1.1, cg.r*0.9)*uCellA;
+  vec4 bright = h2 < 0.1 ? vec4(glit, 0.8) : (h1 < keep*1.2 ? dark : vec4(0.0));
+  float eg = 0.0;
+  if(uEng > 0.0){
+    float reg = sat((texture(uNoise, q*0.9 + vec3(0.13, 0.71, 0.29)).g - 0.5)*3.5 + 0.5);
+    float crown = sat((texture(uSDF, clamp(P*(0.5/0.76) + 0.5, 0.0, 1.0)).g - 0.42)/0.5);
+    float dmin = 9.0;
+    for(int k = 0; k < 4; k++){ if(uErupt[k].w <= 0.0) continue; dmin = min(dmin, length(q.xy - uErupt[k].xy) - uErupt[k].w*0.25); }
+    dmin = max(dmin, 0.0);
+    float rimK = smoothstep(0.25, 0.32, length(q.xy))*smoothstep(0.3, 0.6, texture(uAttr, clamp(P*(0.5/0.76) + 0.5, 0.0, 1.0)).y);
+    eg = smoothstep(0.0, 0.1, uEng - (0.05 + 0.5*reg + 0.3*crown + 0.3*dmin + 3.0*rimK));
+  }
+  // swallowed: only the grains inside the clusters stay dark; a few others glitter
+  vec4 late = h1 < keep*0.85 ? dark : (h2 < 0.05 ? vec4(glit, 0.7) : vec4(0.0));
+  if(hash1(seed + 13.3) < eg) bright = late;
+  lit = max(lit, eg);
+  vCol = mix(dark, bright, lit);
+  vCol *= uFade;
+  float size = uPx*(0.9 + 0.9*h3);
+  gl_Position = vec4(ndc, 0.0, 1.0);
+  gl_PointSize = max(1.0, size*uCamZ/z);
+  if(vCol.a < 0.01){ cull(); }
+}`;
+const FS_GRAIN = `#version 300 es
+precision highp float;
+in vec4 vCol;
+out vec4 o;
+void main(){
+  vec2 c = gl_PointCoord - 0.5;
+  float r2 = dot(c, c);
+  if(r2 > 0.25) discard;
+  float a = vCol.a*smoothstep(0.25, 0.12, r2);
+  o = vec4(vCol.rgb*a, a);
+}`;
+
+const VS_PART = `#version 300 es
+precision highp float;
+precision highp sampler3D;
+layout(location = 0) in vec2 aCorner;
+layout(location = 1) in vec4 aA;
+layout(location = 2) in vec4 aB;
+uniform sampler3D uNoise;
+uniform sampler2D uDepth;
+uniform mat3 uRot;
+uniform float uScale, uF, uCamZ, uFrame, uMinRes, uPx;
+uniform vec2 uRes;
+uniform float uLT, uTime, uShutter;
+uniform float uRingR, uRingHalf, uFlash;
+uniform float uSparkle, uTransl, uFade, uBurstGlow, uDepthK;
+out vec2 vLocal;
+out float vLen;
+out float vW;
+out vec3 vCol;
+${SHARED}
+
+vec3 cloudPos(vec3 P, float seed, float T, out float vis){
+  vis = 1.0;
+  float bt = T - BURST_T0, ct = T - COLL_T0;
+  if(bt < 0.0){ vis = 0.0; return vec3(0.0); }
+  vec3 dir = normalize(P);
+  float lag = lagAt(dir);
+  float s = growS(bt, lag);
+  if(ct > 0.0) s *= collS(ct, lagColl(dir));
+  if(s < 0.02) vis = 0.0;
+  vec3 q = P*s;
+  q += 0.0035*sin(vec3(1.3, 1.7, 1.1)*uTime + seed*vec3(6.28, 12.57, 18.85));
+  return uRot*(q*uScale);
+}
+float burstCol = 0.0;
+vec3 ringPos(vec4 A, vec4 B, float T, out float vis, out float bright){
+  float th = A.x + 0.02*sin(uTime*0.6 + A.w*6.28);
+  float ad = abs(atan(sin(th - PI), cos(th - PI)));
+  vis = smoothstep(0.0, 0.05, uRingHalf - ad);
+  float lead = (uRingHalf - ad)/0.12;
+  bright = 1.0 + 0.6*exp(-lead*lead)*step(uRingHalf, 3.1);
+  float r = uRingR*(1.0 + A.y);
+  float bt = T - BURST_T0 - (ad/PI)*0.05;
+  if(bt > 0.0){
+    r += B.w*(1.0 - exp(-bt*7.0))*0.13 + bt*0.04;
+    bright = 0.3*exp(-bt*11.0);
+    vis = 1.0;
+    burstCol = 1.0;
+  }
+  return vec3(vec2(cos(th), sin(th))*r, A.z);
+}
+void main(){
+  float type = aB.x;
+  float seed = aA.w;
+  float T = uLT, Tp = uLT - uShutter;
+  float vis = 0.0, visP = 0.0, inten = 0.0;
+  vec3 w, wp, col;
+  float size = (0.75 + aB.z*1.4)*uPx;
+  float tw = 0.5 + 0.5*sin(uTime*(1.2 + fract(seed*13.7)*4.5) + seed*40.0);
+  if(type < 0.5){
+    float b1, b2;
+    w = ringPos(aA, aB, T, vis, b1);
+    wp = ringPos(aA, aB, Tp, visP, b2);
+    col = mix(vec3(0.74, 0.70, 1.0), vec3(0.62, 0.86, 1.0), fract(seed*7.13));
+    col = mix(col, vec3(0.35, 0.55, 1.0), burstCol);
+    inten = (0.08 + 1.4*aB.y)*(0.45 + 0.55*tw)*vis*b1;
+    inten *= 1.0 + 3.0*uFlash;
+    size *= 1.0 + 0.5*uFlash;
+  } else {
+    w = cloudPos(aA.xyz, seed, T, vis);
+    wp = cloudPos(aA.xyz, seed, Tp, visP);
+    float h = fract(seed*91.3);
+    col = h > 0.9 ? vec3(0.8, 0.55, 1.0) : (h > 0.62 ? vec3(0.45, 0.85, 1.0) : vec3(0.8, 0.9, 1.0));
+    float bt = T - BURST_T0;
+    float energy = bt > 0.0 ? exp(-bt*6.0) : 0.0;
+    float clusP = smoothstep(0.42, 0.72, texture(uNoise, aA.xyz*2.4 + vec3(0.21, uTime*0.01, 0.0)).g);
+    inten = (0.75*aB.y*aB.y*aB.y)*(0.15 + 0.85*tw*tw)*uSparkle*(0.02 + 1.5*clusP*clusP) + energy*0.05*aB.y*aB.y*aB.y;
+    size *= 1.0 + 0.3*clusP;
+    col = mix(col, vec3(0.4, 0.55, 1.0), energy*0.7);
+    inten *= vis*uFade;
+    if(type > 1.5){ inten *= 0.25*sat((bt - 0.45)/0.4); visP = 0.0; }
+  }
+  vec3 v = w - vec3(0.0, 0.0, uCamZ), vp = wp - vec3(0.0, 0.0, uCamZ);
+  float z = -v.z, zp = -vp.z;
+  float K = uF*uMinRes*uFrame;
+  vec2 B = v.xy/z*K + 0.5*uRes;
+  vec2 A = vp.xy/zp*K + 0.5*uRes;
+  if(visP < 0.5) A = B;
+  if(type > 0.5){
+    vec2 suv = clamp(B/uRes, 0.0, 1.0);
+    float sd = texture(uDepth, suv).r/uDepthK;
+    inten *= mix(1.0, uTransl, smoothstep(0.008, 0.035, z - sd));
+  }
+  size *= uCamZ/z;
+  if(size < 0.7){ inten *= (size/0.7)*(size/0.7); size = 0.7; }
+  float L = length(B - A);
+  inten /= 1.0 + L/(size*3.0);
+  if(inten < 2e-4){ gl_Position = vec4(2.0, 2.0, 2.0, 1.0); return; }
+  vec2 dir = L > 1e-3 ? (B - A)/L : vec2(1.0, 0.0);
+  vec2 nrm = vec2(-dir.y, dir.x);
+  float ext = size*2.6;
+  vec2 pos = (aCorner.x < 0.0 ? A - dir*ext : B + dir*ext) + nrm*aCorner.y*ext;
+  vLocal = vec2(dot(pos - A, dir), dot(pos - A, nrm));
+  vLen = L; vW = size;
+  vCol = col*inten;
+  gl_Position = vec4(pos/uRes*2.0 - 1.0, 0.0, 1.0);
+}`;
+
+const FS_PART = `#version 300 es
+precision highp float;
+in vec2 vLocal;
+in float vLen;
+in float vW;
+in vec3 vCol;
+out vec4 o;
+void main(){
+  float x = vLocal.x;
+  float dx = x < 0.0 ? -x : max(x - vLen, 0.0);
+  float d2 = (dx*dx + vLocal.y*vLocal.y)/(vW*vW);
+  float a = exp(-d2*1.7);
+  float head = vLen > 0.5 ? mix(0.3, 1.0, clamp(x/vLen, 0.0, 1.0)) : 1.0;
+  o = vec4(vCol*a*head, 1.0);
+}`;
+
+// Focus sits on the glass where the dark dust is. The bright layer below is out of focus by
+// how far it still is from the glass; the dust film is composited sharp on top.
+const FS_DOF = `#version 300 es
+precision highp float;
+uniform sampler2D uBri, uFront, uDep;
+uniform vec2 uRes;
+uniform float uFocus, uCocK, uCocMax, uDepthK;
+in vec2 vUV;
+out vec4 o;
+float coc(float g){ return g > 5.0 ? 0.0 : clamp((g - 0.015)*uCocK, 0.0, uCocMax); }
+void main(){
+  vec2 px = 1.0/uRes;
+  float c0 = coc(texture(uDep, vUV).b/uDepthK);
+  vec3 acc = texture(uBri, vUV).rgb/max(c0*c0, 1.0);
+  float ws = 1.0/max(c0*c0, 1.0);
+  const int N = 40;
+  float ga = 2.39996323;
+  for(int i = 1; i < N; i++){
+    float r = sqrt(float(i)/float(N))*uCocMax;
+    vec2 off = vec2(cos(float(i)*ga), sin(float(i)*ga))*r;
+    vec2 uv = vUV + off*px;
+    float cs = coc(texture(uDep, uv).b/uDepthK);
+    float w = smoothstep(r - 1.0, r + 0.5, cs)/max(cs*cs, 1.0);
+    acc += texture(uBri, uv).rgb*w;
+    ws += w;
+  }
+  vec3 b = acc/ws;
+  vec4 f = texture(uFront, vUV);
+  o = vec4(b*(1.0 - f.a) + f.rgb, 1.0);
+}`;
+
+const FS_ZOOM = `#version 300 es
+precision highp float;
+uniform sampler2D uTex;
+uniform float uAmt;
+uniform vec2 uRes;
+in vec2 vUV;
+out vec4 o;
+void main(){
+  vec2 c = vec2(0.5);
+  vec2 d = vUV - c;
+  float j = fract(52.9829189*fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715))));
+  vec3 acc = vec3(0.0); float ws = 0.0;
+  const int N = 28;
+  for(int i = 0; i < N; i++){
+    float f = (float(i) + j)/float(N);
+    float s = 1.0 - uAmt*f;
+    float w = 1.0 - 0.55*f;
+    acc += texture(uTex, c + d*s).rgb*w;
+    ws += w;
+  }
+  o = vec4(acc/ws, 1.0);
+}`;
+
+const FS_DOWN = `#version 300 es
+precision highp float;
+uniform sampler2D uSrc;
+uniform vec2 uTexel;
+uniform int uKaris;
+in vec2 vUV;
+out vec4 o;
+vec3 S(float x, float y){ return clamp(texture(uSrc, vUV + vec2(x, y)*uTexel).rgb, 0.0, 64.0); }
+float lw(vec3 c){ return 1.0/(1.0 + dot(c, vec3(0.2126, 0.7152, 0.0722))); }
+void main(){
+  vec3 a = S(-2., 2.), b = S(0., 2.), c = S(2., 2.);
+  vec3 d = S(-2., 0.), e = S(0., 0.), f = S(2., 0.);
+  vec3 g = S(-2., -2.), h = S(0., -2.), i = S(2., -2.);
+  vec3 j = S(-1., 1.), k = S(1., 1.), l = S(-1., -1.), m = S(1., -1.);
+  vec3 r;
+  if(uKaris == 1){
+    vec3 g0 = (a + b + d + e)*0.25, g1 = (b + c + e + f)*0.25, g2 = (d + e + g + h)*0.25, g3 = (e + f + h + i)*0.25, g4 = (j + k + l + m)*0.25;
+    float w0 = lw(g0)*0.125, w1 = lw(g1)*0.125, w2 = lw(g2)*0.125, w3 = lw(g3)*0.125, w4 = lw(g4)*0.5;
+    r = (g0*w0 + g1*w1 + g2*w2 + g3*w3 + g4*w4)/(w0 + w1 + w2 + w3 + w4);
+  } else {
+    r = e*0.125 + (a + c + g + i)*0.03125 + (b + d + f + h)*0.0625 + (j + k + l + m)*0.125;
+  }
+  o = vec4(r, 1.0);
+}`;
+
+const FS_UP = `#version 300 es
+precision highp float;
+uniform sampler2D uSrc;
+uniform vec2 uTexel;
+uniform float uW;
+in vec2 vUV;
+out vec4 o;
+void main(){
+  vec2 t = uTexel;
+  vec3 r = texture(uSrc, vUV).rgb*4.0;
+  r += (texture(uSrc, vUV + vec2(t.x, 0.)).rgb + texture(uSrc, vUV - vec2(t.x, 0.)).rgb +
+        texture(uSrc, vUV + vec2(0., t.y)).rgb + texture(uSrc, vUV - vec2(0., t.y)).rgb)*2.0;
+  r += texture(uSrc, vUV + t).rgb + texture(uSrc, vUV - t).rgb +
+       texture(uSrc, vUV + vec2(t.x, -t.y)).rgb + texture(uSrc, vUV + vec2(-t.x, t.y)).rgb;
+  o = vec4(r/16.0*uW, 1.0);
+}`;
+
+const FS_FINAL = `#version 300 es
+precision highp float;
+uniform sampler2D uScene, uBloom;
+uniform vec2 uRes;
+uniform float uBloomK, uExposure, uTime, uCA, uLdr;
+in vec2 vUV;
+out vec4 o;
+vec3 aces(vec3 x){ return clamp((x*(2.51*x + 0.03))/(x*(2.43*x + 0.59) + 0.14), 0.0, 1.0); }
+void main(){
+  vec2 uv = vUV;
+  vec2 dc = uv - 0.5;
+  vec2 asp = vec2(uRes.x/min(uRes.x, uRes.y), uRes.y/min(uRes.x, uRes.y));
+  float rr = dot(dc*asp, dc*asp);
+  vec2 off = dc*rr*uCA;
+  vec3 c = vec3(texture(uScene, uv - off).r, texture(uScene, uv).g, texture(uScene, uv + off).b);
+  c += texture(uBloom, uv).rgb*uBloomK;
+  c *= uExposure;
+  c *= 1.0 - 0.32*smoothstep(0.12, 0.62, rr);
+  c = aces(c);
+  c = pow(c, vec3(1.0/2.2));
+  float n = fract(sin(dot(gl_FragCoord.xy + fract(uTime*7.31)*vec2(91.7, 37.3), vec2(12.9898, 78.233)))*43758.5453);
+  c += (n - 0.5)*(2.2/255.0);
+  o = vec4(c, 1.0);
+}`;
+
+/* ------------------------------------------------------------------ *
+ *  GL helpers                                                        *
+ * ------------------------------------------------------------------ */
+function compile(type, src, label) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+    const log = gl.getShaderInfoLog(s);
+    console.error(label, log);
+    throw new Error(label + ': ' + log);
+  }
+  return s;
+}
+function program(vs, fs, label) {
+  const p = gl.createProgram();
+  gl.attachShader(p, compile(gl.VERTEX_SHADER, vs, label + ' VS'));
+  gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs, label + ' FS'));
+  gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(label + ' link: ' + gl.getProgramInfoLog(p));
+  const u = {};
+  const n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS);
+  for (let i = 0; i < n; i++) {
+    const info = gl.getActiveUniform(p, i);
+    u[info.name.replace(/\[0\]$/, '')] = gl.getUniformLocation(p, info.name);
+  }
+  return { p, u };
+}
+function tex2D(w, h, ifmt, fmt, type, filter, data = null) {
+  const t = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(gl.TEXTURE_2D, 0, ifmt, w, h, 0, fmt, type, data);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return t;
+}
+function tex3D(n, ifmt, fmt, type, wrap) {
+  const t = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_3D, t);
+  gl.texStorage3D(gl.TEXTURE_3D, 1, ifmt, n, n, n);
+  gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  for (const k of [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T, gl.TEXTURE_WRAP_R]) gl.texParameteri(gl.TEXTURE_3D, k, wrap);
+  return t;
+}
+function fbo(attachments) {
+  const f = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+  attachments.forEach((t, i) => gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0 + i, gl.TEXTURE_2D, t, 0));
+  gl.drawBuffers(attachments.map((_, i) => gl.COLOR_ATTACHMENT0 + i));
+  return f;
+}
+
+const emptyVAO = gl.createVertexArray();
+function fullscreen() { gl.bindVertexArray(emptyVAO); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+
+let progs;
+try {
+  progs = {
+    noise: program(VS_FULL, FS_NOISE, 'noise'),
+    bake: program(VS_FULL, FS_BAKE, 'bake'),
+    scene: program(VS_FULL, FS_SCENE, 'scene'),
+    part: program(VS_PART, FS_PART, 'particles'),
+    grain: program(VS_GRAIN, FS_GRAIN, 'grains'),
+    zoom: program(VS_FULL, FS_ZOOM, 'zoom'),
+    dof: program(VS_FULL, FS_DOF, 'dof'),
+    down: program(VS_FULL, FS_DOWN, 'down'),
+    up: program(VS_FULL, FS_UP, 'up'),
+    fin: program(VS_FULL, FS_FINAL, 'final'),
+  };
+} catch (e) {
+  toast.textContent = '着色器编译失败：' + e.message.slice(0, 160);
+  window.__error = e.message;
+  return;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Procedural cloud: three generations of bubbles on bubbles          *
+ * ------------------------------------------------------------------ */
+function mulberry32(a) {
+  return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+function genCloud(seed) {
+  const R = mulberry32(seed);
+  const S = [];
+  const rdir = () => { const u = R()*2 - 1, a = R()*Math.PI*2, s = Math.sqrt(1 - u*u); return [s*Math.cos(a), s*Math.sin(a), u]; };
+  const norm = (v) => { const l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0]/l, v[1]/l, v[2]/l]; };
+  const hard = (x, y, z) => {
+    let d = 1e9, id = -1;
+    for (let i = 0; i < S.length; i++) {
+      const s = S[i]; const di = Math.hypot(x - s.x, y - s.y, z - s.z) - s.r;
+      if (di < d) { d = di; id = i; }
+    }
+    return [d, id];
+  };
+  const surf = (dir) => {
+    let t = 0.05;
+    for (; t < 1.3; t += 0.012) if (hard(dir[0]*t, dir[1]*t, dir[2]*t)[0] > 0) break;
+    let a = t - 0.012, b = t;
+    for (let i = 0; i < 4; i++) { const m = (a + b)/2; if (hard(dir[0]*m, dir[1]*m, dir[2]*m)[0] > 0) b = m; else a = m; }
+    return b;
+  };
+  S.push({ x: 0, y: 0, z: 0, r: 0.22, delay: 0.5, dark: 0, wr: 0 });
+  const n1 = 19;
+  for (let i = 0; i < n1; i++) {
+    const k = (i + 0.5)/n1, phi = Math.acos(1 - 2*k), th = Math.PI*(1 + Math.sqrt(5))*i;
+    const j = rdir();
+    const d = norm([Math.sin(phi)*Math.cos(th) + j[0]*0.2, Math.cos(phi) + j[1]*0.2, Math.sin(phi)*Math.sin(th) + j[2]*0.2]);
+    const r = 0.105 + R()*0.06, dist = 0.25 + R()*0.06;
+    S.push({ x: d[0]*dist, y: d[1]*dist, z: d[2]*dist, r, delay: R(), dark: R() < 0.27 ? 1 : 0, wr: R() < 0.45 ? 0.5 + R()*0.5 : 0 });
+  }
+  const grow = (count, rmin, rmax, sink) => {
+    for (let i = 0; i < count; i++) {
+      const d = rdir();
+      const t = surf(d);
+      const r = rmin + R()*(rmax - rmin);
+      const c = t - r*sink;
+      const parent = S[hard(d[0]*t*0.99, d[1]*t*0.99, d[2]*t*0.99)[1]] || S[0];
+      S.push({ x: d[0]*c, y: d[1]*c, z: d[2]*c, r,
+        delay: Math.min(1, Math.max(0, parent.delay + (R() - 0.5)*0.35)),
+        dark: R() < 0.8 ? parent.dark : (R() < 0.12 ? 1 : 0),
+        wr: R() < 0.7 ? parent.wr : (R() < 0.3 ? R() : 0) });
+    }
+  };
+  grow(70, 0.048, 0.095, 0.3);
+  grow(170, 0.02, 0.045, 0.22);
+  // roundness score + recentre so the silhouette sits on the frame centre
+  const c = [0, 0, 0], ext = [];
+  for (let i = 0; i < 60; i++) {
+    const k = (i + 0.5)/60, phi = Math.acos(1 - 2*k), th = Math.PI*(1 + Math.sqrt(5))*i;
+    const d = [Math.sin(phi)*Math.cos(th), Math.cos(phi), Math.sin(phi)*Math.sin(th)];
+    const e = surf(d); ext.push(e);
+    c[0] += d[0]*e*3/60; c[1] += d[1]*e*3/60; c[2] += d[2]*e*3/60;
+  }
+  for (const s of S) { s.x -= c[0]; s.y -= c[1]; s.z -= c[2]; }
+  const mean = ext.reduce((a, b) => a + b, 0)/ext.length;
+  const sd = Math.sqrt(ext.reduce((a, b) => a + (b - mean)*(b - mean), 0)/ext.length);
+  S.round = 1 - sd/mean - Math.hypot(c[0], c[1], c[2]);
+  return S;
+}
+function bestCloud(seed) {
+  let best = null;
+  for (let i = 0; i < 4; i++) {
+    const S = genCloud((seed + i*7919) >>> 0);
+    if (!best || S.round > best.round) best = S;
+    if (S.round > 0.855) break;
+  }
+  return best;
+}
+
+function sampleParticles(S, nCloud, nRing, nDust, seed) {
+  const R = mulberry32(seed ^ 0x9e3779b9);
+  const total = nCloud + nRing + nDust;
+  const A = new Float32Array(total*4), B = new Float32Array(total*4);
+  let k = 0;
+  // ring (view-plane)
+  for (let i = 0; i < nRing; i++, k++) {
+    const th = R()*Math.PI*2;
+    const jit = (R() - 0.5)*0.012 + (R() < 0.08 ? (R() - 0.5)*0.04 : 0);
+    A.set([th, jit, (R() - 0.5)*0.02, R()], k*4);
+    B.set([0, Math.pow(R(), 3), R(), 0.25 + R()*0.9], k*4);
+  }
+  // neighbours for quick rejection
+  const nb = S.map((s, i) => S.map((o, j) => j).filter((j) => j !== i && Math.hypot(S[j].x - s.x, S[j].y - s.y, S[j].z - s.z) < S[j].r + s.r));
+  const cum = []; let acc = 0;
+  for (const s of S) { acc += s.r*s.r; cum.push(acc); }
+  let guard = 0;
+  while (k < nRing + nCloud && guard++ < nCloud*30) {
+    const x = R()*acc; let i = 0; while (cum[i] < x) i++;
+    const s = S[i];
+    const u = R()*2 - 1, a = R()*Math.PI*2, q = Math.sqrt(1 - u*u);
+    const dir = [q*Math.cos(a), q*Math.sin(a), u];
+    const lift = 0.004 + (R() < 0.2 ? R()*0.02 : 0);
+    const px = s.x + dir[0]*(s.r + lift), py = s.y + dir[1]*(s.r + lift), pz = s.z + dir[2]*(s.r + lift);
+    let inside = false;
+    for (const j of nb[i]) { const o = S[j]; if (Math.hypot(px - o.x, py - o.y, pz - o.z) < o.r - 0.002) { inside = true; break; } }
+    if (inside) continue;
+    A.set([px, py, pz, R()], k*4);
+    B.set([1, Math.pow(R(), 2.2), R(), s.delay], k*4);
+    k++;
+  }
+  for (let i = 0; i < nDust; i++) {
+    const u = R()*2 - 1, a = R()*Math.PI*2, q = Math.sqrt(1 - u*u), r = 0.5 + Math.pow(R(), 1.5)*0.25;
+    A.set([q*Math.cos(a)*r, q*Math.sin(a)*r, u*r, R()], k*4);
+    B.set([2, Math.pow(R(), 2), R(), 0], k*4);
+    k++;
+  }
+  return { A, B, count: k };
+}
+
+/* ------------------------------------------------------------------ *
+ *  Volume textures                                                   *
+ * ------------------------------------------------------------------ */
+const NOISE_N = 64;
+const SDF_N = 128, ATTR_N = 64;
+const SDF_B = 0.76;
+const SDF_IF = HAS_CBF ? gl.RGBA16F : gl.RGBA8;
+
+const noiseTex = tex3D(NOISE_N, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE, gl.REPEAT);
+const bakeFBO = gl.createFramebuffer();
+function bakeNoise() {
+  gl.bindFramebuffer(gl.FRAMEBUFFER, bakeFBO);
+  gl.useProgram(progs.noise.p);
+  gl.viewport(0, 0, NOISE_N, NOISE_N);
+  gl.uniform1f(progs.noise.u.uN, NOISE_N);
+  for (let z = 0; z < NOISE_N; z++) {
+    gl.framebufferTextureLayer(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, noiseTex, 0, z);
+    gl.drawBuffers([gl.COLOR_ATTACHMENT0]);
+    gl.uniform1f(progs.noise.u.uLayer, z);
+    fullscreen();
+  }
+}
+
+let volumes = null;     // {sdf, attr} currently displayed
+let pending = null;     // bake in progress
+function makeVolumes() {
+  return { sdf: tex3D(SDF_N, SDF_IF, HAS_CBF ? gl.RED : gl.RGBA, HAS_CBF ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE, gl.CLAMP_TO_EDGE),
+           attr: tex3D(ATTR_N, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE, gl.CLAMP_TO_EDGE) };
+}
+const grainVAO = gl.createVertexArray();
+const grainP = gl.createBuffer(), grainN = gl.createBuffer();
+gl.bindVertexArray(grainVAO);
+gl.bindBuffer(gl.ARRAY_BUFFER, grainP); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 4, gl.FLOAT, false, 0, 0);
+gl.bindBuffer(gl.ARRAY_BUFFER, grainN); gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 4, gl.FLOAT, false, 0, 0);
+gl.bindVertexArray(null);
+let grainCount = 0;
+// Clusters of small bubbles (thin dark rings with speckled dark fill), loose fibre arcs and a
+// few lone rings, drawn in the dust layer's rest frame (xy as seen from the top-down camera).
+const CL_N = 1024, CL_E = 0.62;
+const clusTex = (() => { const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return t; })();
+function genClusters(S, seed) {
+  const R = mulberry32((seed ^ 0x6a09e667) >>> 0);
+  const N = CL_N, E = CL_E, px = 2*E/N;
+  const ring = new Float32Array(N*N), fill = new Float32Array(N*N);
+  const inside = (x, y) => S.some((s) => (x - s.x)*(x - s.x) + (y - s.y)*(y - s.y) < s.r*s.r*0.85);
+  const circles = [];
+  const addCircle = (cx, cy, r, o) => circles.push(Object.assign({ cx, cy, r, w: 0.002 + 0.03*r, a0: 0, span: 7, ring: 0.85 + 0.15*R(), fill: 0, k: 2 + Math.floor(R()*4), ph: R()*6.28 }, o));
+  const centre = () => { for (let g = 0; g < 200; g++) { const a = R()*6.283, d = Math.sqrt(R())*0.5, x = Math.cos(a)*d, y = Math.sin(a)*d; if (inside(x, y)) return [x, y]; } return [0, 0]; };
+  // a dozen distinct clusters of 2–5 cells, each with a few tiny satellite bubbles
+  const placed = [], cents = [];
+  for (let c = 0, guard = 0; c < 9 && guard < 400; guard++) {
+    const [cx, cy] = centre();
+    if (placed.some(([px_, py_]) => Math.hypot(px_ - cx, py_ - cy) < 0.17)) continue;   // keep clusters apart
+    placed.push([cx, cy]); c++;
+    const n = 2 + Math.floor(R()*4);
+    const rb = 0.036 + R()*0.028;
+    let x = cx, y = cy, rp = rb;
+    const fillAmt = 0.6 + 0.4*R();
+    const c0 = circles.length;
+    for (let i = 0; i < n; i++) {
+      const r = rb*(0.6 + 0.7*R());
+      if (i > 0) { const a = R()*6.283; x += Math.cos(a)*(rp + r)*0.72; y += Math.sin(a)*(rp + r)*0.72; }
+      addCircle(x, y, r, { fill: fillAmt*(0.65 + 0.35*R()), w: 0.0016 + 0.03*r });
+      if (R() < 0.3) addCircle(x + (R() - 0.5)*r*0.3, y + (R() - 0.5)*r*0.3, r*(0.45 + 0.2*R()), { ring: 0.6, w: 0.0014 + 0.02*r });
+      rp = r;
+    }
+    { let sx = 0, sy = 0, sw = 0; for (let q = c0; q < circles.length; q++) { const w = circles[q].r*circles[q].r; sx += circles[q].cx*w; sy += circles[q].cy*w; sw += w; } cents.push([sx/sw, sy/sw]); }
+    const ns = Math.floor(R()*4);
+    for (let k = 0; k < ns; k++) {
+      const a = R()*6.283, d = rb*(1.6 + R()*1.2), r = 0.008 + R()*0.012;
+      addCircle(cx + Math.cos(a)*d, cy + Math.sin(a)*d, r, { fill: 0.5 + 0.4*R(), w: 0.0014 + 0.03*r });
+    }
+    if (R() < 0.3) addCircle(cx + (R() - 0.5)*0.05, cy + (R() - 0.5)*0.05, 0.06 + R()*0.05, { w: 0.0013 + R()*0.001, a0: R()*6.283, span: 0.9 + R()*1.6, ring: 0.3 + 0.2*R() });
+  }
+  for (let c = 0; c < 5; c++) { const [cx, cy] = centre(); addCircle(cx, cy, 0.035 + R()*0.03, { fill: 0.45 + 0.4*R() }); cents.push([cx, cy]); }
+  for (const c of circles) {
+    const ext = c.r + 4*c.w;
+    const x0 = Math.max(0, Math.floor((c.cx - ext + E)/px)), x1 = Math.min(N - 1, Math.ceil((c.cx + ext + E)/px));
+    const y0 = Math.max(0, Math.floor((c.cy - ext + E)/px)), y1 = Math.min(N - 1, Math.ceil((c.cy + ext + E)/px));
+    for (let j = y0; j <= y1; j++) for (let i = x0; i <= x1; i++) {
+      const x = -E + (i + 0.5)*px - c.cx, y = -E + (j + 0.5)*px - c.cy;
+      const d = Math.hypot(x, y), u = (d - c.r)/c.w;
+      let rg = Math.exp(-u*u)*c.ring;
+      const ang = Math.atan2(y, x);
+      if (c.span < 6.3) { let da = ang - c.a0; da = ((da % 6.283) + 6.283) % 6.283; rg *= da < c.span ? Math.sin(Math.PI*da/c.span)**0.5 : 0; }
+      else rg *= Math.min(1, Math.max(0, 1.0 + 0.45*Math.sin(ang*c.k + c.ph) + 0.25*Math.sin(ang*(c.k + 3) + c.ph*2)));
+      const k = j*N + i;
+      if (rg > ring[k]) ring[k] = rg;
+      if (c.fill > 0 && d < c.r) { const fl = c.fill*Math.min(1, (c.r - d)/(c.r*0.14)); if (fl > fill[k]) fill[k] = fl; }
+    }
+  }
+  // b, a: offset from each texel to the middle of its nearest cluster (so a cluster can curl up on itself)
+  const px8 = new Uint8Array(N*N*4);
+  for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+    const x = -E + (i + 0.5)*px, y = -E + (j + 0.5)*px;
+    let best = 1e9, ox = 0, oy = 0;
+    for (const [cx, cy] of cents) { const dd = (cx - x)*(cx - x) + (cy - y)*(cy - y); if (dd < best) { best = dd; ox = cx - x; oy = cy - y; } }
+    const k = j*N + i;
+    px8[k*4] = Math.min(255, ring[k]*255); px8[k*4 + 1] = Math.min(255, fill[k]*255);
+    px8[k*4 + 2] = Math.max(0, Math.min(255, Math.round((0.5 + ox/0.4)*255)));
+    px8[k*4 + 3] = Math.max(0, Math.min(255, Math.round((0.5 + oy/0.4)*255)));
+  }
+  return px8;
+}
+function genGrains(S, n, seed) {
+  const R = mulberry32((seed ^ 0x2545f491) >>> 0);
+  const G = 24, lo = -0.85, cs = 1.7/G;
+  const cells = Array.from({ length: G*G*G }, () => []);
+  const ci = (v) => Math.min(G - 1, Math.max(0, Math.floor((v - lo)/cs)));
+  S.forEach((s, i) => {
+    for (let x = ci(s.x - s.r); x <= ci(s.x + s.r); x++)
+      for (let y = ci(s.y - s.r); y <= ci(s.y + s.r); y++)
+        for (let z = ci(s.z - s.r); z <= ci(s.z + s.r); z++) cells[(z*G + y)*G + x].push(i);
+  });
+  const inside = (x, y, z, skip) => {
+    for (const j of cells[(ci(z)*G + ci(y))*G + ci(x)]) {
+      if (j === skip) continue;
+      const o = S[j], dx = x - o.x, dy = y - o.y, dz = z - o.z, rr = o.r - 0.003;
+      if (dx*dx + dy*dy + dz*dz < rr*rr) return true;
+    }
+    return false;
+  };
+  const cum = []; let acc = 0;
+  for (const s of S) { acc += s.r*s.r; cum.push(acc); s.grp = R()*(s.r > 0.1 ? 0.45 : 1.0); }
+  const pick = (x) => { let a = 0, b = cum.length - 1; while (a < b) { const m = (a + b) >> 1; if (cum[m] < x) a = m + 1; else b = m; } return a; };
+  const P = new Float32Array(n*4), N = new Float32Array(n*4);
+  let k = 0, guard = 0;
+  while (k < n && guard++ < n*5) {
+    const i = pick(R()*acc), s = S[i];
+    const u = R()*2 - 1, a = R()*Math.PI*2, q = Math.sqrt(1 - u*u);
+    const dx = q*Math.cos(a), dy = q*Math.sin(a), dz = u;
+    const lift = R()*0.006;                       // a thin layer of sand, not a film
+    const x = s.x + dx*(s.r + lift), y = s.y + dy*(s.r + lift), z = s.z + dz*(s.r + lift);
+    if (inside(x, y, z, i)) continue;
+    P.set([x, y, z, R()*100], k*4);
+    N.set([dx, dy, dz, s.grp], k*4);
+    k++;
+  }
+  return { P: P.subarray(0, k*4), N: N.subarray(0, k*4), count: k };
+}
+function startBake(seed) {
+  const S = bestCloud(seed);
+  const data = new Float32Array(S.length*2*4);
+  S.forEach((s, i) => {
+    data.set([s.x, s.y, s.z, s.r], i*4);
+    data.set([s.delay, s.dark, s.wr, 0], (S.length + i)*4);
+  });
+  const sph = tex2D(S.length, 2, gl.RGBA32F, gl.RGBA, gl.FLOAT, gl.NEAREST, data);
+  const parts = sampleParticles(S, quality.cloudParticles, 900, 90, seed);
+  const grains = genGrains(S, quality.grains, seed);
+  const clusters = genClusters(S, seed);
+  pending = { seed, S, sph, parts, grains, clusters, vol: makeVolumes(), layer: 0, attrLayer: 0 };
+}
+function stepBake(budget) {
+  if (!pending) return false;
+  const P = progs.bake;
+  gl.bindFramebuffer(gl.FRAMEBUFFER, bakeFBO);
+  gl.useProgram(P.p);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, pending.sph);
+  gl.uniform1i(P.u.uSph, 0);
+  gl.uniform1i(P.u.uCount, pending.S.length);
+  gl.uniform1f(P.u.uB, SDF_B);
+  gl.uniform1f(P.u.uK, 0.02);
+  gl.uniform1f(P.u.uEnc, HAS_CBF ? 0 : 1);
+  let n = budget;
+  while (n-- > 0 && pending.layer < SDF_N) {
+    gl.viewport(0, 0, SDF_N, SDF_N);
+    gl.framebufferTextureLayer(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, pending.vol.sdf, 0, pending.layer);
+    gl.drawBuffers([gl.COLOR_ATTACHMENT0]);
+    gl.uniform1i(P.u.uMode, 0);
+    gl.uniform1f(P.u.uN, SDF_N);
+    gl.uniform1f(P.u.uLayer, pending.layer++);
+    fullscreen();
+  }
+  while (n-- > 0 && pending.layer >= SDF_N && pending.attrLayer < ATTR_N) {
+    gl.viewport(0, 0, ATTR_N, ATTR_N);
+    gl.framebufferTextureLayer(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, pending.vol.attr, 0, pending.attrLayer);
+    gl.drawBuffers([gl.COLOR_ATTACHMENT0]);
+    gl.uniform1i(P.u.uMode, 1);
+    gl.uniform1f(P.u.uN, ATTR_N);
+    gl.uniform1f(P.u.uLayer, pending.attrLayer++);
+    fullscreen();
+  }
+  if (pending.layer >= SDF_N && pending.attrLayer >= ATTR_N) {
+    if (volumes) { gl.deleteTexture(volumes.sdf); gl.deleteTexture(volumes.attr); }
+    volumes = pending.vol;
+    uploadParticles(pending.parts);
+    gl.bindBuffer(gl.ARRAY_BUFFER, grainP); gl.bufferData(gl.ARRAY_BUFFER, pending.grains.P, gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, grainN); gl.bufferData(gl.ARRAY_BUFFER, pending.grains.N, gl.STATIC_DRAW);
+    grainCount = pending.grains.count;
+    gl.bindTexture(gl.TEXTURE_2D, clusTex);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, CL_N, CL_N, 0, gl.RGBA, gl.UNSIGNED_BYTE, pending.clusters);
+    gl.deleteTexture(pending.sph);
+    pending = null;
+    return true;
+  }
+  return false;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Particles                                                         *
+ * ------------------------------------------------------------------ */
+const partVAO = gl.createVertexArray();
+const quadBuf = gl.createBuffer(), aBuf = gl.createBuffer(), bBuf = gl.createBuffer();
+let partCount = 0;
+gl.bindVertexArray(partVAO);
+gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+gl.bindBuffer(gl.ARRAY_BUFFER, aBuf);
+gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 4, gl.FLOAT, false, 0, 0); gl.vertexAttribDivisor(1, 1);
+gl.bindBuffer(gl.ARRAY_BUFFER, bBuf);
+gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 0, 0); gl.vertexAttribDivisor(2, 1);
+gl.bindVertexArray(null);
+function uploadParticles(p) {
+  gl.bindBuffer(gl.ARRAY_BUFFER, aBuf); gl.bufferData(gl.ARRAY_BUFFER, p.A, gl.STATIC_DRAW);
+  gl.bindBuffer(gl.ARRAY_BUFFER, bBuf); gl.bufferData(gl.ARRAY_BUFFER, p.B, gl.STATIC_DRAW);
+  partCount = p.count;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Render targets                                                    *
+ * ------------------------------------------------------------------ */
+const quality = { mode: 'auto', scale: 1, steps: 120, cloudParticles: 8000, grains: 420000 };
+let RT = null;
+let dpr = 1;
+function buildTargets() {
+  // Keep full-resolution scene targets; budget work through frame cadence and pause.
+  // A 1.5x device scale retains fine grains on Retina without unbounded 4K buffers.
+  dpr = Math.min(window.devicePixelRatio || 1, THEME_EMBED ? 1.5 : 2);
+  const cap = THEME_EMBED ? Math.min(1, 1920/(canvas.clientWidth*dpr), 1080/(canvas.clientHeight*dpr)) : 1;
+  const cw = Math.max(2, Math.round(canvas.clientWidth*dpr*cap)), ch = Math.max(2, Math.round(canvas.clientHeight*dpr*cap));
+  if (canvas.width !== cw) canvas.width = cw;
+  if (canvas.height !== ch) canvas.height = ch;
+  const w = Math.max(2, Math.round(cw*quality.scale)), h = Math.max(2, Math.round(ch*quality.scale));
+  if (RT) {
+    for (const t of RT.texs) gl.deleteTexture(t);
+    for (const f of RT.fbos) gl.deleteFramebuffer(f);
+  }
+  const color = tex2D(w, h, HDR_IF, gl.RGBA, HDR_T, gl.LINEAR);
+  const front = tex2D(w, h, HDR_IF, gl.RGBA, HDR_T, gl.LINEAR);
+  const bri = tex2D(w, h, HDR_IF, gl.RGBA, HDR_T, gl.LINEAR);
+  const depth = tex2D(w, h, HDR_IF, gl.RGBA, HDR_T, gl.NEAREST);
+  const zoom = tex2D(w, h, HDR_IF, gl.RGBA, HDR_T, gl.LINEAR);
+  const sceneF = fbo([front, depth, bri]);
+  const partF = fbo([color]);
+  const zoomF = fbo([zoom]);
+  const mips = [], mipF = [];
+  let mw = w, mh = h;
+  for (let i = 0; i < 6; i++) {
+    mw = Math.max(1, mw >> 1); mh = Math.max(1, mh >> 1);
+    const t = tex2D(mw, mh, HDR_IF, gl.RGBA, HDR_T, gl.LINEAR);
+    mips.push({ t, w: mw, h: mh }); mipF.push(fbo([t]));
+  }
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  RT = { w, h, cw, ch, color, front, bri, depth, zoom, sceneF, partF, zoomF, mips, mipF,
+         texs: [color, front, bri, depth, zoom, ...mips.map((m) => m.t)], fbos: [sceneF, partF, zoomF, ...mipF] };
+}
+
+/* ------------------------------------------------------------------ *
+ *  Timeline → uniforms                                               *
+ * ------------------------------------------------------------------ */
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const sstep = (a, b, x) => { const t = clamp((x - a)/(b - a), 0, 1); return t*t*(3 - 2*t); };
+const easeIO = (x) => 0.5 - 0.5*Math.cos(Math.PI*x);
+function timeline(lt) {
+  const bt = lt - 2.665, ct = lt - 8.43;
+  const o = {};
+  o.ringHalf = Math.PI*easeIO(clamp((lt - 0.03)/2.32, 0, 1)) + (lt > 2.3 ? 0.2 : 0);
+  o.flash = sstep(2.565, 2.595, lt)*(1 - sstep(2.625, 2.66, lt));
+  o.glass = sstep(0.4, 1.6, lt)*(1 - sstep(2.6, 2.7, lt));
+  o.burstT = bt; o.collT = ct;
+  o.cloudOn = bt > 0 ? 1 : 0;
+  o.warp = (bt > -0.1 && bt < 0.9) || ct > -0.02 ? 1 : 0;
+  let zoom = 0;
+  if (bt > 0) zoom += 0.17*Math.exp(-Math.pow((bt - 0.1)/0.12, 2)) + 0.05*Math.exp(-bt*5)*sstep(0, 0.05, bt);
+  if (ct > 0) zoom -= 0.13*sstep(0.37, 0.42, ct);
+  o.zoom = zoom;
+  o.burstGlow = bt > 0 ? Math.exp(-bt*7.5)*sstep(0, 0.03, bt) : 0;
+  o.sparkle = sstep(2.72, 3.1, lt)*(1 - 0.3*sstep(6, 8, lt)) + (ct > 0 ? 0.4*sstep(0.2, 0.35, ct) : 0);
+  o.fade = (1 - sstep(0.36, 0.46, ct))*sstep(0.0, 0.07, bt);
+  o.scale = 1 + 0.02*sstep(3.4, 7.4, lt) - 0.04*sstep(7.6, 8.45, lt);
+  o.breath = lt*0.035;
+  o.key = sstep(5.2, 7.2, lt)*(1 - 0.15*sstep(7.8, 8.4, lt))*(1 - 0.6*sstep(0.0, 0.32, ct));
+  o.transl = 0.32 - 0.2*sstep(5, 7.5, lt);
+  o.bloom = 0.022 + 0.008*sstep(5.5, 8, lt) + 0.03*o.flash + 0.05*o.burstGlow;
+  o.stepK = o.warp ? (ct > 0 ? 0.42 : 0.55) : 0.7;
+  o.riseAll = 0;
+  o.allB = 0.78*sstep(6.6, 7.9, lt);
+  o.eng = sstep(6.0, 7.7, lt);
+  { const r = clamp((lt - 6.45)/1.95, 0, 1), k = Math.pow(r, 1.7); o.retD = 0.025*k; o.retP = 0.13*k; }   // the dust starts pulling back while it is being swallowed
+  o.cellA = (1 - 0.5*sstep(7.0, 8.3, lt))*(1 - sstep(0.0, 0.2, ct));
+  o.curl = 0.85*sstep(6.2, 7.9, lt);   // the dust clusters curl up while the light wraps around them   // the clusters melt into the body as it is pulled back
+  o.liftD = bt > 0 ? 0.3*Math.exp(-bt/0.22) : 0.3;
+  o.cb = ct > 0 ? sstep(0.1, 0.3, ct)*(1 - sstep(0.36, 0.44, ct)) : 0;
+  o.retract = 1;
+  o.film = 1 - 0.55*sstep(6.6, 8.2, lt);
+  o.late = sstep(7.6, 8.4, lt)*0.6;
+  return o;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Interaction                                                       *
+ * ------------------------------------------------------------------ */
+let yaw = 0, pitch = 0, vyaw = 0, vpitch = 0, dragging = false, lx = 0, ly = 0;
+canvas.addEventListener('pointerdown', (e) => { return; dragging = true; lx = e.clientX; ly = e.clientY; canvas.setPointerCapture(e.pointerId); canvas.classList.add('drag'); });
+canvas.addEventListener('pointermove', (e) => {
+  if (!dragging) return;
+  const s = 4.0/Math.min(innerWidth, innerHeight);
+  vyaw = (e.clientX - lx)*s; vpitch = (e.clientY - ly)*s;
+  yaw += vyaw; pitch = clamp(pitch + vpitch, -1.2, 1.2);
+  lx = e.clientX; ly = e.clientY;
+});
+const endDrag = () => { dragging = false; canvas.classList.remove('drag'); };
+canvas.addEventListener('pointerup', endDrag);
+canvas.addEventListener('pointercancel', endDrag);
+
+function rotMat(lt) { const I = new Float32Array([1, 0, 0, 0, 1, 0, 0, 0, 1]); return [I, I]; }
+function rotMatBase(lt) { return rotMatAt(lt, 0, 0); }
+function rotMatAt(lt, yaw, pitch) {
+  const a = 0.6 + lt*0.075 + yaw, b = -0.15 + 0.04*Math.sin(lt*0.4) + pitch;
+  const ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
+  // R = Rx(b) * Ry(a), column-major for GLSL
+  const m = [
+    ca, sb*sa, -cb*sa,
+    0, cb, sb,
+    sa, -sb*ca, cb*ca,
+  ];
+  const mt = [m[0], m[3], m[6], m[1], m[4], m[7], m[2], m[5], m[8]];
+  return [new Float32Array(m), new Float32Array(mt)];
+}
+
+/* ------------------------------------------------------------------ *
+ *  Frame                                                             *
+ * ------------------------------------------------------------------ */
+// Second eruption: bright bubbles burst out of points inside the dark cloud (screen space,
+// since the camera is fixed and looks straight down) and shoot up toward the camera.
+const ZC = 0.37;
+const ERUPTS = [
+  { c: [-0.17, -0.14], t0: 3.9, R: 0.42, I: 1.0 },
+  { c: [-0.18, 0.2], t0: 4.8, R: 0.32, I: 0.85 },
+  { c: [0.23, 0.02], t0: 5.6, R: 0.38, I: 1.05 },
+  { c: [0.04, 0.24], t0: 6.3, R: 0.3, I: 0.75 },
+];
+const riseU = new Float32Array(16), eruptU = new Float32Array(16), inflU = new Float32Array(4), pushU = new Float32Array(4);
+const lightU = new Float32Array(16), lightRU = new Float32Array(4);
+function updateRises(lt) {
+  const ct = lt - 8.43;
+  const back = 1;                                    // collapse: bright and dust are pulled back together
+  const dim = 1 - 0.7*sstep(0.1, 0.4, ct);
+  ERUPTS.forEach((E, k) => {
+    const a = lt - E.t0;
+    const on = a > 0;
+    const g = on ? 1 - Math.exp(-a/0.7) : 0;          // fast at first, then slowing: an eruption
+    const z = -0.3 + 0.48*(on ? 1 - Math.exp(-a/0.8) : 0);
+    eruptU.set([E.c[0], E.c[1], z, on ? (0.04 + E.R*g)*back + 1e-4 : -1], k*4);
+    inflU[k] = 0.62 + 0.38*g;
+    pushU[k] = 0;                                     // the dark layer stays exactly where eruption 1 left it
+    lightU.set([E.c[0], E.c[1], z*0.6, on ? E.I*1.25*sstep(0, 0.45, a)*dim : 0], k*4);
+    lightRU[k] = 0.13 + 0.24*sstep(0, 1.8, a);
+  });
+}
+const ROT_B = (() => {
+  const ax = [0.3, 0.8, 0.52], l = Math.hypot(...ax), x = ax[0]/l, y = ax[1]/l, z = ax[2]/l, a = 1.9, c = Math.cos(a), s = Math.sin(a), C = 1 - c;
+  return new Float32Array([c + x*x*C, y*x*C + z*s, z*x*C - y*s, x*y*C - z*s, c + y*y*C, z*y*C + x*s, x*z*C + y*s, y*z*C - x*s, c + z*z*C]);
+})();
+const CAM_Z = 3.2, FOCAL = 2.85, FRAME = 1.05, RING_R = 0.159*CAM_Z/FOCAL;
+
+function render(lt, time) {
+  if (!volumes) return;
+  const T = timeline(lt);
+  if (THEME_EMBED) {
+    // A very small, slow breath, with no inward pull or camera zoom.
+    T.scale *= 1 + 0.008 * Math.sin(time * 0.42);
+    T.breath += 0.018 * Math.sin(time * 0.29);
+    T.retD = 0;
+    T.retP = 0;
+    T.zoom = 0;
+    T.burstGlow = 0;
+  }
+  const [rot, rotT] = rotMat(lt);
+  const minRes = Math.min(RT.w, RT.h);
+
+  // scene
+  gl.bindFramebuffer(gl.FRAMEBUFFER, RT.sceneF);
+  gl.viewport(0, 0, RT.w, RT.h);
+  gl.disable(gl.BLEND);
+  const S = progs.scene;
+  gl.useProgram(S.p);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_3D, volumes.sdf);
+  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_3D, volumes.attr);
+  gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_3D, noiseTex);
+  gl.uniform1i(S.u.uSDF, 0); gl.uniform1i(S.u.uAttr, 1); gl.uniform1i(S.u.uNoise, 2);
+  gl.activeTexture(gl.TEXTURE3); gl.bindTexture(gl.TEXTURE_2D, clusTex); gl.uniform1i(S.u.uClus, 3);
+  gl.uniform2f(S.u.uRes, RT.w, RT.h);
+  gl.uniform1f(S.u.uMinRes, minRes);
+  gl.uniform1f(S.u.uF, FOCAL); gl.uniform1f(S.u.uCamZ, CAM_Z); gl.uniform1f(S.u.uFrame, FRAME);
+  gl.uniformMatrix3fv(S.u.uRot, false, rot); gl.uniformMatrix3fv(S.u.uRotT, false, rotT);
+  gl.uniform1f(S.u.uScale, T.scale); gl.uniform1f(S.u.uB, SDF_B); gl.uniform1f(S.u.uBreath, T.breath);
+  gl.uniform1f(S.u.uSdfEnc, HAS_CBF ? 0 : 1);
+  gl.uniform1f(S.u.uLT, lt); gl.uniform1f(S.u.uTime, time);
+  gl.uniform1f(S.u.uBurstT, T.burstT); gl.uniform1f(S.u.uCollT, T.collT);
+  gl.uniform1f(S.u.uWarp, T.warp); gl.uniform1f(S.u.uStepK, T.stepK);
+  gl.uniform1i(S.u.uSteps, Math.min(220, T.warp ? Math.round(quality.steps*1.4) : quality.steps));
+  gl.uniform1f(S.u.uCloudOn, T.cloudOn); gl.uniform1f(S.u.uFade, T.fade);
+  gl.uniform1f(S.u.uFlash, T.flash); gl.uniform1f(S.u.uGlass, T.glass); gl.uniform1f(S.u.uRingR, RING_R);
+  gl.uniform1f(S.u.uBurstGlow, T.burstGlow); gl.uniform1f(S.u.uSparkle, T.sparkle); gl.uniform1f(S.u.uKey, T.key);
+  gl.uniform1f(S.u.uDepthK, HAS_CBF ? 1 : 0.1);
+  updateRises(lt);
+  gl.uniform1f(S.u.uZc, ZC); gl.uniform1f(S.u.uLiftD, T.liftD);
+  gl.uniform4fv(S.u.uErupt, eruptU); gl.uniform1fv(S.u.uInfl, inflU); gl.uniform1fv(S.u.uPush, pushU);
+  gl.uniform1f(S.u.uAllB, T.allB); gl.uniform1f(S.u.uCB, T.cb); gl.uniform1f(S.u.uEng, T.eng);
+  gl.uniform1f(S.u.uRetD, T.retD); gl.uniform1f(S.u.uRetP, T.retP); gl.uniform1f(S.u.uCellA, T.cellA); gl.uniform1f(S.u.uCurl, T.curl);
+  gl.uniform4fv(S.u.uLightO, lightU);
+  gl.uniform1fv(S.u.uLightR, lightRU);
+  gl.uniformMatrix3fv(S.u.uRotB, false, ROT_B);
+  gl.uniform1f(S.u.uRiseAll, T.riseAll); gl.uniform1f(S.u.uSinkB, 0.88); gl.uniform1f(S.u.uTopB, 1.04);
+  gl.uniform1f(S.u.uRetract, T.retract); gl.uniform1f(S.u.uFilm, T.film); gl.uniform1f(S.u.uLate, T.late);
+  fullscreen();
+
+  // defocus the bright layer, then lay the sharp dust film over it
+  gl.bindFramebuffer(gl.FRAMEBUFFER, RT.partF);
+  gl.disable(gl.BLEND);
+  {
+    const Dp = progs.dof;
+    gl.useProgram(Dp.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, RT.bri);
+    gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, RT.front);
+    gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, RT.depth);
+    gl.uniform1i(Dp.u.uBri, 0); gl.uniform1i(Dp.u.uFront, 1); gl.uniform1i(Dp.u.uDep, 2);
+    gl.uniform2f(Dp.u.uRes, RT.w, RT.h);
+    gl.uniform1f(Dp.u.uFocus, CAM_Z - (ZC - 0.02)*T.scale);
+    gl.uniform1f(Dp.u.uCocK, 70*minRes/720);
+    gl.uniform1f(Dp.u.uCocMax, 11*minRes/720);
+    gl.uniform1f(Dp.u.uDepthK, HAS_CBF ? 1 : 0.1);
+    fullscreen();
+  }
+
+  // dust grains (premultiplied alpha over the bright body)
+  if (T.cloudOn && grainCount) {
+    gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    const Gp = progs.grain;
+    gl.useProgram(Gp.p);
+    gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, RT.depth);
+    gl.uniform1i(Gp.u.uDepth, 2);
+    gl.activeTexture(gl.TEXTURE3); gl.bindTexture(gl.TEXTURE_2D, clusTex); gl.uniform1i(Gp.u.uClus, 3);
+    gl.activeTexture(gl.TEXTURE5); gl.bindTexture(gl.TEXTURE_3D, volumes.attr); gl.uniform1i(Gp.u.uAttr, 5);
+    gl.activeTexture(gl.TEXTURE6); gl.bindTexture(gl.TEXTURE_3D, volumes.sdf); gl.uniform1i(Gp.u.uSDF, 6);
+    gl.uniform1f(Gp.u.uScale, T.scale); gl.uniform1f(Gp.u.uF, FOCAL); gl.uniform1f(Gp.u.uCamZ, CAM_Z);
+    gl.uniform1f(Gp.u.uFrame, FRAME); gl.uniform1f(Gp.u.uMinRes, minRes); gl.uniform1f(Gp.u.uPx, minRes/720*1.25);
+    gl.uniform1f(Gp.u.uDepthK, HAS_CBF ? 1 : 0.1);
+    gl.uniform2f(Gp.u.uRes, RT.w, RT.h);
+    gl.uniform1f(Gp.u.uLT, lt); gl.uniform1f(Gp.u.uTime, time); gl.uniform1f(Gp.u.uFade, T.fade);
+    gl.uniform1f(Gp.u.uSparkle, T.sparkle); gl.uniform1f(Gp.u.uBurstGlow, T.burstGlow);
+    gl.uniform1f(Gp.u.uZc, ZC); gl.uniform1f(Gp.u.uLiftD, T.liftD); gl.uniform1f(Gp.u.uCB, T.cb); gl.uniform1f(Gp.u.uEng, T.eng); gl.uniform1f(Gp.u.uRetD, T.retD); gl.uniform1f(Gp.u.uRetP, T.retP); gl.uniform1f(Gp.u.uCellA, T.cellA); gl.uniform1f(Gp.u.uCurl, T.curl);
+    gl.activeTexture(gl.TEXTURE4); gl.bindTexture(gl.TEXTURE_3D, noiseTex); gl.uniform1i(Gp.u.uNoise, 4);
+    gl.uniform4fv(Gp.u.uErupt, eruptU); gl.uniform1fv(Gp.u.uPush, pushU);
+    gl.uniform4fv(Gp.u.uLightO, lightU); gl.uniform1fv(Gp.u.uLightR, lightRU);
+    gl.bindVertexArray(grainVAO);
+    if (!Q.has('nog')) gl.drawArrays(gl.POINTS, 0, grainCount);
+    gl.bindVertexArray(null);
+  }
+
+  // particles (additive, depth-aware via the scene depth texture)
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);
+  const P = progs.part;
+  gl.useProgram(P.p);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_3D, noiseTex);
+  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, RT.depth);
+  gl.uniform1i(P.u.uNoise, 0); gl.uniform1i(P.u.uDepth, 1);
+  gl.uniformMatrix3fv(P.u.uRot, false, rot);
+  gl.uniform1f(P.u.uScale, T.scale); gl.uniform1f(P.u.uF, FOCAL); gl.uniform1f(P.u.uCamZ, CAM_Z);
+  gl.uniform1f(P.u.uFrame, FRAME); gl.uniform1f(P.u.uMinRes, minRes); gl.uniform1f(P.u.uPx, minRes/900);
+  gl.uniform2f(P.u.uRes, RT.w, RT.h);
+  gl.uniform1f(P.u.uLT, lt); gl.uniform1f(P.u.uTime, time); gl.uniform1f(P.u.uShutter, 0.022);
+  gl.uniform1f(P.u.uRingR, RING_R); gl.uniform1f(P.u.uRingHalf, T.ringHalf); gl.uniform1f(P.u.uFlash, T.flash);
+  gl.uniform1f(P.u.uSparkle, T.sparkle); gl.uniform1f(P.u.uTransl, T.transl); gl.uniform1f(P.u.uFade, T.fade);
+  gl.uniform1f(P.u.uBurstGlow, T.burstGlow);
+  gl.uniform1f(P.u.uDepthK, HAS_CBF ? 1 : 0.1);
+  gl.bindVertexArray(partVAO);
+  if (!DBG_NOP) gl.drawArraysInstanced(gl.TRIANGLE_STRIP, 0, 4, partCount);
+  gl.bindVertexArray(null);
+  gl.disable(gl.BLEND);
+
+  // radial zoom blur for the burst / collapse
+  let src = RT.color;
+  if (Math.abs(T.zoom) > 0.003) {
+    gl.bindFramebuffer(gl.FRAMEBUFFER, RT.zoomF);
+    const Z = progs.zoom;
+    gl.useProgram(Z.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, RT.color);
+    gl.uniform1i(Z.u.uTex, 0); gl.uniform1f(Z.u.uAmt, T.zoom); gl.uniform2f(Z.u.uRes, RT.w, RT.h);
+    fullscreen();
+    src = RT.zoom;
+  }
+
+  // bloom chain
+  const D = progs.down;
+  gl.useProgram(D.p);
+  gl.uniform1i(D.u.uSrc, 0);
+  let prev = src, pw = RT.w, ph = RT.h;
+  for (let i = 0; i < RT.mips.length; i++) {
+    const m = RT.mips[i];
+    gl.bindFramebuffer(gl.FRAMEBUFFER, RT.mipF[i]);
+    gl.viewport(0, 0, m.w, m.h);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, prev);
+    gl.uniform2f(D.u.uTexel, 1/pw, 1/ph);
+    gl.uniform1i(D.u.uKaris, i === 0 ? 1 : 0);
+    fullscreen();
+    prev = m.t; pw = m.w; ph = m.h;
+  }
+  const U = progs.up;
+  gl.useProgram(U.p);
+  gl.uniform1i(U.u.uSrc, 0);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);
+  for (let i = RT.mips.length - 1; i > 0; i--) {
+    const s = RT.mips[i], d = RT.mips[i - 1];
+    gl.bindFramebuffer(gl.FRAMEBUFFER, RT.mipF[i - 1]);
+    gl.viewport(0, 0, d.w, d.h);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, s.t);
+    gl.uniform2f(U.u.uTexel, 1/s.w, 1/s.h);
+    gl.uniform1f(U.u.uW, 1.0);
+    fullscreen();
+  }
+  gl.disable(gl.BLEND);
+
+  // composite
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  gl.viewport(0, 0, RT.cw, RT.ch);
+  const F = progs.fin;
+  gl.useProgram(F.p);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, src);
+  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, RT.mips[0].t);
+  gl.uniform1i(F.u.uScene, 0); gl.uniform1i(F.u.uBloom, 1);
+  gl.uniform2f(F.u.uRes, RT.cw, RT.ch);
+  gl.uniform1f(F.u.uBloomK, T.bloom);
+  gl.uniform1f(F.u.uExposure, (1.0 + 0.12*sstep(5.6, 7.0, lt)*(1 - sstep(8.35, 8.8, lt)))*(1 - 0.16*sstep(2.75, 3.0, lt)*(1 - sstep(4.3, 5.0, lt))));
+  gl.uniform1f(F.u.uTime, time);
+  gl.uniform1f(F.u.uCA, 0.002 + 0.03*Math.abs(T.zoom));
+  fullscreen();
+}
+
+/* ------------------------------------------------------------------ *
+ *  UI                                                                *
+ * ------------------------------------------------------------------ */
+const phasesEl = $('#phases'), labelsEl = $('#labels');
+for (const p of PHASES) {
+  const w = ((p.t1 - p.t0)/LOOP*100).toFixed(3) + '%';
+  const i = document.createElement('i'); i.style.width = w; phasesEl.appendChild(i);
+  const s = document.createElement('span'); s.style.width = w; s.textContent = p.name; labelsEl.appendChild(s);
+}
+const scrub = $('#scrub'), timeEl = $('#time');
+let simT = CAPTURE ? parseFloat(Q.get('t') || '0') : 0;
+const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (REDUCED && !CAPTURE) simT = 7.6;
+let playing = !CAPTURE && !REDUCED, speed = 1, scrubbing = false;
+function setPlaying(v) {
+  playing = v;
+  $('#icoPause').hidden = !v; $('#icoPlay').hidden = v;
+  $('#play').setAttribute('aria-label', v ? '暂停' : '播放');
+}
+$('#play').addEventListener('click', () => setPlaying(!playing));
+scrub.addEventListener('input', () => { scrubbing = true; const lt = scrub.value/1000; simT = Math.floor(simT/LOOP)*LOOP + lt; });
+scrub.addEventListener('change', () => { scrubbing = false; });
+function segGroup(id, fn) {
+  const el = $(id);
+  el.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+    fn(b.dataset.v);
+  });
+}
+segGroup('#speed', (v) => { speed = parseFloat(v); });
+segGroup('#quality', (v) => { setQuality(v); });
+let seed = 20240607;
+$('#reseed').addEventListener('click', () => { seed = (seed*1103515245 + 12345) >>> 0; startBake(seed); });
+$('#fs').addEventListener('click', () => {
+  const d = document;
+  if (d.fullscreenElement) d.exitFullscreen?.();
+  else d.documentElement.requestFullscreen?.().catch(() => {});
+});
+window.addEventListener('keydown', (e) => {
+  if (e.target.closest && e.target.closest('input,button') && e.code === 'Space') e.preventDefault();
+  if (e.code === 'Space') { e.preventDefault(); setPlaying(!playing); }
+  else if (e.code === 'ArrowRight') { simT += e.shiftKey ? 0.5 : 1/30; }
+  else if (e.code === 'ArrowLeft') { simT -= e.shiftKey ? 0.5 : 1/30; }
+  else if (e.code === 'KeyH') { document.body.classList.toggle('hide'); uiPinnedHidden = document.body.classList.contains('hide'); }
+  else if (e.code === 'KeyN') { $('#reseed').click(); }
+});
+let idle = 0, uiPinnedHidden = false;
+const wake = () => { idle = 0; if (!uiPinnedHidden) document.body.classList.remove('hide'); };
+['pointermove', 'pointerdown', 'keydown', 'touchstart'].forEach((ev) => window.addEventListener(ev, wake, { passive: true }));
+
+function setQuality(mode) {
+  quality.mode = mode;
+  if (mode === 'high') { quality.scale = 1; quality.steps = 140; }
+  else if (mode === 'low') { quality.scale = 0.5; quality.steps = 80; }
+  else { quality.scale = dpr > 1.5 ? 0.7 : 0.9; quality.steps = 120; }
+  buildTargets();
+}
+
+/* ------------------------------------------------------------------ *
+ *  Boot                                                              *
+ * ------------------------------------------------------------------ */
+bakeNoise();
+setPlaying(playing);
+setQuality(THEME_EMBED || CAPTURE ? 'high' : 'auto');
+if (Q.has('scale')) { quality.scale = parseFloat(Q.get('scale')); buildTargets(); }
+startBake(seed);
+let needResize = false;
+window.addEventListener('resize', () => { needResize = true; });
+canvas.addEventListener('webglcontextlost', (e) => { if (THEME_EMBED) parent.postMessage({type:'xmb-visual-error'}, location.origin); e.preventDefault(); toast.textContent = '图形上下文丢失，请刷新页面。'; toast.classList.remove('gone'); });
+
+if (CAPTURE) {
+  while (pending) stepBake(512);
+  toast.hidden = true;
+  document.querySelectorAll('.bar,.mark,.hint').forEach((e) => { e.style.transition = 'none'; e.hidden = true; });
+  window.__seek = (t) => { const state = playbackState(t); render(state.phase, state.time); gl.finish(); return true; };
+  window.__ready = true;
+  return;
+}
+
+let last = performance.now(), ema = 16, adaptClock = 0;
+let themePaused = THEME_EMBED, themeReduced = REDUCED, themeReady = false, raf = 0;
+function schedule() { if (!raf) raf = requestAnimationFrame(frame); }
+if (THEME_EMBED) {
+  addEventListener('message', e => {
+    if (e.source !== parent || e.origin !== location.origin || e.data?.type !== 'xmb-visual-state') return;
+    themePaused = !!e.data.paused;
+    themeReduced = !!e.data.reduced;
+    playing = !themeReduced;
+    last = performance.now();
+    if (themePaused) { cancelAnimationFrame(raf); raf = 0; }
+    else schedule();
+  });
+  // Finish boot before requesting the parent's current visibility state.
+  parent.postMessage({type:'xmb-visual-loaded'}, location.origin);
+}
+function frame(now) {
+  raf = 0;
+  if (THEME_EMBED && (themePaused || document.hidden)) return;
+  // Keep background rendering below 25 fps (16 on phones).
+  if (THEME_EMBED && now - last < (innerWidth < 700 ? 60 : 40)) { schedule(); return; }
+  const dt = Math.min(0.1, (now - last)/1000); last = now;
+  if (needResize) { needResize = false; buildTargets(); }
+  if (pending) {
+    const done = stepBake(volumes ? 10 : 24);
+    if (done) toast.classList.add('gone');
+  }
+  if (playing && !scrubbing && volumes && !(THEME_EMBED && themeReduced)) simT += dt*speed;
+  const state = playbackState(simT), lt = state.phase;
+  if (!dragging) { vyaw *= 0.92; vpitch *= 0.92; yaw += vyaw*0.15; pitch = clamp(pitch + vpitch*0.15, -1.2, 1.2); }
+  render(lt, state.time);
+  if (THEME_EMBED && volumes && !themeReady) {
+    themeReady = true;
+    parent.postMessage({type:'xmb-visual-ready'}, location.origin);
+  }
+  if (!scrubbing) scrub.value = Math.round(lt*1000);
+  timeEl.innerHTML = '<b>' + lt.toFixed(2) + '</b> / ' + LOOP.toFixed(2) + ' s';
+  const idx = PHASES.findIndex((p) => lt >= p.t0 && lt < p.t1);
+  phasesEl.querySelectorAll('i').forEach((el, i) => el.classList.toggle('on', i <= idx));
+  labelsEl.querySelectorAll('span').forEach((el, i) => el.classList.toggle('on', i === idx));
+  idle += dt;
+  if (idle > 2.8 && !dragging) document.body.classList.add('hide');
+  // adaptive resolution
+  ema = ema*0.94 + (THEME_EMBED ? performance.now() - now : dt*1000)*0.06;
+  adaptClock += dt;
+  if (quality.mode === 'auto' && adaptClock > 1.5 && volumes) {
+    if (ema > 26 && quality.scale > 0.42) { quality.scale *= 0.85; needResize = true; adaptClock = 0; }
+    else if (ema < 13.5 && adaptClock > 4 && quality.scale < (dpr > 1.5 ? 0.85 : 1.0)) { quality.scale = Math.min(1, quality.scale*1.08); needResize = true; adaptClock = 0; }
+  }
+  if (!(THEME_EMBED && themeReduced && !pending)) schedule();
+}
+window.addEventListener('resize', () => { if (THEME_EMBED && !themePaused) schedule(); });
+document.addEventListener('visibilitychange', () => {
+  if (THEME_EMBED && !document.hidden && !themePaused) { last = performance.now(); schedule(); }
+});
+if (!THEME_EMBED) schedule();
+})();
+</script>
+
+</body>
+</html>

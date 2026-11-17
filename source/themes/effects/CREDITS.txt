@@ -1,0 +1,9 @@
+Blue Volume / liuma test
+Shader: seasnake — https://www.shadertoy.com/view/t3sXW8
+Based on: Volumetric lighting, tmst — https://www.shadertoy.com/view/tdjBR1
+The Common, Cube A and Image GLSL bodies and the Shadertoy noise texture are retained in liuma-cloud.html.
+XMB adaptation adds local rendering, pause/reduced-motion handling, bounded resolution and background pacing.
+
+Stellar Bloom / 星核绽放
+Source: SEASNAKE, /Users/seasnake/liuma/星核绽放.html (v18).
+XMB adaptation holds the fully open phase with an independent slow motion clock.

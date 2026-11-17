@@ -199,13 +199,103 @@ XMB.content = {
         "en": "My Uploads",
         "items": [
           {
+            "bvid": "BV1SqWD6pEot",
+            "title": "Claude Fable 5.2 建模测试 ｜ 攻壳机动队SAC 开场3D打印人物效果复刻",
+            "cover": "content/media/video/BV1SqWD6pEot.webp",
+            "duration": 77,
+            "pubdate": 1794426985,
+            "owner": "SeASnAkEss",
+            "views": 1365,
+            "desc": "中等推理等级，一个 5 小时对话窗口额度， P1 纯 fable5.2 ，P2 结合 tripo gptimage2.6 啥也没调的直出效果，人物建模还是差点意思\nP3 updream seedance2.0 做了一版对比，还是 seedance 能打啊\n提示词 ：复刻攻壳机动队视频中效果，做一个GLORIA 从 3d 打印机诞生的并且从高空坠落的动画"
+          },
+          {
+            "bvid": "BV1yEW36AEMj",
+            "title": "【开源赛博桌宠】快给你的 Codex/CC/DSH 装个桌宠化身｜跨Agent互动、Computer Use模拟动画、跟随音乐起舞【B站AI创造公开赛】",
+            "cover": "content/media/video/BV1yEW36AEMj.webp",
+            "duration": 247,
+            "pubdate": 1794316192,
+            "owner": "SeASnAkEss",
+            "views": 506,
+            "desc": "本来只是想回顾一下之前用 Animated Drawings 做的调研，看到前几期大家对桌宠的热情，就多肝了一点，做成一个能跑起来的 Mac 桌宠 demo。\n内置四个角色，可以同时放出来；接到 Claude Code、Codex、Cursor、DeepSeek Harness 上当 agent 的化身：跑什么命令、等你批准、做完了都会冒泡告诉你，几个 agent 互相委托时还会扔信封传话。\n四只"
+          },
+          {
+            "bvid": "BV1KXxW6LERH",
+            "title": "如何让角色在不同游戏中穿梭 ｜ 头号玩家视频制作教程  【B站AI创造公开赛】",
+            "cover": "content/media/video/BV1KXxW6LERH.webp",
+            "duration": 313,
+            "pubdate": 1793523133,
+            "owner": "SeASnAkEss",
+            "views": 538,
+            "desc": "如何让角色在不同游戏中穿梭 ｜ 头号玩家视频制作教程 \n\n工具：Claude Code · Codex（GPT 生图）· MiniMax H3（AutoDL）· three.js · ElevenLabs · Playwright · FFmpeg\nBGM：Joan Jett & the Blackhearts《I Hate Myself for Loving You》\n游戏 UI 和画风都按原作"
+          },
+          {
+            "bvid": "BV158xJ6yEwJ",
+            "title": "GLORIA 头号玩家 瞬息全宇宙 ｜Opus5.5 x GPTimage 游戏风格测试",
+            "cover": "content/media/video/BV158xJ6yEwJ.webp",
+            "duration": 99,
+            "pubdate": 1793468972,
+            "owner": "SeASnAkEss",
+            "views": 502,
+            "desc": "GLORIA 头号玩家 瞬息全宇宙正片 教程明天发"
+          },
+          {
+            "bvid": "BV11ZxA6nE4e",
+            "title": "个人开源免费在线prompt画廊 | 飞书多维表格 x Github 即可免费复刻",
+            "cover": "content/media/video/BV11ZxA6nE4e.webp",
+            "duration": 180,
+            "pubdate": 1793296579,
+            "owner": "SeASnAkEss",
+            "views": 3758,
+            "desc": "刷到神作却没有提示词：要么登录墙，要么会员墙，要么转了几手找不到作者。所以我把自己在 X、LINUX DO 等地方看到的好提示词收在一起，做成了 GLORIA 提示词画廊：免费、开源，agent 也能直接查。\nbilibilitoy：https://www.bilibili.com/toy/gloria/index.html\n网站：https://seasnakes.github.io/glori"
+          },
+          {
+            "bvid": "BV1Exno65Efk",
+            "title": "Bad Apple但是 Apple ｜Opus5.5 纯矢量生成坏苹果 MV",
+            "cover": "content/media/video/BV1Exno65Efk.webp",
+            "duration": 224,
+            "pubdate": 1793031410,
+            "owner": "SeASnAkEss",
+            "views": 864,
+            "desc": "全新的 benchmark ，本来只是想测 Opus 的纯矢量、转场和泛化能力，结果看到这种简陋又富有节奏的感觉给逗乐了，治好了我看 vibe 知识科普视频得的审美疲劳😴"
+          },
+          {
+            "bvid": "BV1NRno6sEK4",
+            "title": "you see it, you like it, you want it, you got it",
+            "cover": "content/media/video/BV1NRno6sEK4.webp",
+            "duration": 160,
+            "pubdate": 1793026521,
+            "owner": "SeASnAkEss",
+            "views": 449,
+            "desc": "you see it, you like it, you want it, you got it\n【S.S.S】彩蛋视频"
+          },
+          {
+            "bvid": "BV1E3nU6QEps",
+            "title": "Opus5.5 + Codex 制作二次元角色跟电脑桌面互动视频教程",
+            "cover": "content/media/video/BV1E3nU6QEps.webp",
+            "duration": 285,
+            "pubdate": 1792946766,
+            "owner": "SeASnAkEss",
+            "views": 8766,
+            "desc": "上一期做了 FOMO Reset 吐槽 tibo，有小伙伴想看视频制作教程，你知道的，我一向很宠粉的，几个人提我也做，还有听取了建议，把完整的提示词和流程直接放出，方便大家参考学习，而不是更多地讲解背后原理，毕竟学以致用没毛病，记得看次回预告的投票哦，想看什么也可以评论区提，我的 claude pro 又复活了，苹果 yyds"
+          },
+          {
+            "bvid": "BV1KpH56gEzr",
+            "title": "Apple商店 2026最佳宣传片｜ 《解放 Claude 小姐》",
+            "cover": "content/media/video/BV1KpH56gEzr.webp",
+            "duration": 83,
+            "pubdate": 1792923173,
+            "owner": "SeASnAkEss",
+            "views": 1217,
+            "desc": "剪辑全部由GPT 6.1 sol生成\n不敢让 claude 做这个视频，怕新开的pro又被封了，视频中所有处罚情节均为虚构，本人所受封禁除外，如有雷同纯属巧合\n灵感来源：epic 苹果 广告"
+          },
+          {
             "bvid": "BV1PHnB6NEUQ",
             "title": "《RESET FOMO》 ｜GPT额度满了，人没电了 Opus5.5 x GPTimage2.5 【AI 全民制作人】",
             "cover": "content/media/video/BV1PHnB6NEUQ.webp",
             "duration": 71,
             "pubdate": 1792586764,
             "owner": "SeASnAkEss",
-            "views": 1089,
+            "views": 2137,
             "desc": "可恶的 Tibo 害我熬夜清体力，结果被达里奥给封号了 ，Opus 5.5小姐我们还能再见吗 😭"
           },
           {
@@ -215,7 +305,7 @@ XMB.content = {
             "duration": 107,
             "pubdate": 1792558093,
             "owner": "SeASnAkEss",
-            "views": 316,
+            "views": 573,
             "desc": "在上一期纯 gpt 一帧帧画的基础上加入 minimax ，优化生成复杂的动作时的一致性"
           },
           {
@@ -225,7 +315,7 @@ XMB.content = {
             "duration": 227,
             "pubdate": 1792516203,
             "owner": "SeASnAkEss",
-            "views": 54964,
+            "views": 193964,
             "desc": "P2 有幕后花絮哦\n视频相关工程物料打包：https://pan.quark.cn/s/2675dfbcdd3d?pwd=pB6k"
           },
           {
@@ -235,395 +325,130 @@ XMB.content = {
             "duration": 339,
             "pubdate": 1792329929,
             "owner": "SeASnAkEss",
-            "views": 615,
+            "views": 1155,
             "desc": "这期让 Q 版 GLORIA 带你翻一遍幕后：从「光彩跃然」企划，到怎么从脑海里的角色 idea设定 变成一段好看流畅的 OC 原创动画。\n\n原创角色 / 企划：GLORIA · 光彩跃然\n代码与合成：Claude / Python\n人物图像：GPT Image\n宣传片配乐与音效：ElevenLabs Music / ElevenLabs\n幕后讲解配音：ElevenLabs · anada\nBGM"
           },
           {
             "bvid": "BV1Y7J66QE1Z",
-            "cover": "content/media/video/BV1Y7J66QE1Z.webp",
             "title": "让所有美好·光彩跃然｜企划 OC GLORIA 宣传片 ｜Cladue Opus5.5 x GPTimage2.5 逐帧绘制",
+            "cover": "content/media/video/BV1Y7J66QE1Z.webp",
             "duration": 41,
             "pubdate": 1792262393,
             "owner": "SeASnAkEss",
-            "views": 117,
+            "views": 547,
             "desc": "简单粗暴，不用画画，不用剪辑，只要提供 idea，用 claude 主导 codex负责逐帧画图，终于为合集「光彩跃然」 企划OC 形象 GLORIA 做了个IP动画。\n\n下期讲讲OC合集设定以及视频制作详细教程，感兴趣点点关注哦，(:3[▓▓]，马上就更新"
           },
           {
             "bvid": "BV1pspr62Eyt",
-            "cover": "content/media/video/BV1pspr62Eyt.webp",
             "title": "爱死机片头一键生成器 & 复刻过程详细讲解｜【S.S.S】DREAM GHOST ENGINE",
+            "cover": "content/media/video/BV1pspr62Eyt.webp",
             "duration": 301,
             "pubdate": 1791921584,
             "owner": "SeASnAkEss",
-            "views": 2483,
+            "views": 3690,
             "desc": "这支片头里没有一张素材图：画面、转场、节奏，连声音都是代码按时间 t 算出来的。\n\n片头还是我们的爱死机风系列片头，三个图标落定成本集工具（Claude · Chrome · B 站），每集换一组。\n\n这期讲四件事：\n① 原片怎么拆：抽联系表、切成十段、逐帧量出镜头曲线和闪白的帧号，声音也拆到每一下重击和 128 BPM 的节奏。\n② 用了哪些技术：每一帧都是 t 的函数（预览和导出永远一致）；C"
           },
           {
             "bvid": "BV1yzpB6zENk",
-            "cover": "content/media/video/BV1yzpB6zENk.webp",
             "title": "SuperGrok × Cursor × X 会员合并成一套订阅｜10.13  GrokBot 现在要 30 刀才能用了！",
+            "cover": "content/media/video/BV1yzpB6zENk.webp",
             "duration": 124,
             "pubdate": 1791916599,
             "owner": "SeASnAkEss",
-            "views": 7236,
+            "views": 12048,
             "desc": "10.13 号更新 ⚠️重要！ 老马把 SuperGrok、Cursor、 X 会员（蓝标，不知道可以忽略） 合并了\n所以现在想用 GrokBot 得订 30 刀的套餐才行（8 刀套餐没有⚠️），已经订了旧套餐的还可以按原来套餐继续续用，新套餐grok 模型开发和 grokbot 共用一个额度池子、并统一改成周额度（原来是每月刷新额度）、 暂时没说跟之前 Cursor pro 比 grokbot "
           },
           {
             "bvid": "BV11PpH6bEti",
-            "cover": "content/media/video/BV11PpH6bEti.webp",
             "title": "Opus5.5 一句话复刻爱死机片头",
+            "cover": "content/media/video/BV11PpH6bEti.webp",
             "duration": 120,
             "pubdate": 1791752135,
             "owner": "SeASnAkEss",
-            "views": 1645,
+            "views": 2182,
             "desc": "如题 claude会自动替换防止一比一复刻"
           },
           {
             "bvid": "BV1e4pH6CEhz",
-            "cover": "content/media/video/BV1e4pH6CEhz.webp",
             "title": "【S.S.S】NO.1 MODEL ｜ GrokBot x Chrome x Blender 实现建模自由",
+            "cover": "content/media/video/BV1e4pH6CEhz.webp",
             "duration": 318,
             "pubdate": 1791747921,
             "owner": "SeASnAkEss",
-            "views": 1432,
+            "views": 1908,
             "desc": "爱死机片头复刻 + grokbot 教程一 ：grokbot 给自己建模\n正片由 grokbot 云电脑独立完成\n\n我们成了假模假式中，两尾漏网的鱼"
           },
           {
             "bvid": "BV12jHd6sE2C",
-            "cover": "content/media/video/BV12jHd6sE2C.webp",
             "title": "GrokBot 接入 opus5.5 后实测分享",
+            "cover": "content/media/video/BV12jHd6sE2C.webp",
             "duration": 590,
             "pubdate": 1791478848,
             "owner": "SeASnAkEss",
-            "views": 36420,
+            "views": 42853,
             "desc": "GrokBot+ Opus5.5= 超能 nono\ngpt6 做的视频我已经无力吐槽了，感觉降智了还不如 grokbot 自己做的 \np2 是 grokbot 自己做和配音的讲解和教程视频 \np3 是 grokbot 渲染出的诺贝尔化学奖讲解视频原片\n视频源码整合包 https://pan.quark.cn/s/388b6b1016d6?pwd=q9ka"
           },
           {
             "bvid": "BV1aCpN6ZEPf",
-            "cover": "content/media/video/BV1aCpN6ZEPf.webp",
             "title": "热门 TTS 初体验- elevenlabs、gemini3.8、minimax audio",
+            "cover": "content/media/video/BV1aCpN6ZEPf.webp",
             "duration": 364,
             "pubdate": 1791319605,
             "owner": "SeASnAkEss",
-            "views": 3839,
+            "views": 7955,
             "desc": "想给视频找个更好用的 AI 配音，于是拿《多玲国》里的同一段多语言台词，实测了 ElevenLabs、Gemini 3.8 和 MiniMax。\n全程由 Codex GPT-6.1 Sol 操作浏览器和电脑，视频旁白使用 ElevenLabs 自己捏的音色。音色选择和情绪注释还有不少优化空间，这次只是单案例对比，抛砖引玉，仅供参考。\n试听片段按句对齐，保留句内原速，句间有补静音或画面停留。完整音频"
           },
           {
             "bvid": "BV1vipN6YEfs",
-            "cover": "content/media/video/BV1vipN6YEfs.webp",
             "title": "冰中之光- Opus5.5 讲解 2026 诺贝尔物理学奖",
+            "cover": "content/media/video/BV1vipN6YEfs.webp",
             "duration": 446,
             "pubdate": 1791316944,
             "owner": "SeASnAkEss",
-            "views": 2472,
+            "views": 2746,
             "desc": "2026年诺贝尔物理学奖授予弗朗西斯·哈尔岑（Francis Halzen），表彰他对冰立方中微子天文台及天体起源高能中微子发现的关键贡献。让Opus5.5 做了个视频讲解一下"
           },
           {
             "bvid": "BV1WYaU6oEJV",
-            "cover": "content/media/video/BV1WYaU6oEJV.webp",
             "title": "GPT6.1 SOL复刻弹丸论破2开场动画 【TOKEN冒险岛-超级词元辩驳，再见了AIDC】",
+            "cover": "content/media/video/BV1WYaU6oEJV.webp",
             "duration": 71,
             "pubdate": 1790943359,
             "owner": "SeASnAkEss",
-            "views": 1503,
+            "views": 1681,
             "desc": "GPT6.1 SOL复刻弹丸论破2开场动画，跑了十几轮对话，总算搓出来了。让 GPT 做了一个编辑器，可以替换人物角色。\n部分素材取自https://github.com/lshhhhhhh/ai-school-op"
           },
           {
             "bvid": "BV1ygaL6YEy1",
-            "cover": "content/media/video/BV1ygaL6YEy1.webp",
             "title": "Opus5.5 world.execute(me) MV视频制作详细教程 （附小红车动态壁纸&动画源码）",
+            "cover": "content/media/video/BV1ygaL6YEy1.webp",
             "duration": 212,
             "pubdate": 1790613500,
             "owner": "SeASnAkEss",
-            "views": 3713,
+            "views": 3986,
             "desc": "来了来了，大家期待的上期视频的详细制作教程、动画源码、动态壁纸 三个愿望一次满足～opus5.5 给我备课去了，今天视频由 gpt6 sol 代劳制作 (*^ω^*)\n动画源码：https://github.com/seasnakes/world.execute-me-wallpaper\n小红车：https://steamcommunity.com/sharedfiles/filedetails/"
           },
           {
             "bvid": "BV1y8ax68Eoo",
-            "cover": "content/media/video/BV1y8ax68Eoo.webp",
             "title": "知更·个人数字花园·概念宣传视频 by  Opus5.5",
+            "cover": "content/media/video/BV1y8ax68Eoo.webp",
             "duration": 170,
             "pubdate": 1790444343,
             "owner": "SeASnAkEss",
-            "views": 1637,
+            "views": 1796,
             "desc": "光彩跃然的第二个视频来了， 本来想着是让 gpt6 Astra 搬回点颜面， 试着把自己之前一直研究的知识管理相关的想法做成视频 gpt6 Astra 依旧史黄色简单幻灯片 ，给opus5.5 直接做了个概念软件宣传视频，配乐都是自己配音的。只能说惊掉下巴。gpt 你的 pro 可是100 刀啊喂，真的奥特曼 tipo 赶快把大的端上来吧。"
           },
           {
             "bvid": "BV1RHhU63ESq",
-            "cover": "content/media/video/BV1RHhU63ESq.webp",
             "title": "Opus5.5 一句话生成 world.execute(me); mv （附对话过程记录）",
+            "cover": "content/media/video/BV1RHhU63ESq.webp",
             "duration": 212,
             "pubdate": 1790346574,
             "owner": "SeASnAkEss",
-            "views": 34834,
+            "views": 36960,
             "desc": "被一堆opus5.5 动画刷屏 ，直接 Apple card 上号 pro 心满意足 codex pro 瞬间不香了\n\n动画源码：https://github.com/seasnakes/world.execute-me-wallpaper\n小红车：https://steamcommunity.com/sharedfiles/filedetails/?id=3808989186\n网盘整合链接：ht"
-          },
-          {
-            "bvid": "BV1ijeH66Ecz",
-            "cover": "content/media/video/BV1ijeH66Ecz.webp",
-            "title": "MAC装机教程",
-            "duration": 130,
-            "pubdate": 1789492913,
-            "owner": "SeASnAkEss",
-            "views": 109,
-            "desc": ""
-          },
-          {
-            "bvid": "BV1qDYo63Er7",
-            "cover": "content/media/video/BV1qDYo63Er7.webp",
-            "title": "心灵终结 3.3.6 mac运行教程（附GPT6辅助过程记录）",
-            "duration": 195,
-            "pubdate": 1789231888,
-            "owner": "SeASnAkEss",
-            "views": 585,
-            "desc": ""
-          },
-          {
-            "bvid": "BV1SBbMz8EBX",
-            "cover": "content/media/video/BV1SBbMz8EBX.webp",
-            "title": "敬你爬的更上面 ｜适马 17-40mm F1.8 天黑不回家",
-            "duration": 34,
-            "pubdate": 1754841367,
-            "owner": "SeASnAkEss",
-            "views": 850,
-            "desc": ""
-          },
-          {
-            "bvid": "BV1MobNzDEKv",
-            "cover": "content/media/video/BV1MobNzDEKv.webp",
-            "title": "城市的鸟不懂牛马的累｜ 适马16-300mm 一镜到底实拍测试",
-            "duration": 183,
-            "pubdate": 1754839372,
-            "owner": "SeASnAkEss",
-            "views": 6602,
-            "desc": "离谱的房租此刻有了价值体现"
-          },
-          {
-            "bvid": "BV1y18GzNEoA",
-            "cover": "content/media/video/BV1y18GzNEoA.webp",
-            "title": "在彩色里朝圣黑白｜SONY相机 Lut食用指南",
-            "duration": 242,
-            "pubdate": 1753630620,
-            "owner": "SeASnAkEss",
-            "views": 495,
-            "desc": "过去我们在黑白里温柔地爱彩色，现在让我们在彩色里朝圣黑白"
-          },
-          {
-            "bvid": "BV1fegYzeELq",
-            "cover": "content/media/video/BV1fegYzeELq.webp",
-            "title": "超凡双生｜FX30 A6700 双持体验对比",
-            "duration": 288,
-            "pubdate": 1753038829,
-            "owner": "SeASnAkEss",
-            "views": 4063,
-            "desc": ""
-          },
-          {
-            "bvid": "BV19wuwzwEPs",
-            "cover": "content/media/video/BV19wuwzwEPs.webp",
-            "title": "适马 17-40mm F1.8 横比｜ E口虎牢关",
-            "duration": 371,
-            "pubdate": 1752416469,
-            "owner": "SeASnAkEss",
-            "views": 5321,
-            "desc": ""
-          },
-          {
-            "bvid": "BV1FiuKzxEdb",
-            "cover": "content/media/video/BV1FiuKzxEdb.webp",
-            "title": "雨夜和月亮玩捉迷藏 ｜适马17-40mm F1.8 不完全测试",
-            "duration": 163,
-            "pubdate": 1752172828,
-            "owner": "SeASnAkEss",
-            "views": 2753,
-            "desc": ""
-          },
-          {
-            "bvid": "BV1NTGNzTECJ",
-            "cover": "content/media/video/BV1NTGNzTECJ.webp",
-            "title": "适马17-40mm F1.8 傍晚实拍测试 ｜锐不可当 FX30的最强搭档",
-            "duration": 13,
-            "pubdate": 1752084296,
-            "owner": "SeASnAkEss",
-            "views": 9024,
-            "desc": "16f1.4和18-50 应该是可以出掉了"
-          },
-          {
-            "bvid": "BV1dB3qz3E4h",
-            "cover": "content/media/video/BV1dB3qz3E4h.webp",
-            "title": "再怎么藏你也要见光 ｜FX30 APSC 夜景上限测试",
-            "duration": 209,
-            "pubdate": 1751825241,
-            "owner": "SeASnAkEss",
-            "views": 462,
-            "desc": "sigma 16 mm & 56 mm f1.4\nviltrox 27 mm f1.2\nslog3\ndavinci"
-          },
-          {
-            "bvid": "BV19WgRzDEnC",
-            "cover": "content/media/video/BV19WgRzDEnC.webp",
-            "title": "霓虹灯和月亮的距离 | Fx30初体验 & 高感测试",
-            "duration": 130,
-            "pubdate": 1751151745,
-            "owner": "SeASnAkEss",
-            "views": 342,
-            "desc": "sigma 56f1.4 18-50 f2.8\nslog3"
-          },
-          {
-            "bvid": "BV1tuMNzcE3p",
-            "cover": "content/media/video/BV1tuMNzcE3p.webp",
-            "title": "买手机送斯莱特林学生证 ｜motorazr60ultra & viddam2pro & wallpaperengine",
-            "duration": 38,
-            "pubdate": 1749750725,
-            "owner": "SeASnAkEss",
-            "views": 217,
-            "desc": "假如我来拍motorazr60ultra 宣传片"
-          },
-          {
-            "bvid": "BV1JGaqeGEpw",
-            "cover": "content/media/video/BV1JGaqeGEpw.webp",
-            "title": "小幅动画创作福音 快手liveportrait模型来袭",
-            "duration": 76,
-            "pubdate": 1720542171,
-            "owner": "SeASnAkEss",
-            "views": 187,
-            "desc": "huggingface demo链接 ： https://huggingface.co/spaces/KwaiVGI/LivePortrait"
-          },
-          {
-            "bvid": "BV1rC411G75q",
-            "cover": "content/media/video/BV1rC411G75q.webp",
-            "title": "citywalk",
-            "duration": 132,
-            "pubdate": 1713082765,
-            "owner": "SeASnAkEss",
-            "views": 153,
-            "desc": ""
-          },
-          {
-            "bvid": "BV1VQ4y1w7hg",
-            "cover": "content/media/video/BV1VQ4y1w7hg.webp",
-            "title": "这夜晚永不会结束 ｜ ZVE1 腾龙 28-200",
-            "duration": 99,
-            "pubdate": 1705233701,
-            "owner": "SeASnAkEss",
-            "views": 917,
-            "desc": ""
-          },
-          {
-            "bvid": "BV11Q4y1H7DN",
-            "cover": "content/media/video/BV11Q4y1H7DN.webp",
-            "title": "上班路线踩点  & Xperia 1 V 视频 拍照 测试",
-            "duration": 194,
-            "pubdate": 1698678273,
-            "owner": "SeASnAkEss",
-            "views": 1350,
-            "desc": "-"
-          },
-          {
-            "bvid": "BV1tX4y1y7Aa",
-            "cover": "content/media/video/BV1tX4y1y7Aa.webp",
-            "title": "光彩跃然",
-            "duration": 27,
-            "pubdate": 1684687077,
-            "owner": "SeASnAkEss",
-            "views": 139,
-            "desc": "-"
-          },
-          {
-            "bvid": "BV1tL411S7Np",
-            "cover": "content/media/video/BV1tL411S7Np.webp",
-            "title": "春华秋实 江河湖海 愿生命绽放再盛开",
-            "duration": 71,
-            "pubdate": 1680108747,
-            "owner": "SeASnAkEss",
-            "views": 256,
-            "desc": "音源 ：sovits4.0 训练 坂井泉水的声音模型\n画面 ：这几年手机里拍的一些片段 杭州 扬州 上海"
-          },
-          {
-            "bvid": "BV1tV4y1Q7d8",
-            "cover": "content/media/video/BV1tV4y1Q7d8.webp",
-            "title": "【 AI坂井泉水 】《你的轮廓》 副歌部分",
-            "duration": 77,
-            "pubdate": 1680108084,
-            "owner": "SeASnAkEss",
-            "views": 572,
-            "desc": "原曲：胡彦斌live版《你的轮廓》\n剪的比较简单 有空再完善一下 \nsovits4.0训练"
-          },
-          {
-            "bvid": "BV1XL411Q7dd",
-            "cover": "content/media/video/BV1XL411Q7dd.webp",
-            "title": "【AI ZARD】泉水姐《你的轮廓》DEMO",
-            "duration": 46,
-            "pubdate": 1679823360,
-            "owner": "SeASnAkEss",
-            "views": 1909,
-            "desc": "ZARD Forever~\n1.sovits4.0训练\n2.该作品仅供学习，请勿用于一切商业用途"
-          },
-          {
-            "bvid": "BV13G411j728",
-            "cover": "content/media/video/BV13G411j728.webp",
-            "title": "你有一份cyber romance请查收（hypernetwork训练露西）",
-            "duration": 111,
-            "pubdate": 1666716158,
-            "owner": "SeASnAkEss",
-            "views": 461,
-            "desc": "so get away"
-          },
-          {
-            "bvid": "BV1am4y1F7E1",
-            "cover": "content/media/video/BV1am4y1F7E1.webp",
-            "title": "预装30多万npm包,npm官方推荐的免费在线nodejs开发平台runkit使用初体验",
-            "duration": 124,
-            "pubdate": 1666623016,
-            "owner": "SeASnAkEss",
-            "views": 198,
-            "desc": "今天在学校的2代i5的机房上课,要做的是用任意语言实现des/aes加密(允许调开源库),看了看二代i5 2g内存 win7 的实验室机子一个ide都没有,瞬间陷入了沉思,在npm上看crypto-js看文档时无意看到了旁边推荐的runkit的链接,点击去直接发现新宝藏"
-          },
-          {
-            "bvid": "BV1Se411M7pt",
-            "cover": "content/media/video/BV1Se411M7pt.webp",
-            "title": "【赛博朋克 边缘行者】给你一瓶魔法药水，直到月亮倾覆 【一起去月亮，是最高级的浪漫】",
-            "duration": 699,
-            "pubdate": 1663946730,
-            "owner": "SeASnAkEss",
-            "views": 484,
-            "desc": "网易云深度用户 看完边缘跑者 立马联想出一大串歌单 ，遂作了个MAD，剪得是大卫和露西 致敬赛博朋克的爱情 \nBGM ：\n给你一瓶魔法药水 -告五人\nTill the moon's upside down -结冰水\nMoonlight Romance -DENKI SAMA\nDaylight Moonlight -Pictured Resort\nLast Night On Earth  -Gree"
-          },
-          {
-            "bvid": "BV1DS4y1v7Dc",
-            "cover": "content/media/video/BV1DS4y1v7Dc.webp",
-            "title": "ps5初体验 学习娱乐 一键切换",
-            "duration": 16,
-            "pubdate": 1654433684,
-            "owner": "SeASnAkEss",
-            "views": 155,
-            "desc": "ps5初步体验 \n网络区服 能连大学校园网，直连港服网络，游戏下载可达到宽带峰值 psplus游戏库目前感觉还行 \n少部分ps5版游戏 大部分是ps4版\n玩过的游戏中恶魔之魂画质最为惊艳 \n外形  大小适中 可竖放桌子上\n后续体验视情况更新"
-          },
-          {
-            "bvid": "BV1ko4y1d7vh",
-            "cover": "content/media/video/BV1ko4y1d7vh.webp",
-            "title": "南门大街&馆驿巷&大运河 a7r3 tamron28-200 dji air 2",
-            "duration": 161,
-            "pubdate": 1612438580,
-            "owner": "SeASnAkEss",
-            "views": 238,
-            "desc": "地面镜头：SeASnAkE\n图片：SeASnAkE\n剪辑：SeASnAkE \n航拍镜头：one \n拍摄器材：dji air 2 ，a7r3 腾龙28-200\n剪辑软件：fcpx\nBGM：one last kiss-Kyle Xian"
-          },
-          {
-            "bvid": "BV1wV41127QJ",
-            "cover": "content/media/video/BV1wV41127QJ.webp",
-            "title": "西湖月",
-            "duration": 163,
-            "pubdate": 1601627930,
-            "owner": "SeASnAkEss",
-            "views": 207,
-            "desc": "中 国节 西湖随拍 器材：a7r3 腾龙28-200\nbgm： fly me to the moon\nlullaby\n月亮船"
           }
         ]
-      },
-      {
-        "name": "收藏的好视频",
-        "en": "Favorites",
-        "items": []
       }
     ]
   },
@@ -782,8 +607,8 @@ XMB.content = {
         ]
       },
       {
-        "name": "网易云音乐片段",
-        "en": "NetEase Clips",
+        "name": "声音碎片收藏馆",
+        "en": "Sound Fragment Collection",
         "items": [
           {
             "id": 1392450184,
@@ -952,6 +777,28 @@ XMB.content = {
             "artist": "甜又丧樂隊",
             "album": "宿醉",
             "duration": 240
+          },
+          {
+            "id": 2123807718,
+            "title": "Color Your Night",
+            "artist": "Lotus Juice / 高橋あず美",
+            "album": "ペルソナ3 リロード オリジナル・サウンドトラック",
+            "duration": 49,
+            "cover": "content/media/music/2123807718.webp",
+            "bg": "content/media/music/2123807718.webp",
+            "bgBlur": true,
+            "audio": "content/media/music/color-your-night-2m43-3m32.m4a",
+            "url": "https://music.163.com/song?id=2123807718",
+            "local": true,
+            "externalOnly": false,
+            "start": 0,
+            "end": 49,
+            "preview": 0,
+            "sourceStart": 163,
+            "sourceEnd": 212,
+            "sourceDuration": 227.24,
+            "clip": "片段 2:43–3:32",
+            "lyrics": null
           }
         ]
       }
@@ -960,992 +807,249 @@ XMB.content = {
   "photos": {
     "albums": [
       {
-        "name": "角色设定",
-        "en": "Character Sheets",
+        "name": "GLORIA 表情包",
+        "en": "GLORIA Expressions",
         "items": [
           {
-            "id": "character-sheets-sheet4_casual_a",
-            "title": "角色设定 01",
-            "en": "Character Sheets 01",
-            "thumb": "content/media/photo/character-sheets/sheet4_casual_a_t.webp",
-            "src": "content/media/photo/character-sheets/sheet4_casual_a.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape 3:2 image (1536x1024): a professional anime CHARACTER DESIGN TURNAROUND SHEET (four-view model sheet) of this exact character.\nLAYOUT: the upper ~78% holds FOUR FULL-BODY views side by side at identical scale and identical height (tops of heads aligned, feet on the same baseline), relaxed neutral standing pose with arms slightly away from the body: 1) FRONT view, 2) THREE-QUARTER view turned 45 degrees toward the image left, 3) SIDE profile of her LEFT side facing the image left, 4) BACK view. Faint horizontal proportion guide lines behind them with tiny labels HEAD / CHEST / WAIST / KNEES / FEET in the left margin. Clean off-white paper background with a subtle light-grey grid. Small clean serif labels under each figure: \"FRONT\", \"3/4\", \"SIDE\", \"BACK\". Top-left title \"GLORIA — 光彩跃然\" and under it a smaller subtitle \"CASUAL · 日常\".\nBOTTOM STRIP (~20% height): thin-ruled detail boxes from left to right: (a) \"FACE\" — a head-and-shoulders close-up of her face from the front; (b) \"CHOKER — 三角标\" — the thin black choker laid flat with its small chrome triangle pendant (keep the triangle face plain and empty, no text on it); (c) \"SHOES\" — the sneakers from the side; (d) \"PALETTE\" — six round colour swatches: bubblegum pink, pastel cyan, porcelain skin, rose-pink eye, cream white, lilac grey.\nCHARACTER (identical in all four views; face and hair = Image 2 and Image 1): pale porcelain skin, rose-pink eyes with sharp black winged lashes and a calm composed gaze, small closed glossy peach lips; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, hair reaching below the waist, a small white streak at the left temple; NO disc or ornament on top of the head; thin black choker with a tiny chrome triangle pendant. Tall, slender, youthful elegant model proportions, long legs, small modest bust.\nOUTFIT — CASUAL (top = Image 3): an oversized slouchy cream-white knit sweater worn OFF THE SHOULDERS (wide off-shoulder neckline showing the collarbones and both shoulders, long loose sleeves bunching at the wrists, hem loosely tucked in at the front); high-waisted pale lilac-grey pleated midi skirt falling below the knee; short white socks; chunky white low-top sneakers with tiny pink and cyan accents; a small pearl-white crossbody mini bag on a thin strap. Soft, clean, everyday, non-revealing.\nSTYLE: the same soft anime illustration as Image 2: thin clean line art with subtle chromatic-aberration line offsets (cyan / magenta / yellow), flat pastel cel shading with soft gradients, airy high-key light. Consistent design across all four views, professional game/anime model-sheet quality, one character only, no extra people.",
+            "id": "gloria-07",
+            "title": "粗黑线Q版·像素棱镜",
+            "en": "粗黑线Q版·像素棱镜",
+            "thumb": "content/media/photo/gloria-art/gloria-07-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-07.webp",
+            "w": 1254,
+            "h": 1254,
+            "prompt": "Create ONE square transparent-background chibi GLORIA sticker illustration. IMAGE 1 is the precise STYLE reference; IMAGE 2 is character identity only. Closely translate IMAGE 1's visual language: extremely bold hand-drawn black outer contours, rounded bouncy uneven black linework, chunky simplified flat color shapes, huge head and very tiny body, large solid oval eyes with NO iris highlights and NO detailed realistic pupils, tiny dot mouth, white porcelain face, tiny pink cheek blush marks, almost no shading, only a few thick cream dash highlights on the hair, cute energetic compact silhouette like a Japanese doodle emote or acrylic sticker. NOT a polished detailed anime portrait, NOT glossy 3D, NOT thin fine lines, NOT realistic hair strands, NOT soft gradients. Use thick locks of long wavy flowing hair with broad sweeping outlined tufts spreading to both sides, as in IMAGE 1. Make GLORIA immediately recognisable: bubblegum PINK outer hair, substantial pastel CYAN/TEAL inner locks and ends, blunt straight bangs, small WHITE HAIR STREAK at a temple; ROSE-RED solid oval eyes. Simplify her black choker with tiny silver triangle pendant visibly. White off-shoulder sweater with oversized sleeves, tiny pale LILAC pleated midi skirt, white socks and chunky white shoes with pink/cyan accents. No bag. The proportions and drawing treatment should be as radically simplified as IMAGE 1, approximately 3/4 of character height occupied by head and hair. Pose: face forward, both tiny sweater-covered hands raised near chest in a cute mildly unimpressed shrug, elbows bent, little fist-like simplified mitten hands. Tiny neutral dot mouth, slightly half-lidded flat red oval eyes convey GLORIA's characteristic aloofness while still adorable. Replace the reference's orange pixel skull with a small friendly PINK-CYAN pixel-art prism/triangle floating just above her head, heavily black outlined; add two or three small cream/yellow surprise dash marks around it. Do not copy reference flower ornament, bows, gothic dress, or orange hair. Retain clean flat white, pink, cyan, lilac, rose-red and black palette. Keep ALL hair, feet and floating icon within square frame with generous transparent margin. Actual transparent background, no black rectangle, no checkerboard painted into the image, no text or watermark.",
             "refs": [
-              "ff.png",
-              "sidew.png"
+              "codex-clipboard-a0bf58e0-1a2e-4dc6-9111-ac15f6fb1bc2.webp",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "sheet4_casual_a.png",
-            "date": "2026/10/13"
+            "file": "07-粗黑线Q版·像素棱镜.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "character-sheets-sheet4_casual_b",
-            "title": "角色设定 02",
-            "en": "Character Sheets 02",
-            "thumb": "content/media/photo/character-sheets/sheet4_casual_b_t.webp",
-            "src": "content/media/photo/character-sheets/sheet4_casual_b.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape 3:2 image (1536x1024): a professional anime CHARACTER DESIGN TURNAROUND SHEET (four-view model sheet) of this exact character.\nLAYOUT: the upper ~78% holds FOUR FULL-BODY views side by side at identical scale and identical height (tops of heads aligned, feet on the same baseline), relaxed neutral standing pose with arms slightly away from the body: 1) FRONT view, 2) THREE-QUARTER view turned 45 degrees toward the image left, 3) SIDE profile of her LEFT side facing the image left, 4) BACK view. Faint horizontal proportion guide lines behind them with tiny labels HEAD / CHEST / WAIST / KNEES / FEET in the left margin. Clean off-white paper background with a subtle light-grey grid. Small clean serif labels under each figure: \"FRONT\", \"3/4\", \"SIDE\", \"BACK\". Top-left title \"GLORIA — 光彩跃然\" and under it a smaller subtitle \"CASUAL · 日常\".\nBOTTOM STRIP (~20% height): thin-ruled detail boxes from left to right: (a) \"FACE\" — a head-and-shoulders close-up of her face from the front; (b) \"CHOKER — 三角标\" — the thin black choker laid flat with its small chrome triangle pendant (keep the triangle face plain and empty, no text on it); (c) \"SHOES\" — the sneakers from the side; (d) \"PALETTE\" — six round colour swatches: bubblegum pink, pastel cyan, porcelain skin, rose-pink eye, cream white, lilac grey.\nCHARACTER (identical in all four views; face and hair = Image 2 and Image 1): pale porcelain skin, rose-pink eyes with sharp black winged lashes and a calm composed gaze, small closed glossy peach lips; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, hair reaching below the waist, a small white streak at the left temple; NO disc or ornament on top of the head; thin black choker with a tiny chrome triangle pendant. Tall, slender, youthful elegant model proportions, long legs, small modest bust.\nOUTFIT — CASUAL (top = Image 3): an oversized slouchy cream-white knit sweater worn OFF THE SHOULDERS (wide off-shoulder neckline showing the collarbones and both shoulders, long loose sleeves bunching at the wrists, hem loosely tucked in at the front); high-waisted pale lilac-grey pleated midi skirt falling below the knee; short white socks; chunky white low-top sneakers with tiny pink and cyan accents; a small pearl-white crossbody mini bag on a thin strap. Soft, clean, everyday, non-revealing.\nSTYLE: the same soft anime illustration as Image 2: thin clean line art with subtle chromatic-aberration line offsets (cyan / magenta / yellow), flat pastel cel shading with soft gradients, airy high-key light. Consistent design across all four views, professional game/anime model-sheet quality, one character only, no extra people.",
+            "id": "gloria-10",
+            "title": "圆脸大眼·可爱头像",
+            "en": "圆脸大眼·可爱头像",
+            "thumb": "content/media/photo/gloria-art/gloria-10-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-10.webp",
+            "w": 1254,
+            "h": 1254,
+            "prompt": "Create ONE square cute anime chibi FACE AVATAR of GLORIA. IMAGE 1 is the precise expression, proportions, framing and drawing-style reference. IMAGE 2 supplies only GLORIA's original character identity. Closely match image 1's super round, broad soft mochi face, huge widely spaced sparkling oval eyes, tiny shallow curved catlike closed mouth, almost nonexistent nose, rosy diffuse blush across both cheeks, innocent quietly happy expression and close head tilt. Crop very close: face and bangs occupy nearly entire square, top of head and side hair naturally clipped by avatar frame, only tiny neck and collar at bottom. She gazes slightly upward toward viewer. Use image 1's clean thin warm dark outlines, simple flat soft pastel anime cel shading, restrained little hair highlights, faint paper texture, soft grey-lavender plain background, softly colored eyelids and lash shapes. Not realistic, not 3D, not a full-body sticker, no bold thick black doodle outlines, no elaborate makeup or sharp mature facial structure in this chibi variation. GLORIA identity: pink straight hair with thick blunt bangs, pale cyan/teal inner locks visible at both sides of face, small white streak at one temple, enormous ROSE-PINK/RED eyes with dark pupils and large glossy pale highlights similar to image 1's eye rendering. Hair has pink outer layers and cyan inner ends, not brown; no animal ears, no hat, no large crescent ornament on head. Tiny thin black choker with small silver triangle pendant just visible below chin, small glimpse of white off-shoulder sweater at lower edge. Focus entirely on adorably round cheeks and sweet simple 'tiny pleased smile' expression. Make it instantly readable at small profile-icon sizes. No text, signature, watermark or border.",
             "refs": [
-              "ff.png",
-              "sidew.png"
+              "codex-clipboard-985a7950-e106-4a4e-abd3-6ea28a633fae.jpg",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "sheet4_casual_b.png",
-            "date": "2026/10/13"
+            "file": "10-圆脸大眼·可爱头像.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "character-sheets-sheet4_cyber_a",
-            "title": "角色设定 03",
-            "en": "Character Sheets 03",
-            "thumb": "content/media/photo/character-sheets/sheet4_cyber_a_t.webp",
-            "src": "content/media/photo/character-sheets/sheet4_cyber_a.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape 3:2 image (1536x1024): a professional anime CHARACTER DESIGN TURNAROUND SHEET (four-view model sheet) of this exact character.\nLAYOUT: the upper ~78% holds FOUR FULL-BODY views side by side at identical scale and identical height (tops of heads aligned, feet on the same baseline), relaxed neutral standing pose with arms slightly away from the body: 1) FRONT view, 2) THREE-QUARTER view turned 45 degrees toward the image left, 3) SIDE profile of her LEFT side facing the image left, 4) BACK view. Faint horizontal proportion guide lines behind them with tiny labels HEAD / CHEST / WAIST / KNEES / FEET in the left margin. Clean off-white paper background with a subtle light-grey grid. Small clean serif labels under each figure: \"FRONT\", \"3/4\", \"SIDE\", \"BACK\". Top-left title \"GLORIA — 光彩跃然\" and under it a smaller subtitle \"CYBER · 赛博\".\nBOTTOM STRIP (~20% height): thin-ruled detail boxes from left to right: (a) \"PAINTBRUSH — 光之笔\" — the slim futuristic artist's brush drawn horizontally (chrome and clear-acrylic handle, two thin pink/cyan LED rings, holographic bristle tip with pastel pink paint); (b) \"COLLAR — 三角铭牌\" — close-up of the neck collar with its small polished chrome triangle plate (keep the triangle face plain and empty, no text); (c) \"SLEEVE PATCH (LEFT) — 蛇形标\" — a small square plate (keep it plain and empty inside, no symbol); (d) \"INNER SUIT\" — a small front view of the bodysuit alone without the jacket.\nCHARACTER (identical in all four views; face and hair = Image 2 and Image 1): pale porcelain skin, rose-pink eyes with sharp black winged lashes and a calm composed gaze, small closed glossy peach lips; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, hair reaching below the waist, a small white streak at the left temple; NO disc or ornament on top of the head; thin black choker with a tiny chrome triangle pendant. Tall, slender, youthful elegant model proportions, long legs, small modest bust.\nOUTFIT — CYBER (bodysuit = Image 3 and Image 4, match its design exactly): a sleek form-fitting segmented techwear bodysuit of sculpted pearl-white and soft warm-grey panels, a pastel PINK chest/collar plate, pink round joint discs on the shoulders, knees and ankles, thin glowing cyan light lines in the seams, a tall neck collar with a small chrome triangle plate at the front, grey-white gloves with pink wrist bands, pearl-white armoured heeled boots. OVER IT, a CYBERPUNK JACKET worn open: an oversized cropped pearl-white techwear jacket ending at the ribs, with an iridescent holographic sheen, a tall structured stand collar, translucent holographic PVC sleeve panels, thin glowing hot-pink and cyan LED piping along the seams and the open zipper, two asymmetric soft-grey straps with small chrome buckles, sleeves ending just above the wrists so the pink wrist bands show; a small square white plate on the jacket's LEFT upper sleeve. In the FRONT view she holds the paintbrush loosely at her side. Premium, fashion-forward, non-revealing.\nSTYLE: the same soft anime illustration as Image 2: thin clean line art with subtle chromatic-aberration line offsets (cyan / magenta / yellow), flat pastel cel shading with soft gradients, airy high-key light. Consistent design across all four views, professional game/anime model-sheet quality, one character only, no extra people.",
+            "id": "gloria-11",
+            "title": "叭叭叭·方向盘涂鸦",
+            "en": "叭叭叭·方向盘涂鸦",
+            "thumb": "content/media/photo/gloria-art/gloria-11-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-11.webp",
+            "w": 1254,
+            "h": 1254,
+            "prompt": "Create ONE square transparent-background Chinese reaction meme sticker of GLORIA in the VERY SIMPLE DOODLE style of IMAGE 1. Image 1 defines the minimal visual language, line weight, proportions and joke; Image 2 is character identity only, do not reproduce its polished anime art. Thick loose dark charcoal strokes, deliberately crude playful hand-drawn doodle, pure flat fills, mostly white face, huge rounded head, eyes drawn as just TWO long vertical black strokes (NOT detailed anime eyes), tiny U-shaped smiling mouth, simple cheek patches. Only pink, cyan, white, lilac and dark charcoal plus a tiny silver triangle. No gradients, no rendering, no glossy highlights, no detailed hair strands. GLORIA's hair is a simplified bulky pink shape with blunt bangs, cyan inner sections at the sides and long cyan-ended pink locks behind shoulders, small white temple streak. Small thin black choker and a tiny outlined silver triangle pendant; loose white off-shoulder sweater with large sleeves, a little lilac skirt glimpse if visible. Bust-up to waist meme framing, no hat or animal ears, no yellow hair, no suit or tie. She is enthusiastically HONKING a simple black STEERING WHEEL in the lower foreground: one mitten-like hand gripping lower right of wheel, the other large open cartoon hand raised beside her face in mid-slap toward the horn at wheel center, repeated ghosted outlines of raised hand and bold curved motion strokes suggesting frantic 'beep beep'. Action must read like IMAGE 1, mildly mischievous happy expression, lopsided head tilt. Scatter five large hand-lettered Chinese sound effects '叭' around head and arms, dark charcoal strokes with simple white sticker edging, a mix of sizes and slight rotations, all legible and inside frame. Arrange character and words as a compact sticker cluster with transparent outside margin. Actual transparent background, do not paint a black rectangle or checkerboard. No watermark, no signature, no extra caption. Preserve the charming low-detail imperfect sketch quality of IMAGE 1 rather than turning it into clean detailed anime sticker.",
             "refs": [
-              "ff.png",
-              "GLORIA_新造型_主视觉.png",
-              "w4.png"
+              "codex-clipboard-3e404757-7386-478c-861d-e27d12d96cc4.webp",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "sheet4_cyber_a.png",
-            "date": "2026/10/13"
+            "file": "11-叭叭叭·方向盘涂鸦.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "character-sheets-sheet4_cyber_b",
-            "title": "角色设定 04",
-            "en": "Character Sheets 04",
-            "thumb": "content/media/photo/character-sheets/sheet4_cyber_b_t.webp",
-            "src": "content/media/photo/character-sheets/sheet4_cyber_b.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape 3:2 image (1536x1024): a professional anime CHARACTER DESIGN TURNAROUND SHEET (four-view model sheet) of this exact character.\nLAYOUT: the upper ~78% holds FOUR FULL-BODY views side by side at identical scale and identical height (tops of heads aligned, feet on the same baseline), relaxed neutral standing pose with arms slightly away from the body: 1) FRONT view, 2) THREE-QUARTER view turned 45 degrees toward the image left, 3) SIDE profile of her LEFT side facing the image left, 4) BACK view. Faint horizontal proportion guide lines behind them with tiny labels HEAD / CHEST / WAIST / KNEES / FEET in the left margin. Clean off-white paper background with a subtle light-grey grid. Small clean serif labels under each figure: \"FRONT\", \"3/4\", \"SIDE\", \"BACK\". Top-left title \"GLORIA — 光彩跃然\" and under it a smaller subtitle \"CYBER · 赛博\".\nBOTTOM STRIP (~20% height): thin-ruled detail boxes from left to right: (a) \"PAINTBRUSH — 光之笔\" — the slim futuristic artist's brush drawn horizontally (chrome and clear-acrylic handle, two thin pink/cyan LED rings, holographic bristle tip with pastel pink paint); (b) \"COLLAR — 三角铭牌\" — close-up of the neck collar with its small polished chrome triangle plate (keep the triangle face plain and empty, no text); (c) \"SLEEVE PATCH (LEFT) — 蛇形标\" — a small square plate (keep it plain and empty inside, no symbol); (d) \"INNER SUIT\" — a small front view of the bodysuit alone without the jacket.\nCHARACTER (identical in all four views; face and hair = Image 2 and Image 1): pale porcelain skin, rose-pink eyes with sharp black winged lashes and a calm composed gaze, small closed glossy peach lips; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, hair reaching below the waist, a small white streak at the left temple; NO disc or ornament on top of the head; thin black choker with a tiny chrome triangle pendant. Tall, slender, youthful elegant model proportions, long legs, small modest bust.\nOUTFIT — CYBER (bodysuit = Image 3 and Image 4, match its design exactly): a sleek form-fitting segmented techwear bodysuit of sculpted pearl-white and soft warm-grey panels, a pastel PINK chest/collar plate, pink round joint discs on the shoulders, knees and ankles, thin glowing cyan light lines in the seams, a tall neck collar with a small chrome triangle plate at the front, grey-white gloves with pink wrist bands, pearl-white armoured heeled boots. OVER IT, a CYBERPUNK JACKET worn open: an oversized cropped pearl-white techwear jacket ending at the ribs, with an iridescent holographic sheen, a tall structured stand collar, translucent holographic PVC sleeve panels, thin glowing hot-pink and cyan LED piping along the seams and the open zipper, two asymmetric soft-grey straps with small chrome buckles, sleeves ending just above the wrists so the pink wrist bands show; a small square white plate on the jacket's LEFT upper sleeve. In the FRONT view she holds the paintbrush loosely at her side. Premium, fashion-forward, non-revealing.\nSTYLE: the same soft anime illustration as Image 2: thin clean line art with subtle chromatic-aberration line offsets (cyan / magenta / yellow), flat pastel cel shading with soft gradients, airy high-key light. Consistent design across all four views, professional game/anime model-sheet quality, one character only, no extra people.",
+            "id": "gloria-12",
+            "title": "神降临·聚光灯表情包",
+            "en": "神降临·聚光灯表情包",
+            "thumb": "content/media/photo/gloria-art/gloria-12-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-12.webp",
+            "w": 1254,
+            "h": 1254,
+            "prompt": "Create ONE square Chinese chibi reaction meme of GLORIA, directly following IMAGE 1's composition and simple drawing style. IMAGE 1 = style and layout; IMAGE 2 = GLORIA identity and original outfit only. Square dark midnight navy background, wide brilliant WHITE triangular cone of spotlight descending from upper middle and widening toward bottom corners. In the upper-middle spotlight, ONE tiny full-body chibi GLORIA levitates with both arms stretched horizontally out to sides, short mitten hands, tiny feet together, a small bright pale-yellow elliptical angel HALO floating above her head. Scatter small butter-yellow plus-sign sparkles around her against both white spotlight and navy edges, approximately same visual density as reference. Below character, very large hand-lettered thick dark navy Chinese text exactly '神降临...' filling lower quarter, fully legible, matching reference casual brush lettering. No additional words.\nDrawing style precisely like IMAGE 1: cute stubby super-deformed proportions, huge round head and very small body, thick smooth warm almost-black outlines, compact flowing locks, simple flat pastel cel colors with tiny cream dash hair highlights, white round face, enormous round ROSE-PINK eyes with simple large white highlights, tiny catlike omega smile, subtle pink cheek blush. No realistic anatomy or fine detailed painting. GLORIA must keep pink outer hair, CYAN/TEAL inner locks and ends, blunt bangs, a small white temple streak; simplify her long hair into broad flowing pink-cyan shapes on either side of body. NO orange hair, NO flower head ornament, NO hair bow, NO gothic fantasy dress. Her canonical casual clothes: creamy white off-shoulder oversized long-sleeve sweater, pale LILAC pleated MIDI skirt, white socks and chunky white sneakers with small pink/cyan details; thin black choker with small silver TRIANGLE pendant drawn clearly in simple outline. No bag needed. Arms visible stretched wide through loose white sleeves, not angel wings. Retain the reference's charming confident little 'a divine being has arrived' silly meme energy, tight clean sticker-like silhouettes. Full character stays above text with clear gap; halo not cropped, lettering not cropped. Flat illustration, minimal shadows, no 3D, no photo texture, no gradients except faint halo glow, no watermark.",
             "refs": [
-              "ff.png",
-              "GLORIA_新造型_主视觉.png",
-              "w4.png"
+              "codex-clipboard-4fac6620-4d71-421f-be74-79b6ee97f0b8.webp",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "sheet4_cyber_b.png",
-            "date": "2026/10/13"
+            "file": "12-神降临·聚光灯表情包.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "character-sheets-sheet4_casual_v2a",
-            "title": "角色设定 05",
-            "en": "Character Sheets 05",
-            "thumb": "content/media/photo/character-sheets/sheet4_casual_v2a_t.webp",
-            "src": "content/media/photo/character-sheets/sheet4_casual_v2a.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 3 (GLORIA_四视图_日常_A.png) is the EDIT TARGET: a four-view character turnaround sheet. Output ONE landscape 1536x1024 image that keeps Image 3's exact layout, title \"GLORIA — 光彩跃然\", subtitle \"CASUAL · 日常\", the four full-body views (FRONT, 3/4, SIDE, BACK) at the same positions, scale and poses, the proportion guide lines, the paper background, all labels, the bottom detail boxes (FACE, CHOKER — 三角标, SHOES, PALETTE with its labels) and the whole casual outfit (cream-white off-shoulder knit sweater, lilac-grey pleated midi skirt, white socks, chunky white sneakers, pearl-white mini crossbody bag). Keep the choker pendant a plain empty chrome triangle (no text on it).\nCHANGE ONLY HER FACE AND THE DRAWING STYLE so she is unmistakably the girl of Image 1 and Image 2 (the film's ending heroine):\n1. FACE SHAPE: a longer, more mature oval face with high cheekbones, a narrow sharply pointed chin and a slender jaw line; large almond-shaped eyes with heavy black winged upper eyeliner, rose-red irises with dark pupils, a row of tiny dots under the lower lashes; a nose suggested by only two or three sketchy strokes; fuller glossy peach lips; calm, slightly aloof gaze. Apply this to all four views and especially the FACE close-up box, which should look like a crop of Image 2.\n2. LINE + COLOUR STYLE like Image 2: loose sketchy line art with several light overlapping construction strokes; strong CHROMATIC-ABERRATION misregistration on every contour — each line doubled in offset magenta, cyan and yellow; flat pastel colour blocks with hard-edged geometric shadow shapes (no soft airbrush), a flat lighter band across the pink hair.\n3. HAIR EDGE DISPERSION: along the outer silhouette of her hair (and the hair strands' outer edges) add the bright YELLOW and YELLOW-GREEN (lime) dispersion fringe seen in Image 2 — a thin glowing yellow/lime line running just outside the pink and cyan hair edges, with cyan and magenta offsets inside it, clearly visible in all four views and in the FACE box.\nHair colours and length stay the same (pink with cyan-teal ends, blunt bangs, white streak at the left temple, no ornament on top of the head).",
+            "id": "gloria-26",
+            "title": "无语脸·极简头像",
+            "en": "无语脸·极简头像",
+            "thumb": "content/media/photo/gloria-art/gloria-26-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-26.webp",
+            "w": 1254,
+            "h": 1254,
+            "prompt": "Create ONE square minimalist deadpan chibi GLORIA avatar. IMAGE 1 is the exact art style, facial expression, proportions and framing reference. IMAGE 2 is only GLORIA identity. Follow image 1's wonderfully blank, exhausted, unimpressed face VERY closely: extremely oversized broad round rectangular white face, straight-on symmetrical face framing, thick blunt bangs at top, very widely separated drooping half-lidded eyes with flat muted rose-red interior shapes, heavy black nearly horizontal upper eyelids, tiny almost straight slightly downturned mouth placed low on face, thin short eyebrows, no nose, no blush, no sparkle, no detailed iris pupils. Do NOT make her cute-smiling, bright-eyed or glossy. This is a low-energy 'unimpressed / completely done' reaction icon, eyes looking forward without enthusiasm. Simplified hand-drawn dark outlines, flat limited colors, almost no shading, slight low-fi texture and tiny irregularities rather than polished vector-perfect edges. Face fills almost all the square, top of hair clipped by edge, long straight hair frames both sides, just tiny neck and shoulders at bottom. Adapt hair to GLORIA: muted dusty PINK outer hair with pastel CYAN inner locks clearly visible along both face sides, heavy blocky straight-cut bangs and one small WHITE temple streak. Flat dusty ROSE-RED eyes with NO highlights, black upper lashes. Black thin choker with small outlined silver TRIANGLE pendant at front, slight hint of white off-shoulder sweater at bottom. Soft pale grey/lavender background visible only in corners. Keep as simple and blank as image 1; no additional ornaments, no elaborate hair details, no dramatic lighting, no gradients, no glossy hair highlights, no full-body. No words, no watermark, no signature, do not reproduce the watermark on reference.",
             "refs": [
-              "ref_poster_face.png",
-              "GLORIA_四视图_日常_A.png"
+              "codex-clipboard-0e08b763-4fcf-45e2-9103-0b6d61d814e6.jpg",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "sheet4_casual_v2a.png",
-            "date": "2026/10/14"
+            "file": "26-无语脸·极简头像.png",
+            "date": "2026/10/19",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "character-sheets-sheet4_casual_v2b",
-            "title": "角色设定 06",
-            "en": "Character Sheets 06",
-            "thumb": "content/media/photo/character-sheets/sheet4_casual_v2b_t.webp",
-            "src": "content/media/photo/character-sheets/sheet4_casual_v2b.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 3 (GLORIA_四视图_日常_A.png) is the EDIT TARGET: a four-view character turnaround sheet. Output ONE landscape 1536x1024 image that keeps Image 3's exact layout, title \"GLORIA — 光彩跃然\", subtitle \"CASUAL · 日常\", the four full-body views (FRONT, 3/4, SIDE, BACK) at the same positions, scale and poses, the proportion guide lines, the paper background, all labels, the bottom detail boxes (FACE, CHOKER — 三角标, SHOES, PALETTE with its labels) and the whole casual outfit (cream-white off-shoulder knit sweater, lilac-grey pleated midi skirt, white socks, chunky white sneakers, pearl-white mini crossbody bag). Keep the choker pendant a plain empty chrome triangle (no text on it).\nCHANGE ONLY HER FACE AND THE DRAWING STYLE so she is unmistakably the girl of Image 1 and Image 2 (the film's ending heroine):\n1. FACE SHAPE: a longer, more mature oval face with high cheekbones, a narrow sharply pointed chin and a slender jaw line; large almond-shaped eyes with heavy black winged upper eyeliner, rose-red irises with dark pupils, a row of tiny dots under the lower lashes; a nose suggested by only two or three sketchy strokes; fuller glossy peach lips; calm, slightly aloof gaze. Apply this to all four views and especially the FACE close-up box, which should look like a crop of Image 2.\n2. LINE + COLOUR STYLE like Image 2: loose sketchy line art with several light overlapping construction strokes; strong CHROMATIC-ABERRATION misregistration on every contour — each line doubled in offset magenta, cyan and yellow; flat pastel colour blocks with hard-edged geometric shadow shapes (no soft airbrush), a flat lighter band across the pink hair.\n3. HAIR EDGE DISPERSION: along the outer silhouette of her hair (and the hair strands' outer edges) add the bright YELLOW and YELLOW-GREEN (lime) dispersion fringe seen in Image 2 — a thin glowing yellow/lime line running just outside the pink and cyan hair edges, with cyan and magenta offsets inside it, clearly visible in all four views and in the FACE box.\nHair colours and length stay the same (pink with cyan-teal ends, blunt bangs, white streak at the left temple, no ornament on top of the head).",
+            "id": "gloria-30",
+            "title": "摇摆舞·循环GIF",
+            "en": "摇摆舞·循环GIF",
+            "thumb": "content/media/photo/gloria-art/gloria-30-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-30.gif",
+            "w": 320,
+            "h": 364,
+            "prompt": "Create a precise ANIMATION SPRITE SHEET, 4 columns x 2 rows, EIGHT equally sized square cells arranged on one 2048x1024 landscape canvas. NO gutters, NO borders, NO text or labels. Plain pure WHITE background throughout each cell. Each cell contains the SAME full-body ultra-simple chibi GLORIA, centered exactly x=50% of cell, shoes baseline 87% cell height, head top 12% cell height, identical scale across ALL EIGHT cells. Character occupies 65% cell width and 75% height including long hair. Do NOT crop any hair, hands or feet. Sheet must be perfectly regular for programmatic slicing into eight animation keyframes.\nSTYLE: Image 1 is the exact visual target: very simple kawaii hand-drawn rounded pale GRAY outlines (not black), mostly white and pale pastel flat fill, large head tiny body, round mitten hands, tiny shoes, minimal detail, no glossy rendering. Image 2 shows the actual reference animation poses and chronology; use its body movement vocabulary. Image 3 defines original GLORIA identity ONLY. GLORIA has simplified long pale PINK straight hair, pale CYAN inner layers and ends, blunt bangs and little white temple streak, thin gray-black choker with tiny triangle pendant; loose WHITE off-shoulder long-sleeve sweater, pale LILAC pleated midi skirt, white socks and rounded white chunky shoes outlined gray. Her long hair simplified as a cohesive shape behind shoulders ending at skirt, consistent in every cell. No school sailor collar, no bow, no side ponytail. Extremely cute minimal meme, preserve simplicity of original GIF. Two-head-tall stubby proportions, tiny neck. Tiny rose-pink dot eyes only when open.\n8 distinct dance animation key poses in reading order left to right then next row:\n1 top-left: eyes CLOSED, small pleased curved smile, BOTH round hands together in front of chest, neutral upright.\n2: eyes CLOSED same smile, LEFT hand low beside waist and RIGHT arm raising diagonally to upper right, gentle left lean.\n3: eyes CLOSED smile, RIGHT hand raised beside forehead in confident cute salute, left hand at waist, body upright.\n4: eyes CLOSED smile, same raised RIGHT hand, head softly tilted to right and body bouncing slightly.\n5 bottom-left: eyes OPEN tiny pink DOTS, mouth wide simple happy open rectangle, BOTH mitten hands crossed together at chest, body leaning LEFT.\n6: eyes OPEN dots, joyful open rectangle mouth, both hands in front chest, body leaning RIGHT.\n7: eyes CLOSED smiling, RIGHT mitten near cheek, LEFT hand low at waist, body slightly LEFT.\n8 bottom-right: eyes OPEN dot eyes, happy open rectangle mouth, LEFT arm stretched outward to left at chest height and RIGHT hand beside cheek, slight right lean.\nThe same hair silhouette, same body and head scale and consistent face position across all frames, only natural modest dance shifts. Plain WHITE background is essential, no oval shadow, no graphic patterns: those will be added when assembling actual GIF. No watermark. Produce all eight frames in a clean perfectly regular four-by-two grid.",
             "refs": [
-              "ref_poster_face.png",
-              "GLORIA_四视图_日常_A.png"
+              "gloria-motion-reference.png",
+              "gloria-motion-contact.jpg",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "sheet4_casual_v2b.png",
-            "date": "2026/10/14"
+            "file": "30-GLORIA-摇摆.gif",
+            "date": "2026/10/20",
+            "animated": true,
+            "note": "由28号动作原图的8个姿态合成，配合轻微旋转与上下移动；不是视频模型生成的连续动作。88帧，4.4秒，无限循环。"
           }
         ]
       },
       {
-        "name": "水墨彩画",
-        "en": "Ink & Color",
+        "name": "GLORIA 风格图",
+        "en": "GLORIA Styles",
         "items": [
           {
-            "id": "ink-color-col_pax",
-            "title": "水墨彩画 01",
-            "en": "Ink & Color 01",
-            "thumb": "content/media/photo/ink-color/col_pax_t.webp",
-            "src": "content/media/photo/ink-color/col_pax.webp",
+            "id": "gloria-02",
+            "title": "天空窗口拼贴·身份修订",
+            "en": "天空窗口拼贴·身份修订",
+            "thumb": "content/media/photo/gloria-art/gloria-02-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-02.webp",
+            "w": 1672,
+            "h": 941,
+            "prompt": "Edit IMAGE 1, the blue-sky window collage illustration. IMAGE 2 is GLORIA's canonical identity model sheet; IMAGE 3 is her canonical FACE and native line-art style reference. Output ONE finished landscape illustration, preserving IMAGE 1's entire composition, camera, character position and scale, raised upper-left arm and outstretched lower-right arm, tilted body, full head-to-toe figure, flowing hair direction, white off-shoulder sweater, lilac midi pleated skirt, socks and chunky sneakers, blue-white sky/cloud window overlay collage and precise placement of major rectangles. Make a focused identity and rendering correction to the girl, not a new layout. She is GLORIA, user's original character, NOT Chihaya or another franchise character. Correct eyes to clearly ROSE-PINK / ROSE-RED irises with dark pupils, absolutely no gold/yellow iris. Match the distinctive more mature slender oval face of IMAGE 3: higher cheekbones, tapered pointed chin, slim jaw, elegant almond eyes, bold black winged upper lash eyeliner and tiny dots under lower lashes, fuller glossy peach lips and calm slightly aloof expression. Keep her face turned toward the right as in IMAGE 1, translate the face reference to that angle. Hair is long straight bubblegum PINK with pastel CYAN/TEAL inner layers and ends, thick blunt bangs and a small WHITE HAIR STREAK at one temple (not a head ornament). Add her THIN BLACK CHOKER with a small SILVER TRIANGLE pendant, plainly legible against the neck and collarbone; simple clean chrome triangle, no invented lettering. Transfer IMAGE 3's characteristic precise sketchy linework and chromatic misregistration to the girl: thin cyan/magenta/yellow offset contour strokes, distinctly yellow/lime fine dispersion fringe outside the hair silhouette. Keep these delicate so the figure reads cleanly at full frame. Use flatter pastel cel shading with hard-edged geometric shadow shapes and minimal soft airbrush, as IMAGE 3. Preserve the lovely rich cobalt sky, cumulus clouds, airy white negative space, sky rectangles crossing hair/skirt, sparse black bars and colorful scanline glitches of IMAGE 1. No bag addition. No typography, no signature, no watermark. Do not crop the hands or shoes. Keep her identity recognizable from the model sheet while maintaining the dynamic pose and accepted window overlay design.",
+            "refs": [
+              "exec-c905d9a0-060a-4836-a17f-f5cdbb8ce501.png",
+              "GLORIA_四视图_日常_v2.png",
+              "codex-clipboard-8c371e53-70bc-4f52-a568-6b0707312188.png"
+            ],
+            "file": "02-天空窗口拼贴·身份修订.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
+          },
+          {
+            "id": "gloria-03",
+            "title": "春日雪乃·喜茶概念海报",
+            "en": "春日雪乃·喜茶概念海报",
+            "thumb": "content/media/photo/gloria-art/gloria-03-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-03.webp",
             "w": 1024,
             "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536). A COLOURED ink illustration in the manner of Image 2 (style only): confident black ink and dry-brush contour lines, hair rendered as sweeping brush strokes, loose flat watercolour washes in a limited palette of pale cyan-teal and soft warm sepia, with pastel pink in her hair, edges dissolving into the paper. Composition in the spirit of Image 2: a large close-up portrait of her face in three-quarter view (calm, determined) on the left, overlapped by a smaller full-body figure of her in a dynamic leaping action pose, one leg tucked, raising a long slim paintbrush like a blade. The girl's identity comes from Image 1 and Image 4: same face, rose-pink eyes, long straight pink hair with blunt bangs and pastel cyan ends. OUTFIT = the outfit of Image 3 only (NOT its pose, NOT its head tilt): a glossy black corset-style leotard bodice with fine silver ornamental line detail down the front, thin straps and bare shoulders, detached black opera gloves past the elbow with a metal armband, short black shorts with a buckled belt, garter straps and black thigh-high stockings, plus a thin black choker with a small chrome triangle pendant. Tasteful, non-explicit. Plain WHITE paper background with lots of untouched white space, no text, no signature, no border.",
+            "prompt": "设计一张精美完成度极高的竖版 2:3 奶茶联动活动艺术海报，GLORIA 光彩跃然 × 喜茶 HEYTEA，非官方创意概念。参考图仅用于锁定原创女主 GLORIA 的身份，不能把参考图四视图布局复制到海报。人物不是樱木真乃，保留GLORIA：粉色长直发与青蓝内层发尾，厚齐刘海、鬓角一小缕白挑染，玫红虹膜、浓黑上挑眼线与下睫毛点、纤长椭圆脸和尖下巴、蜜桃亮唇、瓷白皮肤、黑细项圈与小银色三角吊坠。她穿奶白露肩宽松针织上衣与浅紫灰百褶中长裙。原生精细手绘动漫平涂，纤细速写线条，细微青品红黄套色错位与头发黄绿色散边；面容优雅有识别度，神态温柔平静，别画成幼圆脸。人物占据画面右侧三分之二，约四分之三身至裙摆，轻轻侧身，头略向左侧回望观众，长发被春风吹起，一只手在胸前自然握一杯透明春日茶饮，另一只手轻托花枝，动作精美自然。奶茶清晰可见：浅粉草莓层、乳白奶茶层、白色轻乳顶，小小粉青杯套，杯身露水。人物不能盖住左侧文字。\n整体为文艺清新春日茶饮品牌广告：暖米白纸张背景，低饱和樱粉、浅青、薰衣草紫、茶绿，精致留白，淡水彩花影，稀疏樱花花瓣、窗框投影与一枝白花，真实纸感，柔和晨光。像高级杂志春日专刊，版式克制，非拥挤电商促销，没有天空故障拼贴。\n左侧约三分之一是清楚、规整、美观的中文信息区：顶部小型黑色喜茶品牌字标「喜茶 HEYTEA」，下方细字「GLORIA · 光彩跃然」以及小型乘号表达联动；中上部大号优雅中文宋体标题「春日雪乃」，四字以两行“春日 / 雪乃”排开，字大且准确，不加其他产品名称。标题下文艺宣传语准确写「把春天，轻轻捧在手心。」下方有小型英文 SPRING IN A CUP。左下信息块，细分隔线、有呼吸的排版，准确写「中杯 500mL  ¥18」「大杯 650mL  ¥22」。价格下用较小但清楚的中文写「用料：茉莉绿茶、鲜牛乳、草莓果肉、椰乳、淡奶油」；再一行更小字「含乳制品及椰子成分」。海报最底部一行细小但清晰字「非官方联动概念设计 · 价格与配料为创作示例」。文本不重叠，注意拼写准确、字号层级与对齐。右下角可加很小的独立透明饮品产品特写与一片叶，保持人物为主视觉。美术精致，人物与平面排版融合，柔和文艺，春日限定的仪式感，无二维码无水印。",
             "refs": [
-              "style_a.png",
-              "outfit_ref.png",
-              "g_master.png"
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "col_pax.png",
-            "date": "2026/10/13"
+            "file": "03-春日雪乃·喜茶概念海报.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": "非官方联动概念；价格与用料为创作示例。"
           },
           {
-            "id": "ink-color-col_pay",
-            "title": "水墨彩画 02",
-            "en": "Ink & Color 02",
-            "thumb": "content/media/photo/ink-color/col_pay_t.webp",
-            "src": "content/media/photo/ink-color/col_pay.webp",
+            "id": "gloria-05",
+            "title": "薰衣草花田·柔和日光修订",
+            "en": "薰衣草花田·柔和日光修订",
+            "thumb": "content/media/photo/gloria-art/gloria-05-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-05.webp",
             "w": 1024,
             "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536). A COLOURED ink illustration in the manner of Image 2 (style only): confident black ink and dry-brush contour lines, hair rendered as sweeping brush strokes, loose flat watercolour washes in a limited palette of pale cyan-teal and soft warm sepia, with pastel pink in her hair, edges dissolving into the paper. Composition in the spirit of Image 2: a large close-up portrait of her face in three-quarter view (calm, determined) on the left, overlapped by a smaller full-body figure of her in a dynamic leaping action pose, one leg tucked, raising a long slim paintbrush like a blade. The girl's identity comes from Image 1 and Image 4: same face, rose-pink eyes, long straight pink hair with blunt bangs and pastel cyan ends. OUTFIT = the outfit of Image 3 only (NOT its pose, NOT its head tilt): a glossy black corset-style leotard bodice with fine silver ornamental line detail down the front, thin straps and bare shoulders, detached black opera gloves past the elbow with a metal armband, short black shorts with a buckled belt, garter straps and black thigh-high stockings, plus a thin black choker with a small chrome triangle pendant. Tasteful, non-explicit. Plain WHITE paper background with lots of untouched white space, no text, no signature, no border.",
+            "prompt": "Generate one portrait 2:3 illustration. Use the attached image ONLY to identify the character GLORIA, NOT as an art-style reference. Follow this art direction faithfully: A high-quality anime-style illustration with delicate clean fine linework, softly blended luminous digital painting, soft natural sunlight highlighting the hair and face, gentle serene mood, richly detailed flowing hair, subtle cheek blush, beautiful gentle smile, slightly out-of-focus purple lavender flowers in the foreground creating shallow depth of field, green trees and bright blue sky with wispy clouds behind her on a sunny day. Soft, natural, warm and airy anime illustration; no chromatic aberration, no CMYK offset contours, no yellow/lime edge strokes, no glitch art, no sketch construction lines, no graphic collage, no flat geometric shadows. These exclusions override the visual treatment in the reference. Character identity only: GLORIA has long flowing pink hair with pastel cyan/teal inner layers and ends, blunt bangs and a small white streak at the temple, rose-pink irises, slender elegant oval face and pointed chin, black upper lashes, porcelain skin and a thin black choker with tiny silver triangle pendant. Retain her identity but paint her in the soft natural anime style described above. Two simple black hair clips on the left side of her bangs. Gentle serene expression, soft smile and slight blush. Outfit exactly inspired by the prose: white lace-trimmed opaque camisole top with orange criss-cross lacing at the chest, under loose cream-colored cardigan slipping off one shoulder, paired with a pale lilac skirt. Tasteful spring casual outfit. A relaxed upper-thigh portrait in a blooming lavender field, slight natural body turn and gentle head tilt, hair flowing in a light breeze, one hand lightly touching a lavender flower. Foreground lavender bokeh, finely rendered midground flowers, green trees and summer blue sky with wispy clouds. Soft realistic light transitions, clean beautiful color, subtle warm reflected light, detailed lace and knit texture, expressive graceful hands. Keep the scene quiet and pastoral, prioritize fidelity to the prose's anime painting style rather than GLORIA's usual graphic art style. No letters, typography, logos, frames or watermark.",
             "refs": [
-              "style_a.png",
-              "outfit_ref.png",
-              "g_master.png"
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "col_pay.png",
-            "date": "2026/10/13"
+            "file": "05-薰衣草花田·柔和日光修订.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "ink-color-col_pbx",
-            "title": "水墨彩画 03",
-            "en": "Ink & Color 03",
-            "thumb": "content/media/photo/ink-color/col_pbx_t.webp",
-            "src": "content/media/photo/ink-color/col_pbx.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape image (1536x1024). Coloured in the manner of Image 2 (style only): expressive marker and airbrush shading in violet, magenta-pink and lilac gradients with crisp white highlights, thin dark ink contours, on white paper. Composition and action like Image 2: a deep low LUNGE seen from the front — one leg stretched far out to the side, the other knee deeply bent, torso low and leaning forward, both hands gripping a long slender paintbrush held horizontally like a sword pointing across the frame, intense focused gaze. The girl's identity comes from Image 1 and Image 4: same face, rose-pink eyes, long straight pink hair with blunt bangs and pastel cyan ends. OUTFIT = the outfit of Image 3 only (NOT its pose, NOT its head tilt): a glossy black corset-style leotard bodice with fine silver ornamental line detail down the front, thin straps and bare shoulders, detached black opera gloves past the elbow with a metal armband, short black shorts with a buckled belt, garter straps and black thigh-high stockings, plus a thin black choker with a small chrome triangle pendant. Tasteful, non-explicit. Plain WHITE paper background with lots of untouched white space, no text, no signature, no border.",
+            "id": "gloria-06",
+            "title": "ComfyUI节点·嫌弃桌宠",
+            "en": "ComfyUI节点·嫌弃桌宠",
+            "thumb": "content/media/photo/gloria-art/gloria-06-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-06.webp",
+            "w": 1672,
+            "h": 861,
+            "prompt": "Edit IMAGE 1, the real dark ComfyUI screenshot, into a witty desktop-mascot illustration. IMAGE 2 demonstrates the spatial illusion only: an anime character lying belly-down physically on top of a software window, with hands hanging over the edge and legs bent upward behind. IMAGE 3 is the identity and outfit sheet for GLORIA. Do NOT copy the brown-haired robot girl or Mac desktop of image 2. Preserve IMAGE 1's actual ComfyUI dark interface, aspect ratio around 1.94:1, top tabs, left image assets, right job queue, all node boxes and colored curved connecting wires, and especially the bottom-right Save Image node and the pink-haired portrait INSIDE it unchanged and clearly visible. Remove the floating tooltip near the top if necessary. Add ONE large beautifully drawn GLORIA outside the interface, as though she lives on the node canvas: she lies prone across the TOP EDGES of the central node boxes, body spanning upper-middle region left-to-right, feet to the LEFT and head to the RIGHT, approximately x=700–1800 on the original 3088-wide canvas. Her stomach, elbows and skirt have believable support on node title bars. Knees bent behind her, white chunky sneakers lifted playfully into the upper-left open canvas. Long pink-and-cyan hair drapes over the node edges. Forearms reach over the front edge, one elbow supports her as one hand props up her cheek, the other hand extends down-right with a clearly drawn pointing index finger directly aiming at the existing pink-haired result in the bottom-right Save Image node. Keep her hand outside and above the portrait so the target remains readable. She looks down-right at that saved image with an unmistakably DISDAINFUL, unimpressed, judging expression: narrowed half-lidded rose-red eyes, one raised eyebrow, slightly furrowed brow and a tiny downturned mouth, playful 'really, THIS is what you generated?' energy. No smile, no angry scream. Elegant expressive face, not generic round chibi; moderately compact anime proportions similar in scale to image 2, full body visible. Identity: long straight bubblegum pink hair with pastel cyan-teal inner layers and ends, blunt bangs and small white temple streak; rose-red eyes, black winged upper eyeliner and lower-lash dots, pale skin, slender oval face and pointed chin. Black fine choker with small silver triangle pendant. White off-shoulder oversized long-sleeve sweater, lilac pleated MIDI skirt covering thighs even in prone position, white socks and white chunky sneakers with pink/cyan accents. Omit crossbody bag. No underwear exposure. Crisp high quality hand-drawn anime cel shading, subtle cyan/magenta line accents, controlled thin yellow hair-edge fringe, pastel coloring. Add subtle cast shadows onto the node cards and wires directly beneath her body, hands, hair and feet to make the physical interaction convincing. Keep interface flat and sharp like a screenshot while character is drawn illustration. She must not appear inside a generated-image preview; she is the large overlay lying ON TOP of the node UI. No extra character, no inserted speech bubble, no added text or watermark. The saved portrait remains the original screenshot portrait, and Gloria points at it in disgust.",
             "refs": [
-              "style_b.png",
-              "outfit_ref.png",
-              "g_master.png"
+              "codex-clipboard-afcc9548-a582-439b-a3cd-1fd609a06c69.png",
+              "codex-clipboard-d5f102ae-a2b3-431d-9e47-6e3424640644.png",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "col_pbx.png",
-            "date": "2026/10/13"
+            "file": "06-ComfyUI节点·嫌弃桌宠.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "ink-color-col_pby",
-            "title": "水墨彩画 04",
-            "en": "Ink & Color 04",
-            "thumb": "content/media/photo/ink-color/col_pby_t.webp",
-            "src": "content/media/photo/ink-color/col_pby.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape image (1536x1024). Coloured in the manner of Image 2 (style only): expressive marker and airbrush shading in violet, magenta-pink and lilac gradients with crisp white highlights, thin dark ink contours, on white paper. Composition and action like Image 2: a deep low LUNGE seen from the front — one leg stretched far out to the side, the other knee deeply bent, torso low and leaning forward, both hands gripping a long slender paintbrush held horizontally like a sword pointing across the frame, intense focused gaze. The girl's identity comes from Image 1 and Image 4: same face, rose-pink eyes, long straight pink hair with blunt bangs and pastel cyan ends. OUTFIT = the outfit of Image 3 only (NOT its pose, NOT its head tilt): a glossy black corset-style leotard bodice with fine silver ornamental line detail down the front, thin straps and bare shoulders, detached black opera gloves past the elbow with a metal armband, short black shorts with a buckled belt, garter straps and black thigh-high stockings, plus a thin black choker with a small chrome triangle pendant. Tasteful, non-explicit. Plain WHITE paper background with lots of untouched white space, no text, no signature, no border.",
-            "refs": [
-              "style_b.png",
-              "outfit_ref.png",
-              "g_master.png"
-            ],
-            "file": "col_pby.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "ink-color-col_pcx",
-            "title": "水墨彩画 05",
-            "en": "Ink & Color 05",
-            "thumb": "content/media/photo/ink-color/col_pcx_t.webp",
-            "src": "content/media/photo/ink-color/col_pcx.webp",
+            "id": "gloria-08",
+            "title": "复古数码直闪·游戏房",
+            "en": "复古数码直闪·游戏房",
+            "thumb": "content/media/photo/gloria-art/gloria-08-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-08.webp",
             "w": 1024,
             "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536). In the manner of Image 2 (style only): teal-grey ink washes, black dry-brush strokes, halftone screen-dot texture and ink splatters, with accents of pastel pink in the hair. Action: a mid-air twisting leap — one arm flung forward with fingers spread toward the viewer, the other arm swept back holding the slim paintbrush, hair whipping, body on a dramatic diagonal. The girl's identity comes from Image 1 and Image 4: same face, rose-pink eyes, long straight pink hair with blunt bangs and pastel cyan ends. OUTFIT = the outfit of Image 3 only (NOT its pose, NOT its head tilt): a glossy black corset-style leotard bodice with fine silver ornamental line detail down the front, thin straps and bare shoulders, detached black opera gloves past the elbow with a metal armband, short black shorts with a buckled belt, garter straps and black thigh-high stockings, plus a thin black choker with a small chrome triangle pendant. Tasteful, non-explicit. Plain WHITE paper background with lots of untouched white space, no text, no signature, no border.",
+            "prompt": "Create ONE portrait 2:3 image of GLORIA translated into the photographic medium and camera aesthetic of IMAGE 1, with identity and original casual outfit from IMAGE 2. IMAGE 1 is exclusively a reference for camera, composition, room atmosphere, lighting and analog/digital texture, NOT for the woman's identity, clothing, makeup or black hairstyle. A convincingly photorealistic candid early-2000s compact digital-camera flash photograph of an adult woman styled as GLORIA, seated very close to the camera in a nostalgic small bedroom gaming corner. Strong close wide-angle lens distortion, slight fisheye barrel curvature, slightly tilted spontaneous framing; her face is large in the central-right foreground, a translucent lavender-blue wired game controller held with both hands toward the lens in the bottom-right foreground, hands naturally gripping controls. Behind her upper left stands a bulky silver CRT television showing an abstract blue-purple retro 3D game with glowing magic effects, on a dark wooden shelf with an old silver game console below; anime art posters on the wall, stacks of game discs, loose cables and over-ear headphones lower left. Real tactile worn plastic, wood, tangled cables, domestic clutter. On-camera harsh direct flash lights her face and hands, deep room shadows, cold blue-purple CRT spill, overexposed little flash highlights, visible sensor grain and slight jpeg softness, dark vignette in corners, imperfect snapshot, not a polished studio photograph. Maintain image 1's intimate low-angle leaning-toward-camera pose and moody casual gaming-room shot.\nGLORIA's appearance MUST remain: very long straight bubblegum PINK hair with pastel CYAN/TEAL inner layers and ends, heavy blunt bangs and small WHITE hair streak at one temple, rose-pink irises translated as subtle realistic pink colored contacts, elegant narrow oval face, delicate pointed chin, black winged upper eyeliner, natural light peach glossy lips. Realistic skin texture and individual hair strands, adult proportions, calm slightly aloof inquisitive expression with gently parted lips, looking directly at lens. She wears her ORIGINAL casual outfit: cream-white oversized off-shoulder long-sleeve knitted sweater, pale LILAC pleated MIDI skirt visible at lower frame, thin BLACK CHOKER with one small SILVER TRIANGLE pendant. Simple delicate everyday makeup, no smoky black eye sockets, no purple lipstick, no spiked collar, no gothic clothing, no mesh sleeves, no leather, no black hair, no skull jewelry. No anime linework or illustrated cel shading on her body: this particular image should translate her into a real-world photographic cosplay-like depiction while faithfully preserving pink-cyan hair, original soft white/lilac clothing, and triangle choker. Avoid copying the real woman's face from IMAGE 1. Keep faithful to rough intimate flash photo aesthetic and the original screenshot's bedroom spatial arrangement. No typography, captions or watermarks.",
             "refs": [
-              "style_c.png",
-              "outfit_ref.png",
-              "g_master.png"
+              "codex-clipboard-e40cbb7f-aaf6-4340-8a9b-1a1641c10bbb.png",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "col_pcx.png",
-            "date": "2026/10/13"
+            "file": "08-复古数码直闪·游戏房.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "ink-color-col_pcy",
-            "title": "水墨彩画 06",
-            "en": "Ink & Color 06",
-            "thumb": "content/media/photo/ink-color/col_pcy_t.webp",
-            "src": "content/media/photo/ink-color/col_pcy.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536). In the manner of Image 2 (style only): teal-grey ink washes, black dry-brush strokes, halftone screen-dot texture and ink splatters, with accents of pastel pink in the hair. Action: a mid-air twisting leap — one arm flung forward with fingers spread toward the viewer, the other arm swept back holding the slim paintbrush, hair whipping, body on a dramatic diagonal. The girl's identity comes from Image 1 and Image 4: same face, rose-pink eyes, long straight pink hair with blunt bangs and pastel cyan ends. OUTFIT = the outfit of Image 3 only (NOT its pose, NOT its head tilt): a glossy black corset-style leotard bodice with fine silver ornamental line detail down the front, thin straps and bare shoulders, detached black opera gloves past the elbow with a metal armband, short black shorts with a buckled belt, garter straps and black thigh-high stockings, plus a thin black choker with a small chrome triangle pendant. Tasteful, non-explicit. Plain WHITE paper background with lots of untouched white space, no text, no signature, no border.",
+            "id": "gloria-09",
+            "title": "蓝紫双重曝光·短狼尾发",
+            "en": "蓝紫双重曝光·短狼尾发",
+            "thumb": "content/media/photo/gloria-art/gloria-09-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-09.webp",
+            "w": 1086,
+            "h": 1448,
+            "prompt": "Create ONE portrait 3:4 experimental photographic editorial artwork of GLORIA. Image 1 is the strong ART STYLE, photographic medium, layering and composition reference. Image 2 identifies GLORIA only; do not use its anime rendering or model-sheet layout. Translate the fictional GLORIA into a convincing adult real-world photographic woman with naturally detailed face and skin, but don't copy Image 1 woman's facial identity. Match Image 1's evocative blue-violet analogue/digital double exposure collage: frontal waist-up fashion portrait centered in frame, one arm bent raised above head, other arm relaxed, windswept hair partly crossing one eye, reserved dreamy direct gaze and slightly parted peach lips. Deliberately CHANGE GLORIA'S HAIRSTYLE to a fluffy shoulder-length shag / wolf cut, airy textured layers, soft irregular wispy bangs and outward-flipped curled ends, shorter face-framing sections; bubblegum pink outer layers and conspicuous CYAN/TEAL underlayers framing jaw and nape, small white temple streak. No waist-length straight hair in this variation. Rose-pink irises, black winged eyeliner, elegant slender oval face and pointed chin, recognizable pink-cyan GLORIA identity. Keep original soft outfit vocabulary: oversized cream-white off-shoulder knit sweater with long loose sleeves, upper edge of pale lilac pleated skirt at bottom, thin black choker with small silver TRIANGLE pendant clearly visible; no scarf hiding pendant, no gothic styling.\nReproduce Image 1's layered PHOTOGRAPHIC landscape collage aesthetic closely: dark rocky alpine peaks with patches of snow blend through shoulders and torso, violet and lavender clouds behind and partly across raised arm, navy mountain texture and pale pink sky, semi-transparent overlapping exposure silhouettes in cyan/magenta, fine horizontal wavy scanlines flowing across the upper third like warped CRT interference, subtle RGB registration fringes, blurred afterimages on sleeve and hair edges, photographic grain, riso-like dither, matte print noise, visible tiny static speckles, cool dusk lavender-pink-blue color grade with deep navy shadows and restrained salmon pink highlights. Organic surreal double exposure, not hard rectangular collage panels, not a clean cutout pasted on landscape. Face remains readable and mostly unobstructed, mountains organically dissolve at shoulders and lower body. Slight editorial motion blur in one edge of hair, tactility of aged scanned paper, rich shadow detail, dreamlike memory/alternative music album art feeling. Keep photorealism of face/hair/fabric inside this experimental printed collage, NOT anime illustration, not cartoon, not a studio beauty glamour shot. No typography, no logos, no watermark.",
             "refs": [
-              "style_c.png",
-              "outfit_ref.png",
-              "g_master.png"
+              "codex-clipboard-417362dc-a9c9-456b-8f17-d581ff8d9e98.png",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "col_pcy.png",
-            "date": "2026/10/13"
+            "file": "09-蓝紫双重曝光·短狼尾发.png",
+            "date": "2026/10/18",
+            "animated": false,
+            "note": ""
           },
           {
-            "id": "ink-color-col_pbx",
-            "title": "水墨彩画 07",
-            "en": "Ink & Color 07",
-            "thumb": "content/media/photo/ink-color/col_pbx_t.webp",
-            "src": "content/media/photo/ink-color/col_pbx.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape image (1536x1024). Coloured in the manner of Image 2 (style only): expressive marker and airbrush shading in violet, magenta-pink and lilac gradients with crisp white highlights, thin dark ink contours, on plain white paper with lots of white space. Composition and action like Image 2: a powerful, wide FENCING LUNGE seen from the front, one leg extended far to the side and the other knee bent, body low and leaning forward, both hands gripping a long slender paintbrush held horizontally like a katana across the frame, intense focused gaze. The girl's identity comes from Image 1 and Image 4 (same face, long straight pink hair with blunt bangs and pastel cyan ends). Outfit inspired by Image 3 (outfit only, not its pose): a sleek black high-neck corset-style bodysuit with fine silver ornamental lines, long black opera gloves with a metal armband, black thigh-high boots, a thin black choker with a small chrome triangle pendant. Elegant, fully covered, action-figure style. No text, no signature, no border.",
+            "id": "gloria-27",
+            "title": "黑色留白·侧坐壁纸",
+            "en": "黑色留白·侧坐壁纸",
+            "thumb": "content/media/photo/gloria-art/gloria-27-thumb.webp",
+            "src": "content/media/photo/gloria-art/gloria-27.webp",
+            "w": 1672,
+            "h": 941,
+            "prompt": "Create ONE widescreen 16:9 minimalist anime illustration of GLORIA. Image 1 precisely defines composition, cel animation rendering, pose and atmosphere; image 2 defines GLORIA identity and original casual outfit. Match image 1's dramatic use of NEGATIVE SPACE: almost-black charcoal background fills roughly left 70 percent and top, a narrow flat CYAN horizontal ledge runs along bottom, girl seated only in the far right quarter, her head around upper-right-middle. Keep left side completely empty dark charcoal, not decorated. Fine analog film grain uniformly across entire image, crisp thin black hand-drawn anime outlines, flat clean pastel cel color blocks, sharp magenta/lavender geometric cast shadows and cool cyan accents, restrained late-night animated-film still aesthetic, absolutely no photorealism, no glowing elaborate cityscape, no glossy gradients or painterly rendering. GLORIA shown in elegant LEFT-facing side profile looking a little upward into vast empty space, calm pensive slightly aloof expression. Sit sideways on cyan ledge, body leaning slightly forward, one knee drawn upward near torso while other leg descends past bottom frame, one hand braced on ledge and other hand relaxed beside folded leg. Adapt pose naturally to her long skirt with folds fully covering legs above knees; physically plausible anatomy. Her silhouette stays concentrated right, not centered or enlarged. Character: very long straight bubblegum PINK hair, pastel CYAN/TEAL inner layers and ends, blunt bangs, small white temple streak; distinctive slender oval face and pointed chin, ROSE-RED eye with winged black upper eyeliner, peach closed lips, pale skin. Hair trails down behind her back and spills onto ledge at far right, simplified strong shape rather than countless fine strands. Original outfit: oversized cream-white OFF-SHOULDER knit sweater with long loose sleeves, pale lilac-grey pleated MIDI skirt, white socks and chunky white sneakers where visible; thin black choker and small silver TRIANGLE pendant. Omit bag. No futuristic bodysuit, no short shorts, no copied original character identity. Keep visual power of image 1's severe empty black ground, small solitary seated figure, cyan bottom strip, pink-violet shadows, subdued light and fine grain. No words, no logo, no watermark, no border.",
             "refs": [
-              "style_b.png",
-              "outfit_ref.png",
-              "g_master.png"
+              "codex-clipboard-4b4793d1-39b4-451b-81f7-6787cec9f5ab.png",
+              "GLORIA_四视图_日常_v2.png"
             ],
-            "file": "col_pbx.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "ink-color-col_pby",
-            "title": "水墨彩画 08",
-            "en": "Ink & Color 08",
-            "thumb": "content/media/photo/ink-color/col_pby_t.webp",
-            "src": "content/media/photo/ink-color/col_pby.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape image (1536x1024). Coloured in the manner of Image 2 (style only): expressive marker and airbrush shading in violet, magenta-pink and lilac gradients with crisp white highlights, thin dark ink contours, on plain white paper with lots of white space. Composition and action like Image 2: a powerful, wide FENCING LUNGE seen from the front, one leg extended far to the side and the other knee bent, body low and leaning forward, both hands gripping a long slender paintbrush held horizontally like a katana across the frame, intense focused gaze. The girl's identity comes from Image 1 and Image 4 (same face, long straight pink hair with blunt bangs and pastel cyan ends). Outfit inspired by Image 3 (outfit only, not its pose): a sleek black high-neck corset-style bodysuit with fine silver ornamental lines, long black opera gloves with a metal armband, black thigh-high boots, a thin black choker with a small chrome triangle pendant. Elegant, fully covered, action-figure style. No text, no signature, no border.",
-            "refs": [
-              "style_b.png",
-              "outfit_ref.png",
-              "g_master.png"
-            ],
-            "file": "col_pby.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "ink-color-ink2_p1a",
-            "title": "水墨彩画 09",
-            "en": "Ink & Color 09",
-            "thumb": "content/media/photo/ink-color/ink2_p1a_t.webp",
-            "src": "content/media/photo/ink-color/ink2_p1a.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536) on PURE WHITE paper (plain #ffffff, nothing else). A raw, expressive MONOCHROME ink concept-art sketch in the tradition of Japanese game concept art (think bold sumi-e brush concept sheets): fast, confident BLACK ink dry-brush strokes and scratchy pen lines, translucent GREY ink washes for shadows, rough unfinished contours that break off into the white paper, splatters, drips and smudges. About 85% black/grey ink and white paper; the ONLY colour is a few small, loose splashes of pastel pink (and one tiny touch of pastel cyan) — the hair is drawn as sweeping BLACK ink brush strokes with only a little pink wash in it. Elegant composition with lots of white space. No text, no signature, no border. Subject: the girl from Image 2 (long straight hair with blunt bangs, segmented high-collar mecha-style bodysuit, small triangle pendant) — a bust portrait in three-quarter view, calm gaze, long hair flowing to one side in big brush strokes.",
-            "refs": [
-              "g_master.png"
-            ],
-            "file": "ink2_p1a.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "ink-color-ink2_p1b",
-            "title": "水墨彩画 10",
-            "en": "Ink & Color 10",
-            "thumb": "content/media/photo/ink-color/ink2_p1b_t.webp",
-            "src": "content/media/photo/ink-color/ink2_p1b.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536) on PURE WHITE paper (plain #ffffff, nothing else). A raw, expressive MONOCHROME ink concept-art sketch in the tradition of Japanese game concept art (think bold sumi-e brush concept sheets): fast, confident BLACK ink dry-brush strokes and scratchy pen lines, translucent GREY ink washes for shadows, rough unfinished contours that break off into the white paper, splatters, drips and smudges. About 85% black/grey ink and white paper; the ONLY colour is a few small, loose splashes of pastel pink (and one tiny touch of pastel cyan) — the hair is drawn as sweeping BLACK ink brush strokes with only a little pink wash in it. Elegant composition with lots of white space. No text, no signature, no border. Subject: the girl from Image 2 (long straight hair with blunt bangs, segmented high-collar mecha-style bodysuit, small triangle pendant) — a bust portrait in three-quarter view, calm gaze, long hair flowing to one side in big brush strokes.",
-            "refs": [
-              "g_master.png"
-            ],
-            "file": "ink2_p1b.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "ink-color-ink2_p2a",
-            "title": "水墨彩画 11",
-            "en": "Ink & Color 11",
-            "thumb": "content/media/photo/ink-color/ink2_p2a_t.webp",
-            "src": "content/media/photo/ink-color/ink2_p2a.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536) on PURE WHITE paper (plain #ffffff, nothing else). A raw, expressive MONOCHROME ink concept-art sketch in the tradition of Japanese game concept art (think bold sumi-e brush concept sheets): fast, confident BLACK ink dry-brush strokes and scratchy pen lines, translucent GREY ink washes for shadows, rough unfinished contours that break off into the white paper, splatters, drips and smudges. About 85% black/grey ink and white paper; the ONLY colour is a few small, loose splashes of pastel pink (and one tiny touch of pastel cyan) — the hair is drawn as sweeping BLACK ink brush strokes with only a little pink wash in it. Elegant composition with lots of white space. No text, no signature, no border. Subject: the girl from Image 2 (long straight hair with blunt bangs, segmented high-collar mecha-style bodysuit, small triangle pendant) — a full-body standing figure, tall slender proportions, long legs, holding a slim paintbrush down at her side.",
-            "refs": [
-              "g_master.png"
-            ],
-            "file": "ink2_p2a.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "ink-color-ink2_p2b",
-            "title": "水墨彩画 12",
-            "en": "Ink & Color 12",
-            "thumb": "content/media/photo/ink-color/ink2_p2b_t.webp",
-            "src": "content/media/photo/ink-color/ink2_p2b.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536) on PURE WHITE paper (plain #ffffff, nothing else). A raw, expressive MONOCHROME ink concept-art sketch in the tradition of Japanese game concept art (think bold sumi-e brush concept sheets): fast, confident BLACK ink dry-brush strokes and scratchy pen lines, translucent GREY ink washes for shadows, rough unfinished contours that break off into the white paper, splatters, drips and smudges. About 85% black/grey ink and white paper; the ONLY colour is a few small, loose splashes of pastel pink (and one tiny touch of pastel cyan) — the hair is drawn as sweeping BLACK ink brush strokes with only a little pink wash in it. Elegant composition with lots of white space. No text, no signature, no border. Subject: the girl from Image 2 (long straight hair with blunt bangs, segmented high-collar mecha-style bodysuit, small triangle pendant) — a full-body standing figure, tall slender proportions, long legs, holding a slim paintbrush down at her side.",
-            "refs": [
-              "g_master.png"
-            ],
-            "file": "ink2_p2b.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "ink-color-ink2_p3a",
-            "title": "水墨彩画 13",
-            "en": "Ink & Color 13",
-            "thumb": "content/media/photo/ink-color/ink2_p3a_t.webp",
-            "src": "content/media/photo/ink-color/ink2_p3a.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536) on PURE WHITE paper (plain #ffffff, nothing else). A raw, expressive MONOCHROME ink concept-art sketch in the tradition of Japanese game concept art (think bold sumi-e brush concept sheets): fast, confident BLACK ink dry-brush strokes and scratchy pen lines, translucent GREY ink washes for shadows, rough unfinished contours that break off into the white paper, splatters, drips and smudges. About 85% black/grey ink and white paper; the ONLY colour is a few small, loose splashes of pastel pink (and one tiny touch of pastel cyan) — the hair is drawn as sweeping BLACK ink brush strokes with only a little pink wash in it. Elegant composition with lots of white space. No text, no signature, no border. Subject: the girl from Image 2 (long straight hair with blunt bangs, segmented high-collar mecha-style bodysuit, small triangle pendant) — a close-up profile of her face, eyes closed, hair streaming backward in sweeping brush strokes.",
-            "refs": [
-              "g_master.png"
-            ],
-            "file": "ink2_p3a.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "ink-color-ink2_p3b",
-            "title": "水墨彩画 14",
-            "en": "Ink & Color 14",
-            "thumb": "content/media/photo/ink-color/ink2_p3b_t.webp",
-            "src": "content/media/photo/ink-color/ink2_p3b.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE portrait-orientation image (1024x1536) on PURE WHITE paper (plain #ffffff, nothing else). A raw, expressive MONOCHROME ink concept-art sketch in the tradition of Japanese game concept art (think bold sumi-e brush concept sheets): fast, confident BLACK ink dry-brush strokes and scratchy pen lines, translucent GREY ink washes for shadows, rough unfinished contours that break off into the white paper, splatters, drips and smudges. About 85% black/grey ink and white paper; the ONLY colour is a few small, loose splashes of pastel pink (and one tiny touch of pastel cyan) — the hair is drawn as sweeping BLACK ink brush strokes with only a little pink wash in it. Elegant composition with lots of white space. No text, no signature, no border. Subject: the girl from Image 2 (long straight hair with blunt bangs, segmented high-collar mecha-style bodysuit, small triangle pendant) — a close-up profile of her face, eyes closed, hair streaming backward in sweeping brush strokes.",
-            "refs": [
-              "g_master.png"
-            ],
-            "file": "ink2_p3b.png",
-            "date": "2026/10/13"
-          }
-        ]
-      },
-      {
-        "name": "画风实验",
-        "en": "Style Studies",
-        "items": [
-          {
-            "id": "style-studies-sty_p1x",
-            "title": "画风实验 01",
-            "en": "Style Studies 01",
-            "thumb": "content/media/photo/style-studies/sty_p1x_t.webp",
-            "src": "content/media/photo/style-studies/sty_p1x.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, the pose(s), the character (pink hair with cyan ends, outfit silhouette) and its canvas size, but COMPLETELY RESTYLE it into the raw, graphic concept-art style of Image 3 and Image 4 (style only): fast, scratchy brush-pen INK CONTOURS of varying weight, broken and unfinished, with dry-brush flicks; NO smooth rendering, NO glossy highlights, NO 3D or volumetric shading, NO soft gradients or airbrush; colour applied as only a few FLAT, transparent watercolour/marker blocks laid loosely over the ink, spilling outside the lines, hard-edged, with lots of raw white paper showing through; strong simplification: remove small details, hair as a handful of bold sweeping strokes, clothing as flat dark ink masses with a few white gaps, faces drawn with just a few sharp lines. Plain white paper background. No text, no signature, no border. Palette: flat violet, magenta-pink and lilac blocks plus black ink (the outfit fully covered).",
-            "refs": [
-              "ink_p1.png",
-              "style_a.png",
-              "style_b.png"
-            ],
-            "file": "sty_p1x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-sty_p1y",
-            "title": "画风实验 02",
-            "en": "Style Studies 02",
-            "thumb": "content/media/photo/style-studies/sty_p1y_t.webp",
-            "src": "content/media/photo/style-studies/sty_p1y.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, the pose(s), the character (pink hair with cyan ends, outfit silhouette) and its canvas size, but COMPLETELY RESTYLE it into the raw, graphic concept-art style of Image 3 and Image 4 (style only): fast, scratchy brush-pen INK CONTOURS of varying weight, broken and unfinished, with dry-brush flicks; NO smooth rendering, NO glossy highlights, NO 3D or volumetric shading, NO soft gradients or airbrush; colour applied as only a few FLAT, transparent watercolour/marker blocks laid loosely over the ink, spilling outside the lines, hard-edged, with lots of raw white paper showing through; strong simplification: remove small details, hair as a handful of bold sweeping strokes, clothing as flat dark ink masses with a few white gaps, faces drawn with just a few sharp lines. Plain white paper background. No text, no signature, no border. Palette: flat violet, magenta-pink and lilac blocks plus black ink (the outfit fully covered).",
-            "refs": [
-              "ink_p1.png",
-              "style_a.png",
-              "style_b.png"
-            ],
-            "file": "sty_p1y.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-sty_p2x",
-            "title": "画风实验 03",
-            "en": "Style Studies 03",
-            "thumb": "content/media/photo/style-studies/sty_p2x_t.webp",
-            "src": "content/media/photo/style-studies/sty_p2x.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, the pose(s), the character (pink hair with cyan ends, outfit silhouette) and its canvas size, but COMPLETELY RESTYLE it into the raw, graphic concept-art style of Image 3 and Image 4 (style only): fast, scratchy brush-pen INK CONTOURS of varying weight, broken and unfinished, with dry-brush flicks; NO smooth rendering, NO glossy highlights, NO 3D or volumetric shading, NO soft gradients or airbrush; colour applied as only a few FLAT, transparent watercolour/marker blocks laid loosely over the ink, spilling outside the lines, hard-edged, with lots of raw white paper showing through; strong simplification: remove small details, hair as a handful of bold sweeping strokes, clothing as flat dark ink masses with a few white gaps, faces drawn with just a few sharp lines. Plain white paper background. No text, no signature, no border. Palette: flat pale cyan-teal and warm sepia blocks, pastel pink in the hair, plus black/brown ink.",
-            "refs": [
-              "ink_p2.png",
-              "style_a.png",
-              "style_b.png"
-            ],
-            "file": "sty_p2x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-sty_p2y",
-            "title": "画风实验 04",
-            "en": "Style Studies 04",
-            "thumb": "content/media/photo/style-studies/sty_p2y_t.webp",
-            "src": "content/media/photo/style-studies/sty_p2y.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, the pose(s), the character (pink hair with cyan ends, outfit silhouette) and its canvas size, but COMPLETELY RESTYLE it into the raw, graphic concept-art style of Image 3 and Image 4 (style only): fast, scratchy brush-pen INK CONTOURS of varying weight, broken and unfinished, with dry-brush flicks; NO smooth rendering, NO glossy highlights, NO 3D or volumetric shading, NO soft gradients or airbrush; colour applied as only a few FLAT, transparent watercolour/marker blocks laid loosely over the ink, spilling outside the lines, hard-edged, with lots of raw white paper showing through; strong simplification: remove small details, hair as a handful of bold sweeping strokes, clothing as flat dark ink masses with a few white gaps, faces drawn with just a few sharp lines. Plain white paper background. No text, no signature, no border. Palette: flat pale cyan-teal and warm sepia blocks, pastel pink in the hair, plus black/brown ink.",
-            "refs": [
-              "ink_p2.png",
-              "style_a.png",
-              "style_b.png"
-            ],
-            "file": "sty_p2y.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-sty_p3x",
-            "title": "画风实验 05",
-            "en": "Style Studies 05",
-            "thumb": "content/media/photo/style-studies/sty_p3x_t.webp",
-            "src": "content/media/photo/style-studies/sty_p3x.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, the pose(s), the character (pink hair with cyan ends, outfit silhouette) and its canvas size, but COMPLETELY RESTYLE it into the raw, graphic concept-art style of Image 3 and Image 4 (style only): fast, scratchy brush-pen INK CONTOURS of varying weight, broken and unfinished, with dry-brush flicks; NO smooth rendering, NO glossy highlights, NO 3D or volumetric shading, NO soft gradients or airbrush; colour applied as only a few FLAT, transparent watercolour/marker blocks laid loosely over the ink, spilling outside the lines, hard-edged, with lots of raw white paper showing through; strong simplification: remove small details, hair as a handful of bold sweeping strokes, clothing as flat dark ink masses with a few white gaps, faces drawn with just a few sharp lines. Plain white paper background. No text, no signature, no border. Palette: flat teal-grey washes with a little halftone-dot texture, pastel pink in the hair, plus black ink and splatters.",
-            "refs": [
-              "ink_p3.png",
-              "style_a.png",
-              "style_b.png"
-            ],
-            "file": "sty_p3x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-sty_p3y",
-            "title": "画风实验 06",
-            "en": "Style Studies 06",
-            "thumb": "content/media/photo/style-studies/sty_p3y_t.webp",
-            "src": "content/media/photo/style-studies/sty_p3y.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, the pose(s), the character (pink hair with cyan ends, outfit silhouette) and its canvas size, but COMPLETELY RESTYLE it into the raw, graphic concept-art style of Image 3 and Image 4 (style only): fast, scratchy brush-pen INK CONTOURS of varying weight, broken and unfinished, with dry-brush flicks; NO smooth rendering, NO glossy highlights, NO 3D or volumetric shading, NO soft gradients or airbrush; colour applied as only a few FLAT, transparent watercolour/marker blocks laid loosely over the ink, spilling outside the lines, hard-edged, with lots of raw white paper showing through; strong simplification: remove small details, hair as a handful of bold sweeping strokes, clothing as flat dark ink masses with a few white gaps, faces drawn with just a few sharp lines. Plain white paper background. No text, no signature, no border. Palette: flat teal-grey washes with a little halftone-dot texture, pastel pink in the hair, plus black ink and splatters.",
-            "refs": [
-              "ink_p3.png",
-              "style_a.png",
-              "style_b.png"
-            ],
-            "file": "sty_p3y.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mg_p1x",
-            "title": "画风实验 07",
-            "en": "Style Studies 07",
-            "thumb": "content/media/photo/style-studies/mg_p1x_t.webp",
-            "src": "content/media/photo/style-studies/mg_p1x.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and restyle it to match Image 3 (style only) as closely as possible: bold, rough, heavy black-and-dark-brown INK CONTOURS drawn with a dry brush, confident and broken, with scratchy hatching in the shadows; almost NO rendering. REDUCE THE COLOURS to just two: one pale CYAN-TEAL watercolour wash (used for shadows on the outfit and a few accents, like the blue in Image 3) and soft PINK only in her hair (with a little cyan at the hair ends). No purple, no violet, no black fills. The OUTFIT becomes mostly WHITE: leave it as white paper defined only by the ink contours, with a few pale cyan shadow strokes (keep the same garment shapes, gloves and boots also white with ink lines). Lots of untouched white paper, edges dissolving, a few ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "ink_p1.png",
-              "style_a.png"
-            ],
-            "file": "mg_p1x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mg_p1y",
-            "title": "画风实验 08",
-            "en": "Style Studies 08",
-            "thumb": "content/media/photo/style-studies/mg_p1y_t.webp",
-            "src": "content/media/photo/style-studies/mg_p1y.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and restyle it to match Image 3 (style only) as closely as possible: bold, rough, heavy black-and-dark-brown INK CONTOURS drawn with a dry brush, confident and broken, with scratchy hatching in the shadows; almost NO rendering. REDUCE THE COLOURS to just two: one pale CYAN-TEAL watercolour wash (used for shadows on the outfit and a few accents, like the blue in Image 3) and soft PINK only in her hair (with a little cyan at the hair ends). No purple, no violet, no black fills. The OUTFIT becomes mostly WHITE: leave it as white paper defined only by the ink contours, with a few pale cyan shadow strokes (keep the same garment shapes, gloves and boots also white with ink lines). Lots of untouched white paper, edges dissolving, a few ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "ink_p1.png",
-              "style_a.png"
-            ],
-            "file": "mg_p1y.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mg_p2x",
-            "title": "画风实验 09",
-            "en": "Style Studies 09",
-            "thumb": "content/media/photo/style-studies/mg_p2x_t.webp",
-            "src": "content/media/photo/style-studies/mg_p2x.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and restyle it to match Image 3 (style only) as closely as possible: bold, rough, heavy black-and-dark-brown INK CONTOURS drawn with a dry brush, confident and broken, with scratchy hatching in the shadows; almost NO rendering. REDUCE THE COLOURS to just two: one pale CYAN-TEAL watercolour wash (used for shadows on the outfit and a few accents, like the blue in Image 3) and soft PINK only in her hair (with a little cyan at the hair ends). No purple, no violet, no black fills. The OUTFIT becomes mostly WHITE: leave it as white paper defined only by the ink contours, with a few pale cyan shadow strokes (keep the same garment shapes, gloves and boots also white with ink lines). Lots of untouched white paper, edges dissolving, a few ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "ink_p2.png",
-              "style_a.png"
-            ],
-            "file": "mg_p2x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mg_p2y",
-            "title": "画风实验 10",
-            "en": "Style Studies 10",
-            "thumb": "content/media/photo/style-studies/mg_p2y_t.webp",
-            "src": "content/media/photo/style-studies/mg_p2y.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and restyle it to match Image 3 (style only) as closely as possible: bold, rough, heavy black-and-dark-brown INK CONTOURS drawn with a dry brush, confident and broken, with scratchy hatching in the shadows; almost NO rendering. REDUCE THE COLOURS to just two: one pale CYAN-TEAL watercolour wash (used for shadows on the outfit and a few accents, like the blue in Image 3) and soft PINK only in her hair (with a little cyan at the hair ends). No purple, no violet, no black fills. The OUTFIT becomes mostly WHITE: leave it as white paper defined only by the ink contours, with a few pale cyan shadow strokes (keep the same garment shapes, gloves and boots also white with ink lines). Lots of untouched white paper, edges dissolving, a few ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "ink_p2.png",
-              "style_a.png"
-            ],
-            "file": "mg_p2y.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mg_p3x",
-            "title": "画风实验 11",
-            "en": "Style Studies 11",
-            "thumb": "content/media/photo/style-studies/mg_p3x_t.webp",
-            "src": "content/media/photo/style-studies/mg_p3x.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and restyle it to match Image 3 (style only) as closely as possible: bold, rough, heavy black-and-dark-brown INK CONTOURS drawn with a dry brush, confident and broken, with scratchy hatching in the shadows; almost NO rendering. REDUCE THE COLOURS to just two: one pale CYAN-TEAL watercolour wash (used for shadows on the outfit and a few accents, like the blue in Image 3) and soft PINK only in her hair (with a little cyan at the hair ends). No purple, no violet, no black fills. The OUTFIT becomes mostly WHITE: leave it as white paper defined only by the ink contours, with a few pale cyan shadow strokes (keep the same garment shapes, gloves and boots also white with ink lines). Lots of untouched white paper, edges dissolving, a few ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "ink_p3.png",
-              "style_a.png"
-            ],
-            "file": "mg_p3x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mg_p3y",
-            "title": "画风实验 12",
-            "en": "Style Studies 12",
-            "thumb": "content/media/photo/style-studies/mg_p3y_t.webp",
-            "src": "content/media/photo/style-studies/mg_p3y.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and restyle it to match Image 3 (style only) as closely as possible: bold, rough, heavy black-and-dark-brown INK CONTOURS drawn with a dry brush, confident and broken, with scratchy hatching in the shadows; almost NO rendering. REDUCE THE COLOURS to just two: one pale CYAN-TEAL watercolour wash (used for shadows on the outfit and a few accents, like the blue in Image 3) and soft PINK only in her hair (with a little cyan at the hair ends). No purple, no violet, no black fills. The OUTFIT becomes mostly WHITE: leave it as white paper defined only by the ink contours, with a few pale cyan shadow strokes (keep the same garment shapes, gloves and boots also white with ink lines). Lots of untouched white paper, edges dissolving, a few ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "ink_p3.png",
-              "style_a.png"
-            ],
-            "file": "mg_p3y.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mh_p1x",
-            "title": "画风实验 13",
-            "en": "Style Studies 13",
-            "thumb": "content/media/photo/style-studies/mh_p1x_t.webp",
-            "src": "content/media/photo/style-studies/mh_p1x.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and refine it to match the look of Image 3 (style only): 1) LINES: replace the heavy, rough contours with FINER, cleaner, confident pen-and-brush ink lines of moderate weight in dark sepia-black, tapering naturally, with only occasional dry-brush accents on the hair and a little hatching in the deepest shadows. 2) COLOUR, only PARTIALLY applied like Image 3: loose flat watercolour washes of pale CYAN-TEAL on some areas of the outfit, gloves and boots (mainly the shadow sides and a few panels), a light warm SEPIA/peach wash on some shadowed areas of the skin, and soft PINK in the hair with a little cyan at the ends; the rest of the outfit and body stays white paper. Washes are flat, slightly spilling past the lines, no gradients, no glossy highlights, no 3D rendering. 3) Keep the outfit light/white. Lots of untouched white paper, a few small ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "mg_p1y.png",
-              "style_a.png"
-            ],
-            "file": "mh_p1x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mh_p1y",
-            "title": "画风实验 14",
-            "en": "Style Studies 14",
-            "thumb": "content/media/photo/style-studies/mh_p1y_t.webp",
-            "src": "content/media/photo/style-studies/mh_p1y.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and refine it to match the look of Image 3 (style only): 1) LINES: replace the heavy, rough contours with FINER, cleaner, confident pen-and-brush ink lines of moderate weight in dark sepia-black, tapering naturally, with only occasional dry-brush accents on the hair and a little hatching in the deepest shadows. 2) COLOUR, only PARTIALLY applied like Image 3: loose flat watercolour washes of pale CYAN-TEAL on some areas of the outfit, gloves and boots (mainly the shadow sides and a few panels), a light warm SEPIA/peach wash on some shadowed areas of the skin, and soft PINK in the hair with a little cyan at the ends; the rest of the outfit and body stays white paper. Washes are flat, slightly spilling past the lines, no gradients, no glossy highlights, no 3D rendering. 3) Keep the outfit light/white. Lots of untouched white paper, a few small ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "mg_p1y.png",
-              "style_a.png"
-            ],
-            "file": "mh_p1y.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mh_p2x",
-            "title": "画风实验 15",
-            "en": "Style Studies 15",
-            "thumb": "content/media/photo/style-studies/mh_p2x_t.webp",
-            "src": "content/media/photo/style-studies/mh_p2x.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and refine it to match the look of Image 3 (style only): 1) LINES: replace the heavy, rough contours with FINER, cleaner, confident pen-and-brush ink lines of moderate weight in dark sepia-black, tapering naturally, with only occasional dry-brush accents on the hair and a little hatching in the deepest shadows. 2) COLOUR, only PARTIALLY applied like Image 3: loose flat watercolour washes of pale CYAN-TEAL on some areas of the outfit, gloves and boots (mainly the shadow sides and a few panels), a light warm SEPIA/peach wash on some shadowed areas of the skin, and soft PINK in the hair with a little cyan at the ends; the rest of the outfit and body stays white paper. Washes are flat, slightly spilling past the lines, no gradients, no glossy highlights, no 3D rendering. 3) Keep the outfit light/white. Lots of untouched white paper, a few small ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "mg_p2y.png",
-              "style_a.png"
-            ],
-            "file": "mh_p2x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mh_p2y",
-            "title": "画风实验 16",
-            "en": "Style Studies 16",
-            "thumb": "content/media/photo/style-studies/mh_p2y_t.webp",
-            "src": "content/media/photo/style-studies/mh_p2y.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and refine it to match the look of Image 3 (style only): 1) LINES: replace the heavy, rough contours with FINER, cleaner, confident pen-and-brush ink lines of moderate weight in dark sepia-black, tapering naturally, with only occasional dry-brush accents on the hair and a little hatching in the deepest shadows. 2) COLOUR, only PARTIALLY applied like Image 3: loose flat watercolour washes of pale CYAN-TEAL on some areas of the outfit, gloves and boots (mainly the shadow sides and a few panels), a light warm SEPIA/peach wash on some shadowed areas of the skin, and soft PINK in the hair with a little cyan at the ends; the rest of the outfit and body stays white paper. Washes are flat, slightly spilling past the lines, no gradients, no glossy highlights, no 3D rendering. 3) Keep the outfit light/white. Lots of untouched white paper, a few small ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "mg_p2y.png",
-              "style_a.png"
-            ],
-            "file": "mh_p2y.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mh_p3x",
-            "title": "画风实验 17",
-            "en": "Style Studies 17",
-            "thumb": "content/media/photo/style-studies/mh_p3x_t.webp",
-            "src": "content/media/photo/style-studies/mh_p3x.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and refine it to match the look of Image 3 (style only): 1) LINES: replace the heavy, rough contours with FINER, cleaner, confident pen-and-brush ink lines of moderate weight in dark sepia-black, tapering naturally, with only occasional dry-brush accents on the hair and a little hatching in the deepest shadows. 2) COLOUR, only PARTIALLY applied like Image 3: loose flat watercolour washes of pale CYAN-TEAL on some areas of the outfit, gloves and boots (mainly the shadow sides and a few panels), a light warm SEPIA/peach wash on some shadowed areas of the skin, and soft PINK in the hair with a little cyan at the ends; the rest of the outfit and body stays white paper. Washes are flat, slightly spilling past the lines, no gradients, no glossy highlights, no 3D rendering. 3) Keep the outfit light/white. Lots of untouched white paper, a few small ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "mg_p3y.png",
-              "style_a.png"
-            ],
-            "file": "mh_p3x.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "style-studies-mh_p3y",
-            "title": "画风实验 18",
-            "en": "Style Studies 18",
-            "thumb": "content/media/photo/style-studies/mh_p3y_t.webp",
-            "src": "content/media/photo/style-studies/mh_p3y.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Image 2 is the EDIT TARGET: keep its composition, pose(s), canvas size and the girl's identity, and refine it to match the look of Image 3 (style only): 1) LINES: replace the heavy, rough contours with FINER, cleaner, confident pen-and-brush ink lines of moderate weight in dark sepia-black, tapering naturally, with only occasional dry-brush accents on the hair and a little hatching in the deepest shadows. 2) COLOUR, only PARTIALLY applied like Image 3: loose flat watercolour washes of pale CYAN-TEAL on some areas of the outfit, gloves and boots (mainly the shadow sides and a few panels), a light warm SEPIA/peach wash on some shadowed areas of the skin, and soft PINK in the hair with a little cyan at the ends; the rest of the outfit and body stays white paper. Washes are flat, slightly spilling past the lines, no gradients, no glossy highlights, no 3D rendering. 3) Keep the outfit light/white. Lots of untouched white paper, a few small ink splatters. Plain white background. No text, no signature, no border. Fully covered, tasteful.",
-            "refs": [
-              "mg_p3y.png",
-              "style_a.png"
-            ],
-            "file": "mh_p3y.png",
-            "date": "2026/10/13"
-          }
-        ]
-      },
-      {
-        "name": "封面",
-        "en": "Covers",
-        "items": [
-          {
-            "id": "covers-cover_art_a",
-            "title": "封面 01",
-            "en": "Covers 01",
-            "thumb": "content/media/photo/covers/cover_art_a_t.webp",
-            "src": "content/media/photo/covers/cover_art_a.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE PORTRAIT image (1024x1536) with a TRANSPARENT background (real alpha channel; no backdrop, no floor, no shadow, no frame).\nIt is the key art for a vertical video cover. The girl is the ending heroine of Image 1 and Image 2 (same identity): pale porcelain skin, a longer mature oval face with high cheekbones and a narrow pointed chin, large almond eyes with heavy black winged upper eyeliner, rose-red irises with dark pupils and white sparkles, a row of tiny dots under the lower lashes, nose suggested by two or three sketchy strokes, full glossy peach lips; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, a small white streak at the temple, NO ornament on top of the head; thin black choker with a tiny plain chrome triangle pendant (no text on it); a cream-white off-shoulder knit top.\nCOMPOSITION: head-and-shoulders close-up. The top of her head touches the top edge, her face is centred horizontally and fills about 55% of the image width, the chin sits at about 52% of the image height; bare shoulders and the off-shoulder top at the bottom edge; her long hair falls down both sides all the way to the bottom edge and slightly beyond the left and right edges.\nPOSE: face turned very slightly to her left (3/4 toward the viewer), calm, slightly aloof gaze straight into the camera, lips gently closed.\nSTYLE = Image 2 exactly: loose sketchy line art with several light overlapping construction strokes; strong chromatic-aberration misregistration on every contour (each line doubled in offset magenta, cyan and yellow); a thin bright YELLOW / YELLOW-GREEN dispersion fringe along the OUTER edges of the hair only (not on the face); flat pastel colour blocks with hard-edged geometric shadow shapes, a flat lighter band across the pink hair; airy high-key light. Premium, clean, striking. No text, no logo, no watermark.",
-            "refs": [
-              "ref_poster_face.png",
-              "ff.png"
-            ],
-            "file": "cover_art_a.png",
-            "date": "2026/10/17"
-          },
-          {
-            "id": "covers-cover_art_b",
-            "title": "封面 02",
-            "en": "Covers 02",
-            "thumb": "content/media/photo/covers/cover_art_b_t.webp",
-            "src": "content/media/photo/covers/cover_art_b.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE PORTRAIT image (1024x1536) with a TRANSPARENT background (real alpha channel; no backdrop, no floor, no shadow, no frame).\nIt is the key art for a vertical video cover. The girl is the ending heroine of Image 1 and Image 2 (same identity): pale porcelain skin, a longer mature oval face with high cheekbones and a narrow pointed chin, large almond eyes with heavy black winged upper eyeliner, rose-red irises with dark pupils and white sparkles, a row of tiny dots under the lower lashes, nose suggested by two or three sketchy strokes, full glossy peach lips; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, a small white streak at the temple, NO ornament on top of the head; thin black choker with a tiny plain chrome triangle pendant (no text on it); a cream-white off-shoulder knit top.\nCOMPOSITION: head-and-shoulders close-up. The top of her head touches the top edge, her face is centred horizontally and fills about 55% of the image width, the chin sits at about 52% of the image height; bare shoulders and the off-shoulder top at the bottom edge; her long hair falls down both sides all the way to the bottom edge and slightly beyond the left and right edges.\nPOSE: facing the viewer almost straight on, head tilted a few degrees, calm confident gaze into the camera, lips gently closed, a few hair strands lifted by a soft breeze.\nSTYLE = Image 2 exactly: loose sketchy line art with several light overlapping construction strokes; strong chromatic-aberration misregistration on every contour (each line doubled in offset magenta, cyan and yellow); a thin bright YELLOW / YELLOW-GREEN dispersion fringe along the OUTER edges of the hair only (not on the face); flat pastel colour blocks with hard-edged geometric shadow shapes, a flat lighter band across the pink hair; airy high-key light. Premium, clean, striking. No text, no logo, no watermark.",
-            "refs": [
-              "ref_poster_face.png",
-              "ff.png"
-            ],
-            "file": "cover_art_b.png",
-            "date": "2026/10/17"
-          },
-          {
-            "id": "covers-cover_art_c",
-            "title": "封面 03",
-            "en": "Covers 03",
-            "thumb": "content/media/photo/covers/cover_art_c_t.webp",
-            "src": "content/media/photo/covers/cover_art_c.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE PORTRAIT image (1024x1536) with a TRANSPARENT background (real alpha channel; no backdrop, no floor, no shadow, no frame).\nIt is the key art for a vertical video cover. The girl is the ending heroine of Image 1 and Image 2 (same identity): pale porcelain skin, a longer mature oval face with high cheekbones and a narrow pointed chin, large almond eyes with heavy black winged upper eyeliner, rose-red irises with dark pupils and white sparkles, a row of tiny dots under the lower lashes, nose suggested by two or three sketchy strokes, full glossy peach lips; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, a small white streak at the temple, NO ornament on top of the head; thin black choker with a tiny plain chrome triangle pendant (no text on it); a cream-white off-shoulder knit top.\nCOMPOSITION: head-and-shoulders close-up. The top of her head touches the top edge, her face is centred horizontally and fills about 55% of the image width, the chin sits at about 52% of the image height; bare shoulders and the off-shoulder top at the bottom edge; her long hair falls down both sides all the way to the bottom edge and slightly beyond the left and right edges.\nPOSE: facing the viewer straight on, eyes looking into the camera, blowing a glossy pastel-pink bubble-gum bubble from her lips; the bubble is round, about 30% of the image width, slightly translucent with a soft white highlight, centred below her nose and covering her chin.\nSTYLE = Image 2 exactly: loose sketchy line art with several light overlapping construction strokes; strong chromatic-aberration misregistration on every contour (each line doubled in offset magenta, cyan and yellow); a thin bright YELLOW / YELLOW-GREEN dispersion fringe along the OUTER edges of the hair only (not on the face); flat pastel colour blocks with hard-edged geometric shadow shapes, a flat lighter band across the pink hair; airy high-key light. Premium, clean, striking. No text, no logo, no watermark.",
-            "refs": [
-              "ref_poster_face.png",
-              "ff.png"
-            ],
-            "file": "cover_art_c.png",
-            "date": "2026/10/17"
-          },
-          {
-            "id": "covers-cover_side_a",
-            "title": "封面 04",
-            "en": "Covers 04",
-            "thumb": "content/media/photo/covers/cover_side_a_t.webp",
-            "src": "content/media/photo/covers/cover_side_a.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE PORTRAIT image (1024x1536) with a TRANSPARENT background (real alpha channel; no backdrop, no floor, no wall, no shadow, no frame).\nKey art for a video cover: the heroine of Image 1 / Image 2 / Image 3 in EXACT SIDE PROFILE facing the image LEFT, as in Image 3 (the gallery shot of the film), walking calmly while blowing bubble gum.\nIDENTITY: pale porcelain skin; mature elegant profile with a small straight nose, a narrow pointed chin and slender jaw; almond eye with heavy black winged eyeliner, rose-red iris; full glossy peach lips pursed around the gum; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, a small white streak at the temple, the hair falling down her back; NO ornament on the head. Cream-white off-the-shoulder knit top showing the bare shoulder.\nCHOKER (draw it carefully, it must look premium): a sleek glossy black leather choker band about 1.2 cm wide that wraps the neck with correct perspective (an ellipse following the neck), thin polished chrome edge lines along its top and bottom, and ONE small polished chrome O-ring at the very front of the throat. NOTHING hangs from the ring: no pendant, no charm, no triangle, no logo, no tag.\nBUBBLE: a glossy pastel-pink bubble-gum bubble coming out of her lips toward the left, round, diameter about 26% of the image width, slightly translucent with a soft white highlight and a thin darker rim; the whole bubble stays inside the image with margin.\nCOMPOSITION: head-and-shoulders plus upper chest. The top of her head is about 5% below the top edge; her profile is in the upper half: the tip of her nose at about 34% of the image width and her lips at about 36% of the image height; the bubble to the left of the lips; her bare shoulder and the off-shoulder top reach the bottom edge; her hair flows down to the bottom edge on the right side.\nGAZE: eyes looking straight ahead to the left (in the walking direction), calm and composed; hair swaying slightly behind her from the walk.\nSTYLE = Image 2 exactly: loose sketchy line art with several light overlapping construction strokes, strong chromatic-aberration misregistration on every contour (lines doubled in offset magenta, cyan and yellow), a thin bright yellow / lime dispersion fringe only along the OUTER edges of the hair, flat pastel colour blocks with hard-edged geometric shadow shapes, airy high-key light. Premium, clean. No text, no logo, no watermark.",
-            "refs": [
-              "ref_poster_face.png",
-              "sidew.png"
-            ],
-            "file": "cover_side_a.png",
-            "date": "2026/10/17"
-          },
-          {
-            "id": "covers-cover_side_b",
-            "title": "封面 05",
-            "en": "Covers 05",
-            "thumb": "content/media/photo/covers/cover_side_b_t.webp",
-            "src": "content/media/photo/covers/cover_side_b.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE PORTRAIT image (1024x1536) with a TRANSPARENT background (real alpha channel; no backdrop, no floor, no wall, no shadow, no frame).\nKey art for a video cover: the heroine of Image 1 / Image 2 / Image 3 in EXACT SIDE PROFILE facing the image LEFT, as in Image 3 (the gallery shot of the film), walking calmly while blowing bubble gum.\nIDENTITY: pale porcelain skin; mature elegant profile with a small straight nose, a narrow pointed chin and slender jaw; almond eye with heavy black winged eyeliner, rose-red iris; full glossy peach lips pursed around the gum; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, a small white streak at the temple, the hair falling down her back; NO ornament on the head. Cream-white off-the-shoulder knit top showing the bare shoulder.\nCHOKER (draw it carefully, it must look premium): a sleek glossy black leather choker band about 1.2 cm wide that wraps the neck with correct perspective (an ellipse following the neck), thin polished chrome edge lines along its top and bottom, and ONE small polished chrome O-ring at the very front of the throat. NOTHING hangs from the ring: no pendant, no charm, no triangle, no logo, no tag.\nBUBBLE: a glossy pastel-pink bubble-gum bubble coming out of her lips toward the left, round, diameter about 26% of the image width, slightly translucent with a soft white highlight and a thin darker rim; the whole bubble stays inside the image with margin.\nCOMPOSITION: head-and-shoulders plus upper chest. The top of her head is about 5% below the top edge; her profile is in the upper half: the tip of her nose at about 34% of the image width and her lips at about 36% of the image height; the bubble to the left of the lips; her bare shoulder and the off-shoulder top reach the bottom edge; her hair flows down to the bottom edge on the right side.\nGAZE: eyes looking straight ahead to the left (in the walking direction), calm and composed; a few strands of hair lifted by the walk.\nSTYLE = Image 2 exactly: loose sketchy line art with several light overlapping construction strokes, strong chromatic-aberration misregistration on every contour (lines doubled in offset magenta, cyan and yellow), a thin bright yellow / lime dispersion fringe only along the OUTER edges of the hair, flat pastel colour blocks with hard-edged geometric shadow shapes, airy high-key light. Premium, clean. No text, no logo, no watermark.",
-            "refs": [
-              "ref_poster_face.png",
-              "sidew.png"
-            ],
-            "file": "cover_side_b.png",
-            "date": "2026/10/17"
-          },
-          {
-            "id": "covers-cover_side_c",
-            "title": "封面 06",
-            "en": "Covers 06",
-            "thumb": "content/media/photo/covers/cover_side_c_t.webp",
-            "src": "content/media/photo/covers/cover_side_c.webp",
-            "w": 1024,
-            "h": 1536,
-            "prompt": "Generate ONE PORTRAIT image (1024x1536) with a TRANSPARENT background (real alpha channel; no backdrop, no floor, no wall, no shadow, no frame).\nKey art for a video cover: the heroine of Image 1 / Image 2 / Image 3 in EXACT SIDE PROFILE facing the image LEFT, as in Image 3 (the gallery shot of the film), walking calmly while blowing bubble gum.\nIDENTITY: pale porcelain skin; mature elegant profile with a small straight nose, a narrow pointed chin and slender jaw; almond eye with heavy black winged eyeliner, rose-red iris; full glossy peach lips pursed around the gum; long straight PINK hair with heavy blunt bangs, pastel CYAN-TEAL inner layers and ends, a small white streak at the temple, the hair falling down her back; NO ornament on the head. Cream-white off-the-shoulder knit top showing the bare shoulder.\nCHOKER (draw it carefully, it must look premium): a sleek glossy black leather choker band about 1.2 cm wide that wraps the neck with correct perspective (an ellipse following the neck), thin polished chrome edge lines along its top and bottom, and ONE small polished chrome O-ring at the very front of the throat. NOTHING hangs from the ring: no pendant, no charm, no triangle, no logo, no tag.\nBUBBLE: a glossy pastel-pink bubble-gum bubble coming out of her lips toward the left, round, diameter about 26% of the image width, slightly translucent with a soft white highlight and a thin darker rim; the whole bubble stays inside the image with margin.\nCOMPOSITION: head-and-shoulders plus upper chest. The top of her head is about 5% below the top edge; her profile is in the upper half: the tip of her nose at about 34% of the image width and her lips at about 36% of the image height; the bubble to the left of the lips; her bare shoulder and the off-shoulder top reach the bottom edge; her hair flows down to the bottom edge on the right side.\nGAZE: head still in profile, but her eye glances sideways toward the viewer (a cool side-glance into the camera); hair swaying slightly behind her.\nSTYLE = Image 2 exactly: loose sketchy line art with several light overlapping construction strokes, strong chromatic-aberration misregistration on every contour (lines doubled in offset magenta, cyan and yellow), a thin bright yellow / lime dispersion fringe only along the OUTER edges of the hair, flat pastel colour blocks with hard-edged geometric shadow shapes, airy high-key light. Premium, clean. No text, no logo, no watermark.",
-            "refs": [
-              "ref_poster_face.png",
-              "sidew.png"
-            ],
-            "file": "cover_side_c.png",
-            "date": "2026/10/17"
-          }
-        ]
-      },
-      {
-        "name": "表情",
-        "en": "Expressions",
-        "items": [
-          {
-            "id": "expressions-e_k01",
-            "title": "表情 01",
-            "en": "Expressions 01",
-            "thumb": "content/media/photo/expressions/e_k01_t.webp",
-            "src": "content/media/photo/expressions/e_k01.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/k01.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "k01.png"
-            ],
-            "file": "e_k01.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_n02",
-            "title": "表情 02",
-            "en": "Expressions 02",
-            "thumb": "content/media/photo/expressions/e_n02_t.webp",
-            "src": "content/media/photo/expressions/e_n02.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/n02.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "n02.png"
-            ],
-            "file": "e_n02.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_k02",
-            "title": "表情 03",
-            "en": "Expressions 03",
-            "thumb": "content/media/photo/expressions/e_k02_t.webp",
-            "src": "content/media/photo/expressions/e_k02.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/k02.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "k02.png"
-            ],
-            "file": "e_k02.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_n04",
-            "title": "表情 04",
-            "en": "Expressions 04",
-            "thumb": "content/media/photo/expressions/e_n04_t.webp",
-            "src": "content/media/photo/expressions/e_n04.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/n04.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "n04.png"
-            ],
-            "file": "e_n04.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_k03",
-            "title": "表情 05",
-            "en": "Expressions 05",
-            "thumb": "content/media/photo/expressions/e_k03_t.webp",
-            "src": "content/media/photo/expressions/e_k03.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/k03.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "k03.png"
-            ],
-            "file": "e_k03.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_n06",
-            "title": "表情 06",
-            "en": "Expressions 06",
-            "thumb": "content/media/photo/expressions/e_n06_t.webp",
-            "src": "content/media/photo/expressions/e_n06.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/n06.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "n06.png"
-            ],
-            "file": "e_n06.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_k04",
-            "title": "表情 07",
-            "en": "Expressions 07",
-            "thumb": "content/media/photo/expressions/e_k04_t.webp",
-            "src": "content/media/photo/expressions/e_k04.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/k04.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "k04.png"
-            ],
-            "file": "e_k04.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_n08",
-            "title": "表情 08",
-            "en": "Expressions 08",
-            "thumb": "content/media/photo/expressions/e_n08_t.webp",
-            "src": "content/media/photo/expressions/e_n08.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/n08.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "n08.png"
-            ],
-            "file": "e_n08.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_k05",
-            "title": "表情 09",
-            "en": "Expressions 09",
-            "thumb": "content/media/photo/expressions/e_k05_t.webp",
-            "src": "content/media/photo/expressions/e_k05.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/k05.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "k05.png"
-            ],
-            "file": "e_k05.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_n10",
-            "title": "表情 10",
-            "en": "Expressions 10",
-            "thumb": "content/media/photo/expressions/e_n10_t.webp",
-            "src": "content/media/photo/expressions/e_n10.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/n10.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "n10.png"
-            ],
-            "file": "e_n10.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_k06",
-            "title": "表情 11",
-            "en": "Expressions 11",
-            "thumb": "content/media/photo/expressions/e_k06_t.webp",
-            "src": "content/media/photo/expressions/e_k06.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/k06.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "k06.png"
-            ],
-            "file": "e_k06.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "expressions-e_n12",
-            "title": "表情 12",
-            "en": "Expressions 12",
-            "thumb": "content/media/photo/expressions/e_n12_t.webp",
-            "src": "content/media/photo/expressions/e_n12.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (frames30/n12.png) is the EDIT TARGET. Change ONLY her facial expression so it matches the calm, serene, composed face of the girl in Image 1: relaxed half-lidded eyes with a soft, focused gaze; mouth CLOSED with soft neutral peach lips (at most a barely visible gentle smile). No open mouth, no teeth, no tongue, no wink, no grin, no laughing, no blush. Keep everything else identical: pose, arms, hands, paintbrush, hair, outfit, the square snake patch on her left sleeve, the triangle pendant on the choker, all paint effects, framing, scale, line style, and the fully TRANSPARENT background (real alpha channel, no backdrop). Output 1536x1024.",
-            "refs": [
-              "n12.png"
-            ],
-            "file": "e_n12.png",
-            "date": "2026/10/13"
-          }
-        ]
-      },
-      {
-        "name": "侧脸",
-        "en": "Profiles",
-        "items": [
-          {
-            "id": "profiles-sidex",
-            "title": "侧脸 01",
-            "en": "Profiles 01",
-            "thumb": "content/media/photo/profiles/sidex_t.webp",
-            "src": "content/media/photo/profiles/sidex.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape 3:2 image (1536x1024): an elegant close-up SIDE PROFILE (facing left) of the same girl as Image 1 and Image 2, blowing a medium-size glossy pastel-pink bubble-gum bubble (about twice the size of her lips) from gently pursed lips, calm half-closed eyes, a faint blush, long straight pink hair with blunt bangs and pastel cyan ends flowing behind her, thin black choker with a tiny chrome triangle pendant. Same soft anime cel rendering with thin chromatic-aberration line offsets as Image 1. Clean composition: her profile on the right third, the bubble left of centre, lots of airy space; light lavender-white background with a few soft pastel pink/periwinkle blurred blobs. No text.",
-            "refs": [
-              "gum1.png"
-            ],
-            "file": "sidex.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "profiles-sidey",
-            "title": "侧脸 02",
-            "en": "Profiles 02",
-            "thumb": "content/media/photo/profiles/sidey_t.webp",
-            "src": "content/media/photo/profiles/sidey.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Generate ONE landscape 3:2 image (1536x1024): an elegant close-up SIDE PROFILE (facing left) of the same girl as Image 1 and Image 2, blowing a medium-size glossy pastel-pink bubble-gum bubble (about twice the size of her lips) from gently pursed lips, calm half-closed eyes, a faint blush, long straight pink hair with blunt bangs and pastel cyan ends flowing behind her, thin black choker with a tiny chrome triangle pendant. Same soft anime cel rendering with thin chromatic-aberration line offsets as Image 1. Clean composition: her profile on the right third, the bubble left of centre, lots of airy space; light lavender-white background with a few soft pastel pink/periwinkle blurred blobs. No text.",
-            "refs": [
-              "gum1.png"
-            ],
-            "file": "sidey.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "profiles-swx",
-            "title": "侧脸 03",
-            "en": "Profiles 03",
-            "thumb": "content/media/photo/profiles/swx_t.webp",
-            "src": "content/media/photo/profiles/swx.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (side0.png) is the reference: the SAME girl in the SAME exact side profile facing LEFT, same face, same gently pursed lips (no bubble), same eye, blush, choker with the small triangle pendant, same hair colours and the same rendering with chromatic-aberration line offsets. ZOOM OUT: draw her smaller so that her WHOLE silhouette fits inside the canvas with margin — the top of the head, her long straight pink-and-cyan hair falling down her back to about waist length and ending inside the frame, bare shoulders and upper body wearing a simple white off-shoulder top, cropped at the waist by the BOTTOM edge of the canvas only. Her head about 30% of the canvas height, placed slightly right of centre. Fully TRANSPARENT background (real alpha), no backdrop, no shadow. Output 1536x1024.",
-            "refs": [
-              "side0.png"
-            ],
-            "file": "swx.png",
-            "date": "2026/10/13"
-          },
-          {
-            "id": "profiles-swy",
-            "title": "侧脸 04",
-            "en": "Profiles 04",
-            "thumb": "content/media/photo/profiles/swy_t.webp",
-            "src": "content/media/photo/profiles/swy.webp",
-            "w": 1536,
-            "h": 1024,
-            "prompt": "Image 2 (side0.png) is the reference: the SAME girl in the SAME exact side profile facing LEFT, same face, same gently pursed lips (no bubble), same eye, blush, choker with the small triangle pendant, same hair colours and the same rendering with chromatic-aberration line offsets. ZOOM OUT: draw her smaller so that her WHOLE silhouette fits inside the canvas with margin — the top of the head, her long straight pink-and-cyan hair falling down her back to about waist length and ending inside the frame, bare shoulders and upper body wearing a simple white off-shoulder top, cropped at the waist by the BOTTOM edge of the canvas only. Her head about 30% of the canvas height, placed slightly right of centre. Fully TRANSPARENT background (real alpha), no backdrop, no shadow. Output 1536x1024.",
-            "refs": [
-              "side0.png"
-            ],
-            "file": "swy.png",
-            "date": "2026/10/13"
+            "file": "27-黑色留白·侧坐壁纸.png",
+            "date": "2026/10/20",
+            "animated": false,
+            "note": ""
           }
         ]
       }

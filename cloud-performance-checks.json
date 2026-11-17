@@ -1,0 +1,28 @@
+{
+  "before": {
+    "draws": 152,
+    "pixels": 127572992,
+    "seconds": 2,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  "after": {
+    "draws": 48,
+    "pixels": 24883200,
+    "seconds": 2,
+    "size": [
+      1280,
+      720
+    ]
+  },
+  "note": "Two-second desktop sample of draw calls and viewport pixel work, not CPU/GPU utilization or battery measurements.",
+  "checks": {
+    "mobileReducedMotionNoDraws": true,
+    "pauseStateNoDraws": true,
+    "resumeDraws": true,
+    "mobileNoHorizontalOverflow": true,
+    "mobileObservedDrawsPerSecond": 15
+  }
+}

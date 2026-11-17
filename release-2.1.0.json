@@ -1,0 +1,44 @@
+{
+  "version": "2.1.0",
+  "submittedAt": "2026-11-17T18:35:48.667946+08:00",
+  "toyId": 45321732487168,
+  "title": "次世代 B 站启动器 · GLORIA  OS",
+  "url": "https://www.bilibili.com/toy/gloria-xmb/index.html",
+  "status": "auditing",
+  "visibility": "LINK_ONLY",
+  "previewUrl": "https://www.bilibili.com/toy/preview/author_9fWqYMjn/index.html",
+  "verifiedPreviewUrl": "https://www.bilibili.com/toy/preview/author_9wEWRwBO/index.html",
+  "packageSha256": "22181bf9ce6a2ad3b71ee08e2783325fe8b3c062325acad0218881321fe667e9",
+  "build": {
+    "version": "2.1.0",
+    "content_sha256": "778ac5010866eaa0c3ad1b00b467df4761fc1d8cfc72c2ad027638458d202239",
+    "js": "app.78e1f83959a7.js",
+    "css": "xmb.78a765ead72e.css"
+  },
+  "checks": {
+    "buildAndAssetReferences": true,
+    "uploadedAssetsMatchAfterGzipAndPlatformWrapperHandling": true,
+    "submittedPreviewVersionMatches": true,
+    "cloudAndStellarRenderInsideToy": true,
+    "themeConfirmationReturnsHome": true,
+    "photoCount": 13,
+    "submissionCount": 25,
+    "musicCollection": "声音碎片收藏馆",
+    "colorYourNight": {
+      "sourceStart": 163,
+      "sourceEnd": 212,
+      "playbackSample": 36.288983,
+      "audioSignalPeak": 255,
+      "naturalEnd": {
+        "time": 49,
+        "active": false,
+        "paused": true
+      }
+    },
+    "cleanCheckoutPackageMatches": true
+  },
+  "limitations": [
+    "Bilibili status is the server readback at submittedAt, not a guarantee of later review approval.",
+    "Mobile layout was checked using browser emulation, not a physical-device performance test."
+  ]
+}

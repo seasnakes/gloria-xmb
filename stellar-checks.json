@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-15",
+  "environment": "Existing Chrome, localhost release package; 1280x720 desktop and 393x852 mobile emulation",
+  "checks": {
+    "theme_menu_selection": true,
+    "cotton_switch_releases_frame": true,
+    "stellar_switch_creates_one_frame": true,
+    "theme_persisted_on_reload": true,
+    "mobile_no_horizontal_overflow": true,
+    "reduced_motion_static_7_6s": true,
+    "motion_resumes_on_preference_change": true,
+    "preview_pauses_theme": true,
+    "home_resumes_theme": true,
+    "webgl_context_loss_fallback": true,
+    "page_errors": [],
+    "theme_errors": []
+  },
+  "source_sha256": "6d60220dd0932bb85131652c948b49afe145e40618a733742ba1a68d1ed238ba",
+  "limitations": [
+    "Not uploaded or verified inside the live bilibilitoy host.",
+    "Mobile layout checked through Chrome emulation, not on a physical phone."
+  ],
+  "superseded_by": "stellar-ambient-checks.json for bloom playback and reduced-motion behavior; original integration checks retained"
+}

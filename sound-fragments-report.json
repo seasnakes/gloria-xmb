@@ -1,0 +1,33 @@
+{
+  "source": "/Users/seasnake/Downloads/Color Your Night.mp3",
+  "sourceSha256": "cbc5599f496088adf5728f1f0c843625a0dc9f8b569c4720de6f0ed9ba395c02",
+  "sourceStart": 163,
+  "sourceEnd": 212,
+  "clipSeconds": 49,
+  "output": "/Users/seasnake/gloria/publish/xmb/cotton-v2/source/content/media/music/color-your-night-2m43-3m32.m4a",
+  "group": "声音碎片收藏馆",
+  "tracks": 2,
+  "verification": {
+    "date": "2026-11-16",
+    "build": "passed",
+    "decodedDurationSeconds": 49,
+    "decodeErrors": false,
+    "packagedAudioMatchesSource": true,
+    "packagedCoverMatchesSource": true,
+    "browser": "Codex in-app browser, local package",
+    "collectionVisible": true,
+    "trackVisible": true,
+    "playbackTimeSample": 14.268662,
+    "audioSignalPeak": 255,
+    "naturalEnd": {
+      "time": 49,
+      "active": false,
+      "paused": true,
+      "track": null
+    },
+    "screenshot": "/Users/seasnake/gloria/publish/xmb/cotton-v2/sound-fragments-preview.jpg",
+    "deployed": false,
+    "committed": false,
+    "pushed": false
+  }
+}

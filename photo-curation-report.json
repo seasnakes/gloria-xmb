@@ -1,0 +1,107 @@
+{
+  "previousCount": 60,
+  "photoCount": 13,
+  "albums": [
+    {
+      "name": "GLORIA 表情包",
+      "count": 6
+    },
+    {
+      "name": "GLORIA 风格图",
+      "count": 7
+    }
+  ],
+  "imported": [
+    {
+      "id": 7,
+      "name": "粗黑线Q版·像素棱镜",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/07-粗黑线Q版·像素棱镜.png",
+      "output": "content/media/photo/gloria-art/gloria-07.webp",
+      "animated": false
+    },
+    {
+      "id": 10,
+      "name": "圆脸大眼·可爱头像",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/10-圆脸大眼·可爱头像.png",
+      "output": "content/media/photo/gloria-art/gloria-10.webp",
+      "animated": false
+    },
+    {
+      "id": 11,
+      "name": "叭叭叭·方向盘涂鸦",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/11-叭叭叭·方向盘涂鸦.png",
+      "output": "content/media/photo/gloria-art/gloria-11.webp",
+      "animated": false
+    },
+    {
+      "id": 12,
+      "name": "神降临·聚光灯表情包",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/12-神降临·聚光灯表情包.png",
+      "output": "content/media/photo/gloria-art/gloria-12.webp",
+      "animated": false
+    },
+    {
+      "id": 26,
+      "name": "无语脸·极简头像",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/26-无语脸·极简头像.png",
+      "output": "content/media/photo/gloria-art/gloria-26.webp",
+      "animated": false
+    },
+    {
+      "id": 30,
+      "name": "摇摆舞·循环GIF",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/30-GLORIA-摇摆.gif",
+      "output": "content/media/photo/gloria-art/gloria-30.gif",
+      "animated": true
+    },
+    {
+      "id": 2,
+      "name": "天空窗口拼贴·身份修订",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/02-天空窗口拼贴·身份修订.png",
+      "output": "content/media/photo/gloria-art/gloria-02.webp",
+      "animated": false
+    },
+    {
+      "id": 3,
+      "name": "春日雪乃·喜茶概念海报",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/03-春日雪乃·喜茶概念海报.png",
+      "output": "content/media/photo/gloria-art/gloria-03.webp",
+      "animated": false
+    },
+    {
+      "id": 5,
+      "name": "薰衣草花田·柔和日光修订",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/05-薰衣草花田·柔和日光修订.png",
+      "output": "content/media/photo/gloria-art/gloria-05.webp",
+      "animated": false
+    },
+    {
+      "id": 6,
+      "name": "ComfyUI节点·嫌弃桌宠",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/06-ComfyUI节点·嫌弃桌宠.png",
+      "output": "content/media/photo/gloria-art/gloria-06.webp",
+      "animated": false
+    },
+    {
+      "id": 8,
+      "name": "复古数码直闪·游戏房",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/08-复古数码直闪·游戏房.png",
+      "output": "content/media/photo/gloria-art/gloria-08.webp",
+      "animated": false
+    },
+    {
+      "id": 9,
+      "name": "蓝紫双重曝光·短狼尾发",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/09-蓝紫双重曝光·短狼尾发.png",
+      "output": "content/media/photo/gloria-art/gloria-09.webp",
+      "animated": false
+    },
+    {
+      "id": 27,
+      "name": "黑色留白·侧坐壁纸",
+      "source": "/Users/seasnake/Downloads/GLORIA-风格与提示词合集-2026-10-24/images/27-黑色留白·侧坐壁纸.png",
+      "output": "content/media/photo/gloria-art/gloria-27.webp",
+      "animated": false
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "gloria-xmb",
+  "version": "2.1.0",
+  "private": true,
+  "scripts": {
+    "build": "python3 build_release.py"
+  },
+  "devDependencies": {
+    "terser": "5.44.0"
+  }
+}

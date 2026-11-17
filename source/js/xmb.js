@@ -123,7 +123,7 @@
     if (lv.sel >= list.length) lv.sel = 0;
     list.forEach((it, j) => {
       const kind = it.thumb ? it.thumbKind || 'wide' : '';
-      const d = el('item' + (lv.compact ? ' compact' : '') + (it.empty ? ' empty' : '') + (kind ? ' has-th' : ''));
+      const d = el('item' + (lv.compact ? ' compact' : '') + (it.empty ? ' empty' : '') + (kind ? ' has-th' : '') + (it.themeId ? ' theme-card' : ''));
       const ic = el('ic' + (kind ? ' th th-' + kind : ''), it.empty ? '' : kind ? `<img data-src="${it.thumb}" alt="" decoding="async" draggable="false">` : X.icon(it.icon));
       if(it.toy?.kind==='simulation'&&!['life','dbh','ut','dr'].includes(it.toy.id)) ic.append(el('cover-name',esc(t(it.title))));
       const tx = el('tx');
@@ -282,17 +282,18 @@
   }
 
   function enter(it) {
+    if (it.id === 'theme-gallery') it.sel = Math.max(0,it.children.findIndex(x=>x.themeId===settings.theme));
     const lv = buildLevel(it.children || [], { compact: it.compact, sel: it.sel || 0, depth: S.stack.length + 1, x: L.subX + 70 });
     S.stack.push({ item: it, level: lv });
     X.sound.play('ok');
     layout();
   }
 
-  function back() {
-    if(MOBILE&&!S.stack.length){mobileHome=true;focusItem=null;X.preview.stop();layout();return true;}
+  function back(silent = false) {
+    if(MOBILE&&!S.stack.length){mobileHome=true;focusItem=null;X.preview.stop();scheduleThemePreview(null);layout();return true;}
     if (!S.stack.length) return false;
     const s = S.stack.pop();
-    X.sound.play('back');
+    if (!silent) X.sound.play('back');
     s.level.nodes.forEach((n) => {
       n.tgt.x += 70;
       n.tgt.o = 0;
@@ -307,6 +308,22 @@
     return true;
   }
   let dying = [];
+
+
+  // Return to the category screen in one action, clearing every nested preview.
+  function goHome() {
+    if (S.mode === 'viewer') X.viewer.close();
+    if (S.mode === 'dialog') pickDialog(true);
+    closePanel(true);
+    while (S.stack.length) back(true);
+    mobileHome = true;
+    focusItem = null;
+    X.preview.stop();
+    scheduleThemePreview(null);
+    S.mode = 'xmb';
+    input();
+    layout();
+  }
 
   function ok() {
     const it = activeItem();
@@ -370,13 +387,39 @@
     refreshText();
   }
 
+  let previewThemeId = null, themePreviewTimer = null;
+  function themeHint() {
+    const hint = $('#theme-hint');
+    if (!previewThemeId) { hint.textContent = ''; return; }
+    const applied = settings.theme === previewThemeId && settings.background !== 'black';
+    const name = t(X.themes[previewThemeId].name);
+    hint.textContent = (applied ? t({zh:'已应用',en:'Applied'}) : t({zh:'预览中',en:'Preview'})) + ' · ' + name + '  /  ' +
+      t(MOBILE ? {zh:'再次点选应用 · 返回取消预览',en:'Tap again to apply · Back to leave preview'} : {zh:'Enter 应用 · Esc 返回',en:'Enter to apply · Esc to return'});
+  }
+  function scheduleThemePreview(id) {
+    clearTimeout(themePreviewTimer);
+    document.body.classList.toggle('theme-browse',!!id);
+    if (!id) {
+      if (previewThemeId) { previewThemeId = null; applyTheme(); }
+      themeHint();
+      return;
+    }
+    if (id === previewThemeId) return;
+    themePreviewTimer = setTimeout(() => {
+      previewThemeId = id;
+      applyTheme();
+      themeHint();
+    },450);
+  }
   function applyTheme(snap) {
     const now = new Date();
     if (debugMonth) now.setMonth(debugMonth - 1, Math.min(now.getDate(), 20));
     const hour = debugHour != null ? debugHour : X.theme.hourOf(now, settings.time);
-    const theme = X.themes[settings.theme] || X.themes.original;
-    if(X.cotton)X.cotton.sync(settings.theme==='cotton'&&settings.background!=='black',hour);
-    const th = X.theme.compute(now, { fixed: settings.color, hour, black: settings.background === 'black', theme });
+    const theme = X.themes[previewThemeId || settings.theme] || X.themes.original;
+    const black = !previewThemeId && settings.background === 'black';
+    if(X.cotton)X.cotton.sync(theme.id==='cotton'&&!black,hour);
+    if (X.visualThemes) X.visualThemes.sync(black ? null : theme.id);
+    const th = X.theme.compute(now, { fixed: settings.color, hour, black, theme });
     if (bg) {
       bg.setTheme(th);
       if (snap) bg.snap();
@@ -388,6 +431,16 @@
   }
 
   const ACTIONS = {
+    applyThemeItem: (it) => {
+      clearTimeout(themePreviewTimer);
+      previewThemeId = it.themeId;
+      settings.theme = it.themeId;
+      settings.background = 'original';
+      saveSettings();
+      applySettings();
+      goHome();
+      toast(t({zh:'已应用主题：',en:'Theme applied: '}) + t(X.themes[it.themeId].name));
+    },
     na: () => dialog(t(X.text.na), ['ok']),
     sysinfo: () => dialog(t(X.text.sysinfo), ['ok']),
     reset: () =>
@@ -434,8 +487,25 @@
     };
     inp.click();
   }
+  function themeCover(th) {
+    const fallback = {original:'themes/thumbnails/original.svg',gloria:'themes/thumbnails/gloria.svg',cotton:'themes/thumbnails/cotton.webp'};
+    if (fallback[th.id]) return fallback[th.id];
+    const valid = c => /^#[0-9a-f]{6}$/i.test(c) ? c : '#243450';
+    const colors = th.gradient?.day;
+    const a = valid(Array.isArray(colors?.[0]) ? colors[0][0] : colors?.[0]);
+    const b = valid(Array.isArray(colors?.[0]) ? colors[0][3] : colors?.[3]);
+    return 'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 144"><defs><linearGradient id="g"><stop stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="256" height="144" rx="12" fill="url(#g)"/><path d="M0 105Q64 15 128 75T256 38" fill="none" stroke="white" stroke-opacity=".6" stroke-width="3"/></svg>`);
+  }
   function fillThemeChoices() {
     X.settingDefs.theme.choices = Object.values(X.themes).map((th) => ({ v: th.id, label: th.name }));
+    const folder = X.data.categories.find(c=>c.id==='settings').items.find(i=>i.id==='themeset').children.find(i=>i.id==='theme-gallery');
+    folder.children = Object.values(X.themes).map(th=>({
+      id:'theme-'+th.id, themeId:th.id, title:th.name,
+      desc:th.description || {zh:'停留预览 · 确认后应用',en:'Preview on focus · Confirm to apply'},
+      thumb:/^themes\/thumbnails\/[a-z0-9-]+\.(png|webp|svg)$/i.test(th.thumbnail || '') ? th.thumbnail : themeCover(th), thumbKind:'wide', action:'applyThemeItem',
+      options:th.source ? [{label:{zh:'来源与作者',en:'Source and credits'},run:()=>dialog(t(th.name)+'\n'+th.author+'\n'+th.source, ['ok'])}] : ['info'],
+      live:()=>settings.theme===th.id ? {zh:'✓ 当前主题',en:'✓ Current theme'} : '',
+    }));
   }
 
   // ---------- △ 侧边选项菜单 ----------
@@ -774,7 +844,7 @@
   let stageOY = 0;
   function snapLayout(){for(const n of cats.concat(...roots.map(r=>r.nodes),...S.stack.map(s=>s.level.nodes))){Object.assign(n.cur,n.tgt);stepNode(n,1)}}
   function resize() {
-    const previousMobile=MOBILE;MOBILE=innerWidth<700&&innerHeight>innerWidth;document.body.classList.toggle('mobile',MOBILE);if(previousMobile!==MOBILE){focusItem=null;X.preview.stop();if(!MOBILE)document.body.classList.remove('mobile-home');}if(MOBILE){const sc=innerWidth/360;ui.style.width='360px';ui.style.height=innerHeight/sc+'px';ui.style.transform=`scale(${sc})`;stageOY=0;if(bg)bg.setBand(1,0);layout();if(previousMobile!==MOBILE)snapLayout();return;}ui.style.height='';
+    const previousMobile=MOBILE;MOBILE=innerWidth<700&&innerHeight>innerWidth;document.body.classList.toggle('mobile',MOBILE);if(previousMobile!==MOBILE){focusItem=null;X.preview.stop();scheduleThemePreview(null);if(!MOBILE)document.body.classList.remove('mobile-home');}if(MOBILE){const sc=innerWidth/360;ui.style.width='360px';ui.style.height=innerHeight/sc+'px';ui.style.transform=`scale(${sc})`;stageOY=0;if(bg)bg.setBand(1,0);layout();if(previousMobile!==MOBILE)snapLayout();return;}ui.style.height='';
     const s = Math.min(innerHeight / 720, innerWidth / 980);
     const W = innerWidth / s, H = innerHeight / s;
     // 竖屏 / 窄窗口：XMB 主体放在 28% 高度附近，时钟和侧边菜单仍贴住整屏
@@ -827,6 +897,7 @@
     focusItem = it;
     if (S.mode === 'panel') return; // 打开 △ 菜单时保持当前预览
     X.preview.schedule(it, node);
+    scheduleThemePreview(it?.themeId || null);
   }
 
   // ---------- 主循环 ----------
@@ -847,7 +918,7 @@
     for (const lv of roots) for (const n of lv.nodes) stepNode(n, k);
     for (const s of S.stack) for (const n of s.level.nodes) stepNode(n, k);
     for (const n of dying) stepNode(n, k);
-    if (bg && !document.body.classList.contains('cotton')) bg.render(dt);
+    if (bg && !document.hidden && !document.body.classList.contains('cotton') && !document.body.classList.contains('visual-theme')) bg.render(dt);
     requestAnimationFrame(frame);
   }
 
@@ -883,7 +954,7 @@
     layout();
     if(MOBILE&&qs.get('screen')==='photos'){const folder=roots[S.cat].items.find(it=>it.children&&it.children.length);if(folder)enter(folder)}
     if(MOBILE&&qs.get('screen')==='music'){const folder=roots[S.cat].items.find(it=>it.children&&it.children.length);if(folder)enter(folder)}
-    {$('#mobile-back').onclick=e=>{e.stopPropagation();act('back')};$('#mobile-opt').onclick=e=>{e.stopPropagation();act('opt')};$('#mobile-home').onclick=e=>{e.stopPropagation();if(S.mode==='viewer')X.viewer.close();while(S.stack.length)back();mobileHome=true;focusItem=null;X.preview.stop();S.mode='xmb';input();layout()};}
+    {$('#mobile-back').onclick=e=>{e.stopPropagation();act('back')};$('#mobile-opt').onclick=e=>{e.stopPropagation();act('opt')};$('#mobile-home').onclick=e=>{e.stopPropagation();goHome()};}
     // 初始状态直接到位，不要从屏幕外飞进来
     const all = cats.concat(...roots.map((r) => r.nodes));
     all.forEach(n=>{Object.assign(n.cur,n.tgt);stepNode(n,1)});

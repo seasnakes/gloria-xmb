@@ -4,7 +4,11 @@
 
 # Browser verification screenshots and local reference downloads
 /*.png
+/*.jpg
+/*.jpeg
+/*.gif
 /references/
+/release-local/
 
 # One-off pre-import backup
 /before-playlist-data.js

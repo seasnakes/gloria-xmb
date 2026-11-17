@@ -1,0 +1,26 @@
+{
+  "samples": [
+    {
+      "phase": "7350",
+      "motionTime": 1.106279969215393,
+      "hidden": false,
+      "active": true
+    },
+    {
+      "phase": "7350",
+      "motionTime": 4.6762800216674805,
+      "hidden": false,
+      "active": true
+    },
+    {
+      "phase": "7350",
+      "motionTime": 8.246210098266602,
+      "hidden": false,
+      "active": true
+    }
+  ],
+  "always_open": true,
+  "motion_advances": true,
+  "reduced_motion_freezes": true,
+  "resumes": true
+}

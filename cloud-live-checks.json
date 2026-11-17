@@ -1,0 +1,19 @@
+{
+  "mode": "real-time volume, fixed camera",
+  "desktop": {
+    "draws": 147,
+    "viewport_pixels": 41947136,
+    "sample_seconds": 2
+  },
+  "reduced_motion_draws": [
+    967,
+    967
+  ],
+  "mobile_layout": [
+    393,
+    852
+  ],
+  "limitations": [
+    "Browser mobile viewport only; not physical phone profiling."
+  ]
+}

@@ -1,13 +1,18 @@
 {
+  "version": "2.1.0",
   "package": "/Users/seasnake/gloria/publish/xmb/cotton-v2/package",
   "zip": "/Users/seasnake/gloria/publish/xmb/cotton-v2/gloria-xmb-cotton-v2.zip",
-  "zip_bytes": 22647567,
-  "bytes": 22860589,
+  "zip_bytes": 21753867,
+  "bytes": 22194759,
   "games": 10,
-  "photos": 60,
-  "videos": 42,
-  "media_files": 234,
-  "js": "app.4688f5c6c88d.js",
-  "css": "xmb.b3099dfca3e2.css",
+  "photos": 13,
+  "videos": 25,
+  "media_files": 129,
+  "visual_themes": [
+    "themes/effects/liuma-cloud.html",
+    "themes/effects/stellar.html"
+  ],
+  "js": "app.78e1f83959a7.js",
+  "css": "xmb.78a765ead72e.css",
   "local_references_verified": true
 }

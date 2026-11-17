@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-15",
+  "environment": "Existing Chrome, local packaged build; desktop 1280x720 and mobile emulation 393x852",
+  "checks": {
+    "five_distinct_covers_loaded": true,
+    "theme_focus_previews_without_saving": true,
+    "escape_restores_applied_theme": true,
+    "confirm_applies_and_persists": true,
+    "reload_restores_cloud": true,
+    "mobile_tap_previews": true,
+    "mobile_home_cancels_preview": true,
+    "previous_webgl_context_released": true,
+    "cotton_preview_and_cancel": true,
+    "cloud_motion_advances": true,
+    "cloud_reduced_motion_freezes": true,
+    "cloud_reduced_motion_resumes": true,
+    "mobile_no_horizontal_overflow": true,
+    "shader_bodies_match_source": true,
+    "page_runtime_errors": [],
+    "theme_runtime_errors": []
+  },
+  "source": {
+    "shader": "https://www.shadertoy.com/view/t3sXW8",
+    "author": "seasnake",
+    "parent": "https://www.shadertoy.com/view/tdjBR1",
+    "parent_author": "tmst"
+  },
+  "limitations": [
+    "Local package only, not deployed or tested inside bilibilitoy.",
+    "Mobile layout emulation, not physical-device performance validation."
+  ]
+}
