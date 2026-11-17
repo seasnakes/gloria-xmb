@@ -4,7 +4,7 @@
 
 源码仓库：[seasnakes/gloria-xmb](https://github.com/seasnakes/gloria-xmb) · [v2.1.0 源码版本](https://github.com/seasnakes/gloria-xmb/tree/v2.1.0)。保留原有 Git 历史，运行所需的压缩媒体随源码保存；构建输出和本地截图不纳入 Git。
 
-运行入口：[哔哩哔哩 Toy](https://www.bilibili.com/toy/gloria-xmb/index.html)。v2.1.0 已于 2026-11-17 提交审核，提交时平台返回 `auditing`；[本次平台预览](https://www.bilibili.com/toy/preview/author_9fWqYMjn/index.html)和[发布校验记录](release-2.1.0.json)可供核对。审核通过前正式入口仍可能保留上一版；下方按日期保留早期开发与验证记录。
+运行入口：[哔哩哔哩 Toy](https://www.bilibili.com/toy/gloria-xmb/index.html)。v2.1.0 已于 2026-11-17 审核通过并上线，正式入口的版本指纹和主程序均已核对；[本次平台预览](https://www.bilibili.com/toy/preview/author_9fWqYMjn/index.html)和[发布校验记录](release-2.1.0.json)可供核对。下方按日期保留早期开发与验证记录。
 
 ## 棉花糖 v2 基线
 

@@ -4,7 +4,7 @@
   "toyId": 45321732487168,
   "title": "次世代 B 站启动器 · GLORIA  OS",
   "url": "https://www.bilibili.com/toy/gloria-xmb/index.html",
-  "status": "auditing",
+  "status": "published",
   "visibility": "LINK_ONLY",
   "previewUrl": "https://www.bilibili.com/toy/preview/author_9fWqYMjn/index.html",
   "verifiedPreviewUrl": "https://www.bilibili.com/toy/preview/author_9wEWRwBO/index.html",
@@ -35,10 +35,19 @@
         "paused": true
       }
     },
-    "cleanCheckoutPackageMatches": true
+    "cleanCheckoutPackageMatches": true,
+    "liveVersionAndAppMatch": true
   },
   "limitations": [
     "Bilibili status is the server readback at submittedAt, not a guarantee of later review approval.",
     "Mobile layout was checked using browser emulation, not a physical-device performance test."
-  ]
+  ],
+  "submissionStatus": "auditing",
+  "publishedVerifiedAt": "2026-11-17T18:38:41.561151+08:00",
+  "github": {
+    "url": "https://github.com/seasnakes/gloria-xmb",
+    "visibility": "public",
+    "releaseTag": "v2.1.0",
+    "releaseCommit": "8dbb369ed03ba3568bbfc0e6032830c9edf21760"
+  }
 }
